@@ -25,8 +25,13 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+FACEBOOK_APP_ID = "386686008148114"
+FACEBOOK_APP_SECRET = "3c56c38670c542b2a921b68f34de0d6b"
+FACEBOOK_DEFAULT_SCOPE = ['email', 'user_about_me', 'user_birthday', 'user_website','publish_actions']
 
-
+FACEBOOK_LOGIN_DEFAULT_REDIRECT = "/facebook/example"
+FACEBOOK_TRACK_RAW_DATA = True
+FACEBOOK_FORCE_PROFILE_UPDATE_ON_LOGIN = True
 # Application definition
 
 INSTALLED_APPS = (
@@ -36,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_facebook',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +54,27 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
+    'django_facebook.context_processors.facebook',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django_facebook.auth_backends.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+
+AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
+
 ROOT_URLCONF = 'fbpic.urls'
 
 WSGI_APPLICATION = 'fbpic.wsgi.application'
@@ -58,8 +85,12 @@ WSGI_APPLICATION = 'fbpic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'fbPic',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
