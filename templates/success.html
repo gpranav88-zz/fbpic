@@ -3,6 +3,7 @@
 	<h1>Welcome {{ user }}</h1>
 	THANK YOU FOR REGISTERING
 	<p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
+    <h2>Your unique ID is : {{user.id}} </h2>
 </div>
 <script>
 function fbLogoutUser() {
