@@ -10,4 +10,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     (r'^facebook/', include('django_facebook.urls')),
     (r'^accounts/', include('django_facebook.auth_urls')), #Don't add this line if you use django registration or userena for registration and auth.
+    url(r'^$', 'fbpic.views.home', name='home'),
+    url(r'^next$', 'fbpic.views.next', name='next'),
 )
