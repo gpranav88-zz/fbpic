@@ -7,8 +7,13 @@
 
 <div class="img-contain">
 <img src="{% static 'fbpic/images/nh7logo.png' %}" />
+<div class="column"></div>
+<div class="column"></div>
+<div class="column">Login to get all your pictures from NH7 taken by our BatCams!</div>
+<div class="column"></div>
 </div>
 
+<div class="form">
 <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
 	{% csrf_token %}
     <input type="hidden" value="/next" name="next" />
@@ -17,6 +22,7 @@
     {% csrf_token %}
     <input onclick="F.connect(this.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" />
 </form>
+</div>
 {% endif %}
 
 {% if user.is_authenticated %}
