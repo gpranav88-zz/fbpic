@@ -13,4 +13,4 @@ urlpatterns = patterns('',
     url(r'^$', 'fbpic.views.home', name='home'),
     url(r'^next$', 'fbpic.views.next', name='next'),
     url(r'^wall_post$', 'fbpic.views.wall_post', name='wall_post'),
-)
+) + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
