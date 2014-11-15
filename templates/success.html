@@ -5,20 +5,19 @@
 <div class="form">
 <div>
 	<h1>Welcome {{ user.first_name }}</h1>
-	You have been registered for BatCam!
-	<p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
-    <h2>Your unique ID is : {{user.id}} </h2>
+	<p>You have been registered for BatCam! You will find all your pictures uploaded here as soon as you get clicked by our BatCams</p>
+    <h3>Your unique ID is : {{user.id}} </h3>
 </div>
 
 <div id="wall_post" style="margin: 60px 0px 20px 0px;">
-        <h2 class="black">Post to My Wall</h2>
+        <h3 class="black">Post Pictures to My Wall</h3>
         <div>
             <form action="{% url 'wall_post' %}" method="get">
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
 
-                <img src="http://quidich.com/logo.png" alt="image"/>
-                <input type="hidden" value="http://quidich.com/logo.png" name="picture" />
+                <img src="{% static 'fbpic/images/99.jpg' %}" />
+                <input type="hidden" value="http://batcam.bacardiindia.in{% static 'fbpic/images/99.jpg' %}" name="picture" />
                 <br />
                 Say Something about this picture:<br />
                 <textarea name="message" rows="3" cols="35"></textarea>
