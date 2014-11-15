@@ -1,7 +1,7 @@
 {% include 'django_facebook/_facebook_js.html' %}
 <div>
-	<h1>Welcome {{ user }}</h1>
-	THANK YOU FOR REGISTERING
+	<h1>Welcome {{ user.first_name }}</h1>
+	You have been registered for BatCam!
 	<p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
     <h2>Your unique ID is : {{user.id}} </h2>
 </div>
