@@ -1,5 +1,6 @@
 body {
 	background-color: #1c2438;
+	color: white;
 }
 
 .img-contain{
@@ -22,4 +23,5 @@ img{
 .form{
 	display: block;
 	margin: auto;
+	text-align:center;
 }

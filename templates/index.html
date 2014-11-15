@@ -1,4 +1,4 @@
-{% if not user.is_authenticated %}
+
 <link href="{{ STATIC_URL }}django_facebook/css/facebook.css" type="text/css" rel="stylesheet" media="all" />
 {% include 'django_facebook/_facebook_js.html' %}
 {% load staticfiles %}
@@ -8,11 +8,12 @@
 <div class="img-contain">
 <img src="{% static 'fbpic/images/nh7logo.png' %}" />
 
+{% if not user.is_authenticated %}
 <div style="text-align: center;">Login to get all your pictures from the Bacardi NH7 Weekender taken by our BatCams!</div>
 </div>
 <br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
 <div class="form">
-<form style="text-align:center" action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
+<form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
 	{% csrf_token %}
     <input type="hidden" value="/next" name="next" />
     <input type="hidden" value="/next" name="register_next" />
@@ -24,9 +25,10 @@
 {% endif %}
 
 {% if user.is_authenticated %}
-            <h1>Welcome {{ user.first_name }}</h1><a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">logout</a><br />
-
-            <p>
-            Thank you for logging in with Facebook.
-            </p>
+<div class="form">
+            <h1>Welcome {{ user.first_name }}</h1>
+            Click
+            <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">here</a> to see your pictures<br />&nbsp;<br />&nbsp;
+            <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">logout</a><br />
+</div>
 {% endif %}
