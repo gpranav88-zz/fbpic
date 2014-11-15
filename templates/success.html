@@ -16,7 +16,7 @@
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
 
-                <img src="{% static 'fbpic/images/99.jpg' %}" />
+                <img style="width:50%" src="{% static 'fbpic/images/99.jpg' %}" />
                 <input type="hidden" value="http://batcam.bacardiindia.in{% static 'fbpic/images/99.jpg' %}" name="picture" />
                 <br />
                 Say Something about this picture:<br />
