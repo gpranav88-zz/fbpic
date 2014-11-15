@@ -1,4 +1,8 @@
 {% include 'django_facebook/_facebook_js.html' %}
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+
 <div>
 	<h1>Welcome {{ user.first_name }}</h1>
 	You have been registered for BatCam!
