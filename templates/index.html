@@ -8,11 +8,9 @@
 <div class="img-contain">
 <img src="{% static 'fbpic/images/nh7logo.png' %}" />
 
-<div style="text-align: center;">Login to get all your pictures from NH7 taken by our BatCams!</div>
-<br /><br /><br /><br /><br /><br />
-
+<div style="text-align: center;">Login to get all your pictures from the Bacardi NH7 Weekender taken by our BatCams!</div>
 </div>
-
+<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
 <div class="form">
 <form style="text-align:center" action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
 	{% csrf_token %}
