@@ -28,7 +28,7 @@
 <div class="form">
             <h1>Welcome {{ user.first_name }}</h1>
             Click
-            <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">here</a> to see your pictures<br />&nbsp;<br />&nbsp;
+            <a href="{% url 'next' %}">here</a> to see your pictures<br />&nbsp;<br />&nbsp;
             <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">logout</a><br />
 </div>
 {% endif %}

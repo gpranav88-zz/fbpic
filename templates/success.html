@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'fbpic/style.css' %}" />
-
+<div class="form">
 <div>
 	<h1>Welcome {{ user.first_name }}</h1>
 	You have been registered for BatCam!
@@ -28,13 +28,13 @@
 
                 <ul class="messages">
                     {% for message in messages %}
-                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
                     {% endfor %}
                 </ul>
         </div>
         <p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
     </div>
-
+</div>
 <script>
 function fbLogoutUser() {
     FB.getLoginStatus(function(response) {
