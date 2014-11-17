@@ -1,29 +1,39 @@
 {% include 'django_facebook/_facebook_js.html' %}
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'fbpic/style.css' %}" />
+<div class="form">
 <div>
-	<h1>Welcome {{ user }}</h1>
-	THANK YOU FOR REGISTERING
-	<p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
-    <h2>Your unique ID is : {{user.id}} </h2>
+	<h1>Welcome {{ user.first_name }}</h1>
+	<p>You have been registered for BatCam! You will find all your pictures uploaded here as soon as you get clicked by our BatCams</p>
+    <h3>Your unique ID is : {{user.id}} </h3>
 </div>
 
 <div id="wall_post" style="margin: 60px 0px 20px 0px;">
-        <h2>Post to My Wall</h2>
+        <h3 class="black">Post Pictures to My Wall</h3>
         <div>
             <form action="{% url 'wall_post' %}" method="get">
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
 
-                <img src="http://quidich.com/logo.png" alt="image"/>
-                <input type="hidden" value="http://quidich.com/logo.png" name="picture" />
+                <img style="width:50%" src="{% static 'fbpic/images/99.jpg' %}" />
+                <input type="hidden" value="http://batcam.bacardiindia.in{% static 'fbpic/images/99.jpg' %}" name="picture" />
                 <br />
-                <textarea name="message" rows="3" cols="35">Check out quidich.com, loving it :)</textarea>
+                Say Something about this picture:<br />
+                <textarea name="message" rows="3" cols="35"></textarea>
                 <br />
                 <input type="submit" value="Post to your wall" />
             </form>
+
+                <ul class="messages">
+                    {% for message in messages %}
+                    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                </ul>
         </div>
         <p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
     </div>
-
+</div>
 <script>
 function fbLogoutUser() {
     FB.getLoginStatus(function(response) {

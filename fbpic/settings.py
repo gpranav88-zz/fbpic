@@ -14,6 +14,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -27,8 +30,8 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-FACEBOOK_APP_ID = "386686008148114"
-FACEBOOK_APP_SECRET = "3c56c38670c542b2a921b68f34de0d6b"
+FACEBOOK_APP_ID = "422989564492709"
+FACEBOOK_APP_SECRET = "c44dcc7931d1824ead08dbeb61441812"
 FACEBOOK_DEFAULT_SCOPE = ['email', 'user_about_me', 'user_birthday', 'user_website','publish_actions']
 
 # FACEBOOK_LOGIN_DEFAULT_REDIRECT = "/facebook/example"
@@ -91,7 +94,6 @@ DATABASES = {
         'NAME': 'fbpic.db',
     }
 }
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
