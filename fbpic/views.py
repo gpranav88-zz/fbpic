@@ -15,7 +15,7 @@ def home(request):
     A base view.
     """
     template_name = "index.html"
-
+    
     # return HttpResponse()
     context = RequestContext(request)
     return render_to_response(template_name,context)

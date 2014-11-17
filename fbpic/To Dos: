@@ -1,3 +1,39 @@
 To Dos:
-Index Screen CSS
-Success Screen CSS
+On The App:
+
+Registrtation number 3 digit code.
+If someone is logged in, we msut get to page to see his id.
+
+Dump folder which creates a tagging interface.
+	Script to reduce them to size, rename them,type of picture field, orientation, upload to server
+	Read file names, take top one, move to temprorary folder,
+	enter database entry with file_name, timing, camera id, memcard
+	picture opens in interface, type code use comma, press enter once
+	database entry made
+	picture moved to permanent folder ( symlinks : one based on user, other based on camera )
+	repeat for all files in incoming folder
+	script to upload to facebook server based on user id auth token
+----------------------------
+2 more URLs with separate registration ids for trampoline and untameable.
+Tagging interface which loads only thir photo.
+----------------------------
+(v2?)
+users vs photos page on batcam pictures
+Open a page to show user photo count for every user
+Automatic overlaying of template with unique id printed somewhere.
+automatic collaging
+
+----------------------------
+Ask Pramy:
+what is this user.id, where is it? how can i change it?
+
+
+
+
+----------------------------
+Process Flow:
+	Batcam:
+		incoming folder : (consists of raw dumps, renamed and uploaded here)
+		temp folder : (consists of photos being tagged)
+		permalink folder : 
+
