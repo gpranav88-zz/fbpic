@@ -35,7 +35,13 @@ def next(request):
 def tagger(request):
 
     context = RequestContext(request)
-    context['foobar'] = os.listdir("/opt/fbpic/")
+    if request.GET.get('submit') == "abc":
+        #do something here
+        context['abc'] = "yay"
+
+    context['foobar'] = os.listdir("/opt/fbpic/")[0]
+    #move directories
+
     return render_to_response("tagger.html",context)
 
 def postPic(request):
@@ -70,3 +76,7 @@ def wall_post(request):
         messages.info(request, 'Posted the message to your wall')
         return next_redirect(request)
     return HttpResponse("")
+
+def tagHandler(request):
+    context = RequestContext(request)
+    return render_to_response("")

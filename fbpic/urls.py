@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^$', 'fbpic.views.home', name='home'),
     url(r'^next$', 'fbpic.views.next', name='next'),
     url(r'^tagger$', 'fbpic.views.tagger', name='tagger'),
+    url(r'^tagHandler$', 'fbpic.views.tagHandler', name='tagHandler'),
     url(r'^wall_post$', 'fbpic.views.wall_post', name='wall_post'),
 )

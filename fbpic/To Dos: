@@ -10,8 +10,12 @@ Dump folder which creates a tagging interface.
 	Script to reduce them to size, rename them,type of picture field, orientation, upload to server
 		->scp shell script?
 		->http://stackoverflow.com/questions/18344004/is-there-a-scp-alternative-for-powershell
-		
-	Read file names, take top one, move to temprorary folder,
+
+	Read file names, take top one, move to temprorary folder
+		->Do I Want to do this on Django or PHP the whole thing?
+		->PHP gets Access token
+		->
+
 	enter database entry with file_name, timing, camera id, memcard
 	picture opens in interface, type code use comma, press enter once
 	database entry made
