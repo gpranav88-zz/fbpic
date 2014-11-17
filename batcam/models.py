@@ -27,23 +27,22 @@ class MyCustomProfile(FacebookModel):
 class BatCamPicture(models.Model):
 	
 	PICTURE_TAKEN_AT = (
-        ('B', 'Batcam'),
-        ('U', 'Untameable'),
-        ('T', 'Trampoline'),
-    )
-    
-    CAMERA_ID = (
-    	
-    	('B1', 'Batcam'),
-        ('U1', 'Untameable 1'),
-        ('U2', 'Untameable 2'),
-        ('U3', 'Untameable 3'),
-        ('U4', 'Untameable 4'),
-        ('UD', 'Untameable Drone'),
-        ('T1', 'Trampoline 1'),
-        ('TD', 'Trampoline Drone'),
-    	
-    	)
+		('B', 'Batcam'),
+		('U', 'Untameable'),
+		('T', 'Trampoline'),
+	)
+	CAMERA_ID = (
+		
+		('B1', 'Batcam'),
+		('U1', 'Untameable 1'),
+		('U2', 'Untameable 2'),
+		('U3', 'Untameable 3'),
+		('U4', 'Untameable 4'),
+		('UD', 'Untameable Drone'),
+		('T1', 'Trampoline 1'),
+		('TD', 'Trampoline Drone'),
+		
+		)
 
 	complete_path = models.CharField(max_length=70)
 	filename = models.CharField(max_length=30)
