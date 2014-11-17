@@ -33,6 +33,7 @@ def next(request):
     context = RequestContext(request)
     return render_to_response("success.html",context)
 
+@csrf_protect
 def tagger(request):
 
     context = RequestContext(request)
