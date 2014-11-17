@@ -9,6 +9,7 @@ from django_facebook.decorators import facebook_required_lazy, facebook_required
 from django.views.decorators.csrf import csrf_protect
 from django_facebook.utils import next_redirect
 from django.contrib import messages
+import os
 
 def home(request):
     """
@@ -30,6 +31,11 @@ def next(request):
 
     context = RequestContext(request)
     return render_to_response("success.html",context)
+
+def tagger(request):
+
+    context = RequestContext(request)
+    return render_to_response("tagger.html",context)
 
 def postPic(request):
     context = RequestContext(request)

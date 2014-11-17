@@ -1,12 +1,16 @@
 To Dos:
 On The App:
 
-Registrtation number 4 digit code (Where is this being createddddddd!!!!! )
+Registrtation number 4 digit code
+		(Where is this being createddddddd!!!!! ) Will have to do a custom user model. Dead end for now. Come back to it later.
 
 ->If someone is logged in, we msut get to page to see his id.  **Done** 
 
 Dump folder which creates a tagging interface.
 	Script to reduce them to size, rename them,type of picture field, orientation, upload to server
+		->scp shell script?
+		->http://stackoverflow.com/questions/18344004/is-there-a-scp-alternative-for-powershell
+		
 	Read file names, take top one, move to temprorary folder,
 	enter database entry with file_name, timing, camera id, memcard
 	picture opens in interface, type code use comma, press enter once
