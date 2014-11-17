@@ -1,8 +1,9 @@
 To Dos:
 On The App:
 
-Registrtation number 3 digit code.
-If someone is logged in, we msut get to page to see his id.
+Registrtation number 4 digit code (Where is this being createddddddd!!!!! )
+
+->If someone is logged in, we msut get to page to see his id.  **Done** 
 
 Dump folder which creates a tagging interface.
 	Script to reduce them to size, rename them,type of picture field, orientation, upload to server
