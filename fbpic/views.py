@@ -35,6 +35,7 @@ def next(request):
 def tagger(request):
 
     context = RequestContext(request)
+    context['foobar'] = os.listdir("/opt/fbpic/")
     return render_to_response("tagger.html",context)
 
 def postPic(request):
