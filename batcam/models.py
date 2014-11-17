@@ -21,5 +21,5 @@ class MyCustomProfile(FacebookModel):
 			user = instance
 			profile_model = get_profile_model()
 
-		if profile_model == MyCustomProfile and created:
-			profile, new = MyCustomProfile.objects.get_or_create(user=instance)
+			if profile_model == MyCustomProfile and created:
+				profile, new = MyCustomProfile.objects.get_or_create(user=instance)
