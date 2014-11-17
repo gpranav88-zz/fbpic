@@ -1,7 +1,12 @@
-{{ abc }}
+
+<img src="{% static 'fbpic/images/batcam/incoming/'%}{{filename}}" />
+
 <form action="{% url 'tagger' %}" method="post">
 {% csrf_token %}
+
 <input type="hidden" value="abc" name="submit"/>
 <input type="hidden" value="{{count|add:1}}" name="count"/>
+<textarea name="message" rows="3" cols="35"></textarea>
 <input type="submit" value="Let's check this" />
+
 </form>

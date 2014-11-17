@@ -1,4 +1,7 @@
 To Dos:
+Generic:
+might be installing [pip install exifread] (v2?)
+
 On The App:
 
 Registrtation number 4 digit code
@@ -20,8 +23,9 @@ Dump folder which creates a tagging interface.
 	picture opens in interface, type code use comma, press enter once
 	database entry made
 	picture moved to permanent folder ( symlinks : one based on user, other based on camera )
-	repeat for all files in incoming folder
 	script to upload to facebook server based on user id auth token
+
+
 ----------------------------
 2 more URLs with separate registration ids for trampoline and untameable.
 Tagging interface which loads only thir photo.

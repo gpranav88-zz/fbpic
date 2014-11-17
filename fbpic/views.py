@@ -37,14 +37,27 @@ def next(request):
 def tagger(request):
 
     context = RequestContext(request)
-    abc = 0
+    incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","incoming")
+    temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
+    outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
+
+    #if tagging has happened on this call
     if request.POST.get('submit') == "abc":
         #Shift file to correct folder
-        abc = int(request.POST.get('count'))
+        filename = request.POST.get('filename')
+        #What happens if I skip this step altogether and move it to outgoing directly in step 1 ???
+        shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
 
-    context['count'] = abc
-    context['abc'] = os.listdir("/opt/fbpic/")[abc]
+
+
+    filename = os.listdir(incoming_dir_path)[0] #add if not blank condition here
+    
     #move directories
+    shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
+
+    context['filename'] = filename
+    context['full_path_current'] = os.path.join(temp_dir_path,filename)
+    context['full_path_final'] = os.path.join(outgoing_dir_path,filename)
 
     return render_to_response("tagger.html",context)
 

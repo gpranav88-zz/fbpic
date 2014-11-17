@@ -23,3 +23,34 @@ class MyCustomProfile(FacebookModel):
 
 			if profile_model == MyCustomProfile and created:
 				profile, new = MyCustomProfile.objects.get_or_create(user=instance)
+
+class BatCamPicture(models.Model):
+	
+	PICTURE_TAKEN_AT = (
+        ('B', 'Batcam'),
+        ('U', 'Untameable'),
+        ('T', 'Trampoline'),
+    )
+    
+    CAMERA_ID = (
+    	
+    	('B1', 'Batcam'),
+        ('U1', 'Untameable 1'),
+        ('U2', 'Untameable 2'),
+        ('U3', 'Untameable 3'),
+        ('U4', 'Untameable 4'),
+        ('UD', 'Untameable Drone'),
+        ('T1', 'Trampoline 1'),
+        ('TD', 'Trampoline Drone'),
+    	
+    	)
+
+	complete_path = models.CharField(max_length=70)
+	filename = models.CharField(max_length=30)
+	user_id = models.CharField(max_length=10, null= True, blank = True )
+	zone = models.CharField(max_length=1, choices=PICTURE_TAKEN_AT)
+	all_user_ids = models.CharField(max_length=70)
+
+	"""
+	cam_id = models.CharField(max_length=2, choices=CAMERA_ID)
+	"""
