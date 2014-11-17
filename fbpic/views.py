@@ -14,8 +14,14 @@ def home(request):
     """
     A base view.
     """
-    template_name = "index.html"
     
+    if request.user.is_authenticated:
+        # user is logged in
+        template_name = "success.html"
+    else:
+        template_name = "index.html"
+        
+
     # return HttpResponse()
     context = RequestContext(request)
     return render_to_response(template_name,context)
