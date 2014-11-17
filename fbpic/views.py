@@ -40,7 +40,7 @@ def tagger(request):
     abc = 0
     if request.POST.get('submit') == "abc":
         #Shift file to correct folder
-        abc = request.POST.get('count')
+        abc = int(request.POST.get('count'))
 
     context['count'] = abc
     context['abc'] = os.listdir("/opt/fbpic/")[abc]
