@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 from django_facebook.utils import next_redirect
 from django.contrib import messages
 import os
+import shutil
 
 def home(request):
     """
@@ -35,11 +36,13 @@ def next(request):
 def tagger(request):
 
     context = RequestContext(request)
-    if request.GET.get('submit') == "abc":
-        #do something here
-        context['abc'] = "yay"
+    abc = 0
+    if request.POST.get('submit') == "abc":
+        #Shift file to correct folder
+        abc = request.POST.get('count')
 
-    context['foobar'] = os.listdir("/opt/fbpic/")[0]
+    context['count'] = abc
+    context['abc'] = os.listdir("/opt/fbpic/")[abc]
     #move directories
 
     return render_to_response("tagger.html",context)
@@ -76,7 +79,3 @@ def wall_post(request):
         messages.info(request, 'Posted the message to your wall')
         return next_redirect(request)
     return HttpResponse("")
-
-def tagHandler(request):
-    context = RequestContext(request)
-    return render_to_response("")
