@@ -15,7 +15,7 @@ def home(request):
     A base view.
     """
     
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         # user is logged in
         template_name = "success.html"
     else:
