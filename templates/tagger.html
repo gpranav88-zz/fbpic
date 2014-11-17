@@ -1,5 +1,6 @@
 {{ abc }}
 <form action="{% url 'tagger' %}" method="post">
+{% csrf_token %}
 <input type="hidden" value="abc" name="submit"/>
 <input type="hidden" value="{{count|add:1}}" name="count"/>
 <input type="submit" value="Let's check this" />
