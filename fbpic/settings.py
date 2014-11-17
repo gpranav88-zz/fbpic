@@ -34,7 +34,7 @@ FACEBOOK_APP_ID = "386686008148114"
 FACEBOOK_APP_SECRET = "3c56c38670c542b2a921b68f34de0d6b"
 FACEBOOK_DEFAULT_SCOPE = ['email', 'user_about_me', 'user_birthday', 'user_website','publish_actions']
 
-FACEBOOK_LOGIN_DEFAULT_REDIRECT = "/next"
+# FACEBOOK_LOGIN_DEFAULT_REDIRECT = "/next"
 # FACEBOOK_TRACK_RAW_DATA = True
 # FACEBOOK_FORCE_PROFILE_UPDATE_ON_LOGIN = True
 # Application definition
