@@ -65,7 +65,7 @@ def tagger(request):
 
         shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
 
-    if len(os.listdir(incoming_dir_path) == 0):
+    if len(os.listdir(incoming_dir_path)) == 0:
         message = message + "No More Pictures to tag"
     else:
         filename = os.listdir(incoming_dir_path) #add if not blank condition here or only file is .gitignore
