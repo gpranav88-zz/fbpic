@@ -9,13 +9,11 @@ from django_facebook.decorators import facebook_required_lazy, facebook_required
 from django.views.decorators.csrf import csrf_protect
 from django_facebook.utils import next_redirect
 from django.contrib import messages
+from batcam.models import BatCamPicture, MyCustomProfile
 import os
 import shutil
 
 def home(request):
-    """
-    A base view.
-    """
     
     if request.user.is_authenticated():
         # user is logged in
@@ -51,14 +49,14 @@ def tagger(request):
 
 
 
+
     filename = os.listdir(incoming_dir_path)[0] #add if not blank condition here or only file is .gitignore
     
     #move directories
     shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
 
     context['filename'] = filename
-    context['full_path_current'] = os.path.join(temp_dir_path,filename)
-    context['full_path_final'] = os.path.join(outgoing_dir_path,filename)
+    context['zone'] = "batcam"
 
     return render_to_response("tagger.html",context)
 
