@@ -49,9 +49,10 @@ def tagger(request):
         #What happens if I skip this step altogether and move it to outgoing directly in step 1 ???
         if all_user_ids == "":
             #No Tags
+            console.log("no tags")
         else:
             for user_id in all_user_ids.split(","):
-                console.log(user_id)
+                console.log(user_id.strip())
 
         #shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
 
