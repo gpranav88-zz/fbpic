@@ -42,10 +42,11 @@ def tagger(request):
     outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
 
     #if tagging has happened on this call
-    if request.POST.get('submit') == "abc":
+    if request.method == "POST":
         #Shift file to correct folder
         filename = request.POST.get('filename')
         #What happens if I skip this step altogether and move it to outgoing directly in step 1 ???
+        #also tagged, untagged photos must be renamed
         shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
 
 
