@@ -35,6 +35,8 @@ def next(request):
 def tagger(request):
 
     context = RequestContext(request)
+
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","incoming")
     temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
     outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
@@ -45,6 +47,7 @@ def tagger(request):
         filename = request.POST.get('filename')
         #What happens if I skip this step altogether and move it to outgoing directly in step 1 ???
         shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
+        for 
 
 
 
