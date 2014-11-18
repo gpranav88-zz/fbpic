@@ -53,7 +53,7 @@ def tagger(request):
     filename = os.listdir(incoming_dir_path)[0] #add if not blank condition here or only file is .gitignore
     
     #move directories
-    shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
+    #shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
 
     context['filename'] = filename
     context['zone'] = "batcam"
