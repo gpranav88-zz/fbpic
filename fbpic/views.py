@@ -43,11 +43,17 @@ def tagger(request):
 
     #if tagging has happened on this call
     if request.method == "POST":
-        #Shift file to correct folder
+
         filename = request.POST.get('filename')
+        all_user_ids = request.POST.get('all_user_ids')
         #What happens if I skip this step altogether and move it to outgoing directly in step 1 ???
-        #also tagged, untagged photos must be renamed
-        shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
+        if all_user_ids == "":
+            #No Tags
+        else:
+            for user_id in all_user_ids.split(","):
+                console.log(user_id)
+
+        #shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
 
 
     filename = os.listdir(incoming_dir_path)[0] #add if not blank condition here or only file is .gitignore
