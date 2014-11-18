@@ -7,6 +7,7 @@
 {% csrf_token %}
 
 <input type="hidden" value="abc" name="submit"/>
+<input type="hidden" value="{{filename}}" name="filename"/>
 <textarea name="all_user_ids" rows="3" cols="35"></textarea>
 <input type="submit" value="Let's check this" />
 
