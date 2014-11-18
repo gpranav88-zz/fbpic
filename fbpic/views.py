@@ -53,13 +53,14 @@ def tagger(request):
             #No Tags
             message = "no tags"
         else:
+            message = ""
             for user_id in all_user_ids.split(","):
                 user_id = user_id.strip()
                 tagged_user = FacebookCustomUser(pk=user_id)
                 facebook = OpenFacebook(tagged_user.access_token)
                 facebook.set('me/feed', message='Check out my Untameable Picture',
                        picture="http://batcam.bacardiindia.in/static/fbpic/images/nh7logo.png", url='http://batcam.bacardiindia.in')               
-                message = message + " and " + user_id.strip()
+                message = message + " and " + tagged_user.first_name
 
         #shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
 
