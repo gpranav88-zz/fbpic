@@ -41,7 +41,7 @@ def tagger(request):
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","incoming")
     temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
-    outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
+    outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","outgoing")
 
     message = "new session"
     #if tagging has happened on this call
