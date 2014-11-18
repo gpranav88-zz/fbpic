@@ -1,7 +1,7 @@
 {% load staticfiles %}
-<h2>Status:{{message}}</h2><br />
+<h2>Last Tagged Status:{{message}}</h2><br />
 
-<img src="{% static 'fbpic/images/batcam/incoming/'%}{{filename}}" />
+<img src="{% static 'fbpic/images/batcam/temp/'%}{{filename}}" />
 <br />&nbsp;<br />
 <form action="{% url 'tagger' %}" method="post">
 {% csrf_token %}
