@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{{message}}
 <img src="{% static 'fbpic/images/batcam/incoming/'%}{{filename}}" />
 
 <form action="{% url 'tagger' %}" method="post">

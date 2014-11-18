@@ -49,10 +49,10 @@ def tagger(request):
         #What happens if I skip this step altogether and move it to outgoing directly in step 1 ???
         if all_user_ids == "":
             #No Tags
-            console.log("no tags")
+            message = "no tags"
         else:
             for user_id in all_user_ids.split(","):
-                console.log(user_id.strip())
+                message = user_id.strip()
 
         #shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
 
@@ -64,6 +64,7 @@ def tagger(request):
 
     context['filename'] = filename
     context['zone'] = "batcam"
+    context['message'] = message
 
     return render_to_response("tagger.html",context)
 
