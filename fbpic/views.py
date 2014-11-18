@@ -11,6 +11,7 @@ from django_facebook.utils import next_redirect
 from django.contrib import messages
 from django_facebook.models import FacebookCustomUser
 from batcam.models import BatCamPicture, MyCustomProfile
+from open_facebook.api import OpenFacebook
 import os
 import shutil
 
