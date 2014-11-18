@@ -61,7 +61,7 @@ def tagger(request):
                 tagged_user = FacebookCustomUser.objects.get(pk=user_id)
                 facebook = OpenFacebook(tagged_user.access_token)
                 facebook.set('me/feed', message='Check out my Untameable Picture',
-                       picture="http://batcam.bacardiindia.in/static/fbpic/images/outgoing/"+filename, url='http://batcam.bacardiindia.in')               
+                       picture="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, url='http://batcam.bacardiindia.in')               
                 message = message + " and " + tagged_user.first_name
             
 
