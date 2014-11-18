@@ -41,6 +41,7 @@ def tagger(request):
     temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
     outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
 
+    message = "frist time"
     #if tagging has happened on this call
     if request.method == "POST":
 
