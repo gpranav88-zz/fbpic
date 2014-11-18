@@ -30,8 +30,8 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-FACEBOOK_APP_ID = "386686008148114"
-FACEBOOK_APP_SECRET = "3c56c38670c542b2a921b68f34de0d6b"
+FACEBOOK_APP_ID = "422989564492709"
+FACEBOOK_APP_SECRET = "c44dcc7931d1824ead08dbeb61441812"
 FACEBOOK_DEFAULT_SCOPE = ['email', 'user_about_me', 'user_birthday', 'user_website','publish_actions']
 
 # FACEBOOK_LOGIN_DEFAULT_REDIRECT = "/next"
@@ -88,17 +88,13 @@ WSGI_APPLICATION = 'fbpic.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'fbPic',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'fbPic.db',
     }
 }
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
