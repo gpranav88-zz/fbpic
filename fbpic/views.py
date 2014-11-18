@@ -43,7 +43,7 @@ def tagger(request):
     temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
     outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
 
-    message = "first time"
+    message = "new session"
     #if tagging has happened on this call
     if request.method == "POST":
 
@@ -63,16 +63,17 @@ def tagger(request):
                        picture="http://batcam.bacardiindia.in/static/fbpic/images/nh7logo.png", url='http://batcam.bacardiindia.in')               
                 message = message + " and " + tagged_user.first_name
 
-        #shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
+        shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
 
-
-    filename = os.listdir(incoming_dir_path)[0] #add if not blank condition here or only file is .gitignore
+    if len(os.listdir(incoming_dir_path) == 0):
+        message = message + "No More Pictures to tag"
+    else:
+        filename = os.listdir(incoming_dir_path) #add if not blank condition here or only file is .gitignore
+        # move directories
+        shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
+        context['filename'] = filename
+        context['zone'] = "batcam"
     
-    # move directories
-    # shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
-
-    context['filename'] = filename
-    context['zone'] = "batcam"
     context['message'] = message
 
     return render_to_response("tagger.html",context)
