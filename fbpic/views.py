@@ -9,7 +9,7 @@ from django_facebook.decorators import facebook_required_lazy, facebook_required
 from django.views.decorators.csrf import csrf_protect
 from django_facebook.utils import next_redirect
 from django.contrib import messages
-from django_facebook import FacebookCustomUser
+from django_facebook.models import FacebookCustomUser
 from batcam.models import BatCamPicture, MyCustomProfile
 import os
 import shutil
@@ -56,7 +56,7 @@ def tagger(request):
             message = ""
             for user_id in all_user_ids.split(","):
                 user_id = user_id.strip()
-                tagged_user = FacebookCustomUser(pk=user_id)
+                tagged_user = FacebookCustomUser.objects.get(pk=user_id)
                 facebook = OpenFacebook(tagged_user.access_token)
                 facebook.set('me/feed', message='Check out my Untameable Picture',
                        picture="http://batcam.bacardiindia.in/static/fbpic/images/nh7logo.png", url='http://batcam.bacardiindia.in')               
