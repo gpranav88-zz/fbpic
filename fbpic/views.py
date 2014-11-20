@@ -23,11 +23,9 @@ def home(request):
 
     if request.user.is_authenticated():
         template_name = "success.html"
-        """
         if not request.user.mycustomprofile.batcam_id:
             args = MyCustomProfile.objects.all()
-            request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id')) + 1
-        """
+            request.user.mycustomprofile.batcam_id = int(args.aggregate(Max('batcam_id'))) + 1
         # user is logged in
     else:
         template_name = "index.html"
