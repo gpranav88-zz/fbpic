@@ -6,7 +6,6 @@
 
 <form action="{% url 'tagger' zone %}" method="post">
 {% csrf_token %}
-
 <input type="hidden" value="abc" name="submit"/>
 <input type="hidden" value="{{filename}}" name="filename"/>
 <textarea name="all_user_ids" rows="3" cols="35"></textarea>

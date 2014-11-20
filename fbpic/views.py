@@ -72,7 +72,7 @@ def tagger(request, zone):
     temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"temp")
     outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"outgoing")
 
-    message = zone + " new session"
+    message = zone + "new session"
     #if tagging has happened on this call
     if request.method == "POST":
 
@@ -87,12 +87,21 @@ def tagger(request, zone):
             shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
             for user_id in all_user_ids.split(","):
                 user_id = user_id.strip()
-                tagged_user = FacebookCustomUser.objects.get(pk=user_id)
-                facebook = OpenFacebook(tagged_user.access_token)
+                if zone == "batcam":
+                    tagged_user = MyCustomProfile.objects.get(batcam_id=user_id)
+                elif zone == "untameable":
+                    tagged_user = MyCustomProfile.objects.get(untameable_id=user_id)
+                elif zone =="trampoline":
+                    tagged_user = MyCustomProfile.objects.get(trampoline_id=user_id)
+                #tagged_user = FacebookCustomUser.objects.get(pk=user_id)
+                
+                facebook = OpenFacebook(tagged_user.user.access_token)
+                
                 #Change this to picture posting????
+
                 facebook.set('me/feed', message='Check out my Untameable Picture',
                        picture="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, url='http://batcam.bacardiindia.in')               
-                message = message + " and " + tagged_user.first_name
+                message = message + " and " + tagged_user.user.first_name
             
 
     if len(os.listdir(incoming_dir_path)) == 0:

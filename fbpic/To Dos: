@@ -4,6 +4,7 @@ Generic:
 On The App:
 
 #make sure the app doesn't freeze for bad files.
+#Change directory names on amazon
 
 #Make tagging interface independent of activity. 2 more URLs with separate registration ids for trampoline and untameable.
 
