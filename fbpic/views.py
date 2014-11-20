@@ -26,6 +26,7 @@ def home(request):
         if not request.user.mycustomprofile.batcam_id:
             args = MyCustomProfile.objects.all()
             request.user.mycustomprofile.batcam_id = int(args.aggregate(Max('batcam_id'))) + 1
+            debu = int(args.aggregate(Max('batcam_id'))) + 1
             request.user.mycustomprofile.save()
         # user is logged in
     else:
@@ -33,7 +34,7 @@ def home(request):
     
 
     # return HttpResponse()
-    context = RequestContext(request)
+    context = RequestContext(request, {'debu':debu})
     return render_to_response(template_name,context)
 
 def next(request):
