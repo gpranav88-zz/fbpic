@@ -23,8 +23,8 @@ def home(request):
 
     if request.user.is_authenticated():
         if request.user.mycustomprofile.batcam_id == "":
-        args = MyCustomProfile.objects.all()
-        request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id')) + 1
+            args = MyCustomProfile.objects.all()
+            request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id')) + 1
         # user is logged in
         template_name = "success.html"
     else:
