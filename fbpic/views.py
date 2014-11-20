@@ -25,8 +25,8 @@ def home(request):
         template_name = "success.html"
         if not request.user.mycustomprofile.batcam_id:
             args = MyCustomProfile.objects.all()
-            request.user.mycustomprofile.batcam_id = int(args.aggregate(Max('batcam_id'))) + 1
-            debu = int(args.aggregate(Max('batcam_id'))) + 1
+            request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id'))['batcam_id__max'] + 1
+            debu = args.aggregate(Max('batcam_id'))['batcam_id__max'] + 1
             request.user.mycustomprofile.save()
         # user is logged in
     else:
