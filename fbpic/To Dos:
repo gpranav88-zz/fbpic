@@ -1,52 +1,28 @@
 To Dos:
 Generic:
-might be installing [pip install exifread] (v2?)
 
 On The App:
 
-Registrtation number 4 digit code
+#make sure the app doesn't freeze for bad files.
+
+#Make tagging interface independent of activity. 2 more URLs with separate registration ids for trampoline and untameable.
+
+#Script to reduce them to size, rename them,type of picture field, orientation, upload to server
+	->scp shell script?
+	->http://stackoverflow.com/questions/18344004/is-there-a-scp-alternative-for-powershell
+
+#Registrtation number 4 digit code
 		(Where is this being createddddddd!!!!! ) Will have to do a custom user model. Dead end for now. Come back to it later.
 
-->If someone is logged in, we msut get to page to see his id.  **Done** 
-
-Dump folder which creates a tagging interface.
-	Script to reduce them to size, rename them,type of picture field, orientation, upload to server
-		->scp shell script?
-		->http://stackoverflow.com/questions/18344004/is-there-a-scp-alternative-for-powershell
-
-	Read file names, take top one, move to temprorary folder
-		->Do I Want to do this on Django or PHP the whole thing?
-		->PHP gets Access token
-		->
-
-	enter database entry with file_name, timing, camera id, memcard
-	picture opens in interface, type code use comma, press enter once
-	database entry made
-	picture moved to permanent folder ( symlinks : one based on user, other based on camera )
-	script to upload to facebook server based on user id auth token
+#Command has to be for me/photos/ look up facebook api, also check in place.
 
 
-----------------------------
-2 more URLs with separate registration ids for trampoline and untameable.
-Tagging interface which loads only thir photo.
-----------------------------
 (v2?)
-users vs photos page on batcam pictures
-Open a page to show user photo count for every user
-Automatic overlaying of template with unique id printed somewhere.
-automatic collaging
+# users vs photos page on batcam pictures
+# Open a page to show user photo count for every user
 
-----------------------------
-Ask Pramy:
-what is this user.id, where is it? how can i change it?
-
-
-
-
-----------------------------
-Process Flow:
-	Batcam:
-		incoming folder : (consists of raw dumps, renamed and uploaded here)
-		temp folder : (consists of photos being tagged)
-		permalink folder : 
+(v3)
+Image manipulation:
+	Automatic overlaying of template with unique id printed somewhere
+	automatic collaging (needs to read photo orientation? But will photos ever be oriented vertically?)
 
