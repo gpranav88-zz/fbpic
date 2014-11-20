@@ -14,6 +14,6 @@ urlpatterns = patterns('',
     url(r'^next$', 'fbpic.views.next', name='next'),
     url(r'^tagger$', 'fbpic.views.tagger', name='tagger'),
     url(r'^wall_post$', 'fbpic.views.wall_post', name='wall_post'),
-    url(r'^/untameable$', 'fbpic.views.home', {'name':'untameable'}),
-    url(r'^/trampoline$', 'fbpic.views.home', {'name':'trampoline'}),
+    url(r'^untameable/', 'fbpic.views.home', {'name':'untameable'}),
+    url(r'^trampoline/', 'fbpic.views.home', {'name':'trampoline'}),
 )
