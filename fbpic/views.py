@@ -21,21 +21,28 @@ def home(request, name):
     
     # Calculates the maximum out of the already-retrieved objects
     debu = ""
+    batcam = False
+    trampoline = False
+    untameable = False
+
     if request.user.is_authenticated():
         template_name = "success.html"
         if name=="batcam":
+            batcam = True
             if not request.user.mycustomprofile.batcam_id:
                 args = MyCustomProfile.objects.all()
                 request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id'))['batcam_id__max'] + 1
                 request.user.mycustomprofile.save()
 
         elif name=="untameable":
+            untameable = True
             if not request.user.mycustomprofile.untameable_id:
                 args = MyCustomProfile.objects.all()
                 request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
                 request.user.mycustomprofile.save()
 
         elif name=="trampoline":
+            trampoline = True
             if not request.user.mycustomprofile.trampoline_id:
                 args = MyCustomProfile.objects.all()
                 request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
@@ -46,7 +53,7 @@ def home(request, name):
     
 
     # return HttpResponse()
-    context = RequestContext(request, {'debu':debu,'name':name})
+    context = RequestContext(request, {'debu':debu,'batcam':batcam,'untameable':untameable,'trampoline':trampoline})
     return render_to_response(template_name,context)
 
 def next(request):
