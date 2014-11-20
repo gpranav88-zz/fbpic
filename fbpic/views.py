@@ -29,13 +29,13 @@ def home(request, name):
                 request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id'))['batcam_id__max'] + 1
                 request.user.mycustomprofile.save()
 
-        else if name=="untameable":
+        elif name=="untameable":
             if not request.user.mycustomprofile.untameable_id:
                 args = MyCustomProfile.objects.all()
                 request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
                 request.user.mycustomprofile.save()
 
-        else if name=="trampoline":
+        elif name=="trampoline":
             if not request.user.mycustomprofile.trampoline_id:
                 args = MyCustomProfile.objects.all()
                 request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
