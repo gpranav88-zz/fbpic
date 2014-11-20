@@ -20,7 +20,7 @@ import shutil
 def home(request, zone):
     
     # Calculates the maximum out of the already-retrieved objects
-    debu = ""
+    debu = "I am here!!!"
     batcam = False
     trampoline = False
     untameable = False
