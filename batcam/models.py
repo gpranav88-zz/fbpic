@@ -9,9 +9,9 @@ from fbpic import settings
 
 class MyCustomProfile(FacebookModel):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL)
-	batcam_id = models.IntegerField(unique=True, blank = True)
-	untameable_id = models.IntegerField(unique=True, blank = True)
-	trampoline_id = models.IntegerField(unique=True, blank = True)
+	batcam_id = models.IntegerField(blank = True)
+	untameable_id = models.IntegerField(blank = True)
+	trampoline_id = models.IntegerField(blank = True)
 
 	@receiver(post_save)
 
