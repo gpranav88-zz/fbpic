@@ -17,10 +17,10 @@ from django.db.models import Max
 import os
 import shutil
 
-def home(request):
+def home(request, page):
     
     # Calculates the maximum out of the already-retrieved objects
-    debu = ""
+    debu = page
     if request.user.is_authenticated():
         template_name = "success.html"
         if not request.user.mycustomprofile.batcam_id:

@@ -9,7 +9,9 @@
 <div>
 	<h1>Welcome {{ user.first_name }}</h1>
 	<p>You have been registered for BatCam! You will find all your pictures uploaded here as soon as you get clicked by our BatCams</p>
-    <h3>Your unique ID is : {{user.id}} </h3>
+    <h3>Your Batcam ID is : {{user.mycustomprofile.batcam_id}} </h3>
+    <h3>Your Untameable Zone ID is : {{user.mycustomprofile.untameable_id}} </h3>
+    <h3>Your Trampoline ID is : {{user.mycustomprofile.trampoline_id}} </h3>
 </div>
 
 <div id="wall_post" style="margin: 60px 0px 20px 0px;">
