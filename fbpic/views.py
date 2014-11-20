@@ -20,22 +20,33 @@ import shutil
 def home(request, name):
     
     # Calculates the maximum out of the already-retrieved objects
-
-    debu = name
+    debu = ""
     if request.user.is_authenticated():
         template_name = "success.html"
-        if not request.user.mycustomprofile.batcam_id:
-            args = MyCustomProfile.objects.all()
-            request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id'))['batcam_id__max'] + 1
-            debu = args.aggregate(Max('batcam_id'))['batcam_id__max'] + 1
-            request.user.mycustomprofile.save()
+        if name=="batcam":
+            if not request.user.mycustomprofile.batcam_id:
+                args = MyCustomProfile.objects.all()
+                request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id'))['batcam_id__max'] + 1
+                request.user.mycustomprofile.save()
+
+        else if name=="untameable":
+            if not request.user.mycustomprofile.untameable_id:
+                args = MyCustomProfile.objects.all()
+                request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
+                request.user.mycustomprofile.save()
+
+        else if name=="trampoline":
+            if not request.user.mycustomprofile.trampoline_id:
+                args = MyCustomProfile.objects.all()
+                request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
+                request.user.mycustomprofile.save()
         # user is logged in
     else:
         template_name = "index.html"
     
 
     # return HttpResponse()
-    context = RequestContext(request, {'debu':debu})
+    context = RequestContext(request, {'debu':debu,'name':name})
     return render_to_response(template_name,context)
 
 def next(request):
