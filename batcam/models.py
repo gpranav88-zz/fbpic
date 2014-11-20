@@ -23,6 +23,7 @@ class MyCustomProfile(FacebookModel):
 
 			if profile_model == MyCustomProfile and created:
 				profile, new = MyCustomProfile.objects.get_or_create(user=instance)
+				
 
 class BatCamPicture(models.Model):
 	
