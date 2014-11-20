@@ -63,7 +63,7 @@ def next(request):
     return render_to_response("success.html",context)
 
 @csrf_protect
-def tagger(request,zone):
+def tagger(request, zone):
 
     context = RequestContext(request)
 
@@ -104,7 +104,7 @@ def tagger(request,zone):
         context['zone'] = "batcam"
     
     context['message'] = message
-
+    context['zone'] = zone
     return render_to_response("tagger.html",context)
 
 def postPic(request):
