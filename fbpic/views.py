@@ -12,17 +12,24 @@ from django.contrib import messages
 from django_facebook.models import FacebookCustomUser
 from batcam.models import BatCamPicture, MyCustomProfile
 from open_facebook.api import OpenFacebook
+from django.db.models import Max
+
 import os
 import shutil
 
 def home(request):
     
+    # Calculates the maximum out of the already-retrieved objects
+    if request.user.mycustomprofile.batcam_id == "":
+        args = MyCustomProfile.objects.all()
+        request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id')) + 1
+
     if request.user.is_authenticated():
         # user is logged in
         template_name = "success.html"
     else:
         template_name = "index.html"
-        
+    
 
     # return HttpResponse()
     context = RequestContext(request)
