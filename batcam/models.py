@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 from django_facebook.utils import get_user_model, get_profile_model
 from fbpic import settings
 
-class MyCustomProfile(FacebookModel):
+class MyCustomProfile():
 	user = models.OneToOneField(settings.AUTH_USER_MODEL)
 	batcam_id = models.CharField(max_length=10, null = True, blank = True)
 	untameable_id = models.CharField(max_length=10, null = True, blank = True)
