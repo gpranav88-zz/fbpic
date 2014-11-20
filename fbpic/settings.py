@@ -89,9 +89,9 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-AUTH_USER_MODEL = 'batcam.models.MyCustomProfile'
+AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
 
-AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
+AUTH_PROFILE_MODULE = 'batcam.models.MyCustomProfile'
 
 ROOT_URLCONF = 'fbpic.urls'
 
