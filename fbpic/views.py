@@ -22,7 +22,8 @@ def home(request):
     # Calculates the maximum out of the already-retrieved objects
 
     if request.user.is_authenticated():
-        if request.user.mycustomprofile.batcam_id == "":
+        message = request.user.mycustomprofile.batcam_id
+        if request.user.mycustomprofile.batcam_id == "None":
             args = MyCustomProfile.objects.all()
             request.user.mycustomprofile.batcam_id = args.aggregate(Max('batcam_id')) + 1
         # user is logged in
@@ -32,7 +33,7 @@ def home(request):
     
 
     # return HttpResponse()
-    context = RequestContext(request)
+    context = RequestContext(request,{'message': message})
     return render_to_response(template_name,context)
 
 def next(request):
