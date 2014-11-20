@@ -68,11 +68,11 @@ def tagger(request, zone):
     context = RequestContext(request)
 
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-    incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","incoming")
-    temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
-    outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","outgoing")
+    incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"incoming")
+    temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"temp")
+    outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"outgoing")
 
-    message = zone + "new session"
+    message = zone + " new session"
     #if tagging has happened on this call
     if request.method == "POST":
 
@@ -89,6 +89,7 @@ def tagger(request, zone):
                 user_id = user_id.strip()
                 tagged_user = FacebookCustomUser.objects.get(pk=user_id)
                 facebook = OpenFacebook(tagged_user.access_token)
+                #Change this to picture posting????
                 facebook.set('me/feed', message='Check out my Untameable Picture',
                        picture="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, url='http://batcam.bacardiindia.in')               
                 message = message + " and " + tagged_user.first_name
@@ -101,7 +102,6 @@ def tagger(request, zone):
         # move directories
         shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
         context['filename'] = filename
-        context['zone'] = "batcam"
     
     context['message'] = message
     context['zone'] = zone
