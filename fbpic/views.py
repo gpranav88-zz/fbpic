@@ -86,7 +86,7 @@ def tagger(request, zone):
             message = ""
             shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
             for user_id in all_user_ids.split(","):
-                user_id = user_id.strip()
+                user_id = int(user_id.strip())
                 if zone == "batcam":
                     tagged_user = MyCustomProfile.objects.get(batcam_id=user_id)
                 elif zone == "untameable":
