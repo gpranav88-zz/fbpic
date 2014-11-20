@@ -58,7 +58,8 @@ def home(request, name):
 
 def next(request):
 
-    context = RequestContext(request)
+    context = RequestContext(request,{'debu':request.POST.get('name')})
+
     return render_to_response("success.html",context)
 
 @csrf_protect

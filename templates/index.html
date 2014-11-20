@@ -15,6 +15,7 @@
 <div class="form">
 <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
 	{% csrf_token %}
+    <input type="hidden" value="{{name}}" name="name" />
     <input type="hidden" value="/next" name="next" />
     <input type="hidden" value="/next" name="register_next" />
     <input type="hidden" value="/error" name="error_next" />
