@@ -63,7 +63,7 @@ def next(request):
     return render_to_response("success.html",context)
 
 @csrf_protect
-def tagger(request):
+def tagger(request,zone):
 
     context = RequestContext(request)
 
@@ -72,7 +72,7 @@ def tagger(request):
     temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","temp")
     outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","outgoing")
 
-    message = "new session"
+    message = zone + "new session"
     #if tagging has happened on this call
     if request.method == "POST":
 
