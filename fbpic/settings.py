@@ -30,8 +30,18 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+
+ #for Amazon
+"""
 FACEBOOK_APP_ID = "422989564492709"
 FACEBOOK_APP_SECRET = "c44dcc7931d1824ead08dbeb61441812"
+"""
+
+#for tanujb.com
+FACEBOOK_APP_ID = "386686008148114"
+FACEBOOK_APP_SECRET = "3c56c38670c542b2a921b68f34de0d6b"
+
+
 FACEBOOK_DEFAULT_SCOPE = ['email', 'user_about_me', 'user_birthday', 'user_website','publish_actions']
 
 # FACEBOOK_LOGIN_DEFAULT_REDIRECT = "/next"
@@ -79,7 +89,7 @@ AUTHENTICATION_BACKENDS = (
 
 AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
 
-AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
+AUTH_PROFILE_MODULE = 'batcam.MyCustomProfile'
 
 ROOT_URLCONF = 'fbpic.urls'
 
@@ -91,7 +101,9 @@ WSGI_APPLICATION = 'fbpic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'fbPic.db',
+        'NAME': 'fbpic.db', #for tanujb.com
+        #'NAME': 'fbPic.db', #for Amazon
+
     }
 }
 
