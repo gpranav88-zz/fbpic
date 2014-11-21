@@ -13,6 +13,7 @@ from django_facebook.models import FacebookCustomUser
 from batcam.models import BatCamPictureTag, MyCustomProfile
 from open_facebook.api import OpenFacebook
 from django.db.models import Max
+from django.db.models import F
 
 import os
 import shutil
@@ -195,15 +196,53 @@ def wall_post(request):
 @csrf_protect
 def poster(request):
     message = ""
+    
     if request.method == "POST":
         keepers = request.POST.getlist('keep')
         ids = request.POST.getlist('pic-id')
         filenames = request.POST.getlist('pic-filename')
         heroes = request.POST.getlist('hero')
-        message = keepers
+        batcam_id = request.POST.get('batcam_id')
+        outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","outgoing")
+
+
         #for zone=B, batcam-id and photo match, all must be marked as discard
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",id__in=ids).update(keeper="N").save()
+        total_count = len(ids)
+
         #for zone=B, batcam-id and photo match, all keepers must be marked "Y" in keeper
-        #for zone=B, batcam-id and photo match, first hero must be marked "Y" in hero
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=keepers).update(keeper="Y").save()
+        keeping_count = len(keepers)
+
+        #for zone=B, batcam-id and photo match, first hero must be marked "Y" in hero & keeper
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=heroes).update(hero="Y").save()
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=heroes).update(keeper="Y").save()
+        hero_count = len(heroes)
+
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",id__in=ids).save()
+
+        #if posted count=0, post one now, and update post count
+        this_user = MyCustomProfile.objects.filter(batcam_id__exact=batcam_id)
+        if (this_user.posted_count == 0 && keeping_count != 0):
+                    photo_id = keepers[0]
+                    photo_to_upload = BatCamPictureTag.objects.get(pk=photo_id)
+
+                    facebook = OpenFacebook(this_user.user.access_token, version = 'v2.1')
+                    #Message can be randomized? Is it worth the risk?
+                    facebook_return = facebook.set('me/photos', message='',
+                       url="http://tanujb.com:8000"+"/static/fbpic/images/batcam/outgoing/"+photo_to_upload.filename, place='206635469415060')
+                    photo_to_upload.posted_to_facebook = True
+                    photo_to_upload.facebook_post_id = facebook_return
+                    photo_to_upload.save()
+                    this_user.posted_count = F('posted_count') + 1
+
+        #Update all other counts
+        discard_count = total_count - keeping_count
+        this_user.discard_count = F('discard_count') + discard_count
+        this_user.keep_count = F('keep_count') + keep_count
+        this_user.hero_count = F('hero_count') + hero_count
+        this_user.save()
+
 
 
     dusers = MyCustomProfile.objects.filter(batcam_id__gte=1).order_by('posted_count','-tagged_count')[:1]
