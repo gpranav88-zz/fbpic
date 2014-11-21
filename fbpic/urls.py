@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^(?P<zone>(batcam|untameable|trampoline))$', 'fbpic.views.home', name="home"),
     url(r'^next$', 'fbpic.views.next', name='next'),
     url(r'^tagger/(?P<zone>(batcam|untameable|trampoline))$', 'fbpic.views.tagger', name='tagger'),
+    url(r'^poster$', 'fbpic.views.poster', name='poster'),
     url(r'^wall_post$', 'fbpic.views.wall_post', name='wall_post'),
 )

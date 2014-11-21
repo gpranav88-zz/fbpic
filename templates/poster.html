@@ -1,1 +1,23 @@
 {% load staticfiles %}
+<h2>Sorting Pictures of :{{user.batcam_id}} - {{user.user.first_name}}</h2><br />
+{{message}}
+
+
+<form action="{% url 'poster' %}" method="post">
+{% csrf_token %}
+<table>
+
+<tr>
+<td>
+<img style="height:200px;" src="{% static 'fbpic/images/batcam/outgoing/{{filename}}" />
+</td>
+<td>
+<input type="hidden" value="{{filename}}" name="pic1"/>
+<input type="checkbox" name="pic1-keep" value="true" /> Keep? <br />
+<input type="checkbox" name="pic1-hero" value="true" /> Hero Pic<br />
+</td>
+</tr>
+
+<input type="submit" value="Update" />
+
+</form>

@@ -3,16 +3,17 @@ Generic:
 
 On The App:
 ###To make multiple independent, non-conflicting tagging interface, make change in urls.py and create appropriate folders
-
+##Change url and fb post code
 #make sure the app doesn't freeze for bad files.
 #Change directory names on amazon
 #Script to reduce them to size, rename them,type of picture field, orientation, upload to server
 	->scp shell script?
 	->http://stackoverflow.com/questions/18344004/is-there-a-scp-alternative-for-powershell
-#Command has to be for me/photos/ look up facebook api, also check in place.
+#Command has to be for me/photos/ look up facebook api, also check in place. 
 
 #Make a photos posted table for all :
 	Zone, Userid(of some kind), photo link, fb photo link, timestamp,
+
 
 #Make a tagged photos table
 	userid, photo link, keep, hero
