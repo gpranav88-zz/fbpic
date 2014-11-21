@@ -223,7 +223,7 @@ def poster(request):
 
         #if posted count=0, post one now, and update post count
         this_user = MyCustomProfile.objects.filter(batcam_id__exact=batcam_id)
-        if (this_user.posted_count == 0 && keeping_count != 0):
+        if (this_user.posted_count == 0 and keeping_count != 0):
                     photo_id = keepers[0]
                     photo_to_upload = BatCamPictureTag.objects.get(pk=photo_id)
 
