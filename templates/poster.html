@@ -14,6 +14,8 @@
 <form action="{% url 'poster' %}" method="post">
 {% csrf_token %}
 <table>
+<input type="hidden" value="{{postee.batcam_id}}" name="batcam_id"/>
+
 {% for photo in photos %}
 <tr>
 <td>
@@ -22,8 +24,10 @@
 <td>
 <input type="hidden" value="{{photo.id}}" name="pic-id"/>
 <input type="hidden" value="{{photo.filename}}" name="pic-filename"/>
-<input type="checkbox" name="keep" value="{{photo.filename}}" /> Keep? <br />
-<input type="checkbox" name="hero" value="{{photo.filename}}" /> Hero Pic<br />
+<input type="checkbox" name="keep" value="{{photo.filename}}" {% if photo.keeper == "Y" %}checked{% endif %}/> Keep? <br />
+{% if not postee.hero_count %}
+<input type="checkbox" name="hero" value="{{photo.filename}}" {% if photo.keeper == "Y" %}checked{% endif %}/> Hero Pic<br />
+{% endif %}
 </td>
 </tr>
 {% endfor %}

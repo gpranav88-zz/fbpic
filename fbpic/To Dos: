@@ -4,7 +4,10 @@ Generic:
 On The App:
 ###To make multiple independent, non-conflicting tagging interface, make change in urls.py and create appropriate folders
 ##Change url and fb post code
+##drone camera must not repeat filenames
+
 #make sure the app doesn't freeze for bad files.
+
 #Change directory names on amazon
 #Script to reduce them to size, rename them,type of picture field, orientation, upload to server
 	->scp shell script?

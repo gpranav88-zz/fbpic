@@ -194,6 +194,14 @@ def wall_post(request):
 
 @csrf_protect
 def poster(request):
+    message = ""
+    if request.method == "POST":
+        keepers = request.POST.getlist('keep')
+        ids = request.POST.getlist('pic-id')
+        filenames = request.POST.getlist('pic-filename')
+
+
+
     dusers = MyCustomProfile.objects.filter(batcam_id__gte=1).order_by('posted_count','-tagged_count')[:1]
     duser = dusers[0]
     photos = BatCamPictureTag.objects.filter(zone__exact="B",batcam_id__exact=duser.batcam_id)
