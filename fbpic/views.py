@@ -199,7 +199,11 @@ def poster(request):
         keepers = request.POST.getlist('keep')
         ids = request.POST.getlist('pic-id')
         filenames = request.POST.getlist('pic-filename')
-
+        heroes = request.POST.getlist('hero')
+        message = keepers
+        #for zone=B, batcam-id and photo match, all must be marked as discard
+        #for zone=B, batcam-id and photo match, all keepers must be marked "Y" in keeper
+        #for zone=B, batcam-id and photo match, first hero must be marked "Y" in hero
 
 
     dusers = MyCustomProfile.objects.filter(batcam_id__gte=1).order_by('posted_count','-tagged_count')[:1]
@@ -207,5 +211,5 @@ def poster(request):
     photos = BatCamPictureTag.objects.filter(zone__exact="B",batcam_id__exact=duser.batcam_id)
     #further filter photos that are not keepers
 
-    context = RequestContext(request,{'postee':duser,'photos':photos})
+    context = RequestContext(request,{'postee':duser,'photos':photos,'message':message})
     return render_to_response("poster.html",context)
