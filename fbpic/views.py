@@ -110,7 +110,7 @@ def tagger(request, zone):
                     tagged_user = MyCustomProfile.objects.get(untameable_id__exact=user_id)
                     facebook = OpenFacebook(tagged_user.user.access_token)
                     #Message can be randomized? Is it worth the risk?
-                    facebook.set('me/photos', message='',
+                    facebook_return = facebook.set('me/photos', message='',
                        url="http://batcam.bacardiindia.in/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
                     
                     picture_tag = BatCamPictureTag.objects.create(
@@ -120,6 +120,7 @@ def tagger(request, zone):
                     zone = "U",
                     all_user_ids = all_user_ids,
                     posted_to_facebook =True,
+                    facebook_post_id = facebook_return["id"],
                     )
                     picture_tag.save()
 
@@ -129,7 +130,7 @@ def tagger(request, zone):
 
                     facebook = OpenFacebook(tagged_user.user.access_token)
                     #Message can be randomized? Is it worth the risk?
-                    facebook.set('me/photos', message='',
+                    facebook_return = facebook.set('me/photos', message='',
                        url="http://batcam.bacardiindia.in/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
 
                     picture_tag = BatCamPictureTag.objects.create(
@@ -139,6 +140,7 @@ def tagger(request, zone):
                     zone = "T",
                     all_user_ids = all_user_ids,
                     posted_to_facebook =True,
+                    facebook_post_id = facebook_return["id"],
                     )
                     picture_tag.save()
 
