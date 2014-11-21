@@ -1,12 +1,12 @@
 {% load staticfiles %}
 
-<h2>Sorting Pictures of :{{user.batcam_id}} - {{user.first_name}}</h2><br />
+<h2>Sorting Pictures of :{{postee.batcam_id}} - {{postee.first_name}}</h2><br />
 <table>
 <tr>
 	<td>Already Selected</td><td>Hero Pictures</td><td>Posted to FB</td>
 </tr>
 <tr>
-	<td>{{user.keep_count}}</td><td>{{user.hero_count}}</td><td>{{user.posted_count}}</td>
+	<td>{{postee.keep_count}}</td><td>{{postee.hero_count}}</td><td>{{postee.posted_count}}</td>
 </tr>
 {{message}}
 <br />
