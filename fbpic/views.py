@@ -71,6 +71,7 @@ def tagger(request, zone):
     incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"incoming")
     temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"temp")
     outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"outgoing")
+    discared_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"discard")
 
     message = zone + "new session"
     #if tagging has happened on this call
@@ -82,6 +83,7 @@ def tagger(request, zone):
         if all_user_ids == "":
             #No Tags
             message = "no tags"
+            shutil.move(os.path.join(temp_dir_path,filename), discard_dir_path)
         else:
             message = ""
             shutil.move(os.path.join(temp_dir_path,filename), outgoing_dir_path)
@@ -89,6 +91,9 @@ def tagger(request, zone):
                 user_id = int(user_id.strip())
                 if zone == "batcam":
                     tagged_user = MyCustomProfile.objects.get(batcam_id__exact=user_id)
+                    # Make entry in tagged table
+                    # Increase tagged count
+
                 elif zone == "untameable":
                     tagged_user = MyCustomProfile.objects.get(untameable_id__exact=user_id)
                 elif zone =="trampoline":
@@ -100,8 +105,9 @@ def tagger(request, zone):
                 #Change this to picture posting????
 
                 facebook.set('me/feed', message='Check out my Untameable Picture',
-                       picture="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, url='http://batcam.bacardiindia.in')               
-                message = message + " and " + tagged_user.user.first_name
+                       picture="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, url='http://batcam.bacardiindia.in')
+
+                message = tagged_user.user.first_name + ", "
             
 
     if len(os.listdir(incoming_dir_path)) == 0:
@@ -148,3 +154,8 @@ def wall_post(request):
         messages.info(request, 'Posted the message to your wall')
         return next_redirect(request)
     return HttpResponse("")
+
+@csrf_protect
+def poster(request):
+    context = RequestContext(request)
+    return render_to_response("poster.html",context)

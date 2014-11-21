@@ -28,13 +28,15 @@ class MyCustomProfile(FacebookModel):
 			if profile_model == MyCustomProfile and created:
 				profile, new = MyCustomProfile.objects.get_or_create(user=instance)
 
-class BatCamPicture(models.Model):
+
+class BatCamPictureTag(models.Model):
 	
 	PICTURE_TAKEN_AT = (
 		('B', 'Batcam'),
 		('U', 'Untameable'),
 		('T', 'Trampoline'),
 	)
+
 	CAMERA_ID = (
 		
 		('B1', 'Batcam'),
@@ -44,16 +46,28 @@ class BatCamPicture(models.Model):
 		('U4', 'Untameable 4'),
 		('UD', 'Untameable Drone'),
 		('T1', 'Trampoline 1'),
-		('TD', 'Trampoline Drone'),
-		
+		('TD', 'Trampoline Drone'),	
 		)
 
-	complete_path = models.CharField(max_length=70)
-	filename = models.CharField(max_length=30)
-	user_id = models.CharField(max_length=10, null= True, blank = True )
-	zone = models.CharField(max_length=1, choices=PICTURE_TAKEN_AT)
-	all_user_ids = models.CharField(max_length=70)
 
-	"""
+	complete_path = models.CharField(max_length=200)
+	filename = models.CharField(max_length=30)
+	batcam_id = models.CharField(max_length=10, null= True, blank = True)
+	zone = models.CharField(max_length=1, choices=PICTURE_TAKEN_AT)
+	timestamp_tag = models.DateField(auto_now_add=True)
+	all_user_ids = models.CharField(max_length=70)
 	cam_id = models.CharField(max_length=2, choices=CAMERA_ID)
-	"""
+	keeper = models.CharField(max_length=1, default = 'U')
+	hero = models.CharField(max_length=1, default = 'U')
+	posted_to_facebook = models.BooleanField()
+	timestamp_facebook_post = models.DateField(auto_now=True,null=True,blank=True)
+	facebook_post_id = models.CharField(null=True,blank=True)
+
+class UserPhotoCount(models.Model):
+	#userid, tagged count, posted count, keep count, hero count
+	batcam_id = models.CharField(max_length=10, null= True, blank = True)
+	tagged_count = models.IntegerField(default=0)
+	posted_count = models.IntegerField(default=0)
+	keep_count = models.IntegerField(default=0)
+	hero_count = models.IntegerField(default=0)
+	discard_count = models.IntegerField(default=0)

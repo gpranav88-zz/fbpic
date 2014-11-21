@@ -2,20 +2,27 @@ To Dos:
 Generic:
 
 On The App:
+###To make multiple independent, non-conflicting tagging interface, make change in urls.py and create appropriate folders
 
 #make sure the app doesn't freeze for bad files.
 #Change directory names on amazon
-
-#Make tagging interface independent of activity. 2 more URLs with separate registration ids for trampoline and untameable.
-
 #Script to reduce them to size, rename them,type of picture field, orientation, upload to server
 	->scp shell script?
 	->http://stackoverflow.com/questions/18344004/is-there-a-scp-alternative-for-powershell
-
-#Registrtation number 4 digit code
-		(Where is this being createddddddd!!!!! ) Will have to do a custom user model. Dead end for now. Come back to it later.
-
 #Command has to be for me/photos/ look up facebook api, also check in place.
+
+#Make a photos posted table for all :
+	Zone, Userid(of some kind), photo link, fb photo link, timestamp,
+
+#Make a tagged photos table
+	userid, photo link, keep, hero
+
+# Batcam user photo count table
+	userid, tagged count, posted count, keep count, hero count
+
+Make poster interface
+	find user with posted count = 0, but tagged count > 0
+	open up all his pictures. With checkboxes.
 
 
 (v2?)
