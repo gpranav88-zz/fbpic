@@ -153,8 +153,10 @@ def tagger(request, zone):
                     tagged_user = MyCustomProfile.objects.get(untameable_id__exact=user_id)
                     facebook = OpenFacebook(tagged_user.user.access_token, version = 'v2.1')
                     #Message can be randomized? Is it worth the risk?
+                    url_var="http://batcam.bacardiindia.in"+"/static/fbpic/images/"+zone+"/outgoing/"+filename
+                    message = url_var
                     facebook_return = facebook.set('me/photos', message='',
-                       url="http://batcam.bacardiindia.in"+"/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
+                       url=url_var, place='206635469415060')
                     
                     picture_tag = BatCamPictureTag.objects.create(
                     complete_path = os.path.join(outgoing_dir_path,filename),
@@ -187,7 +189,7 @@ def tagger(request, zone):
                     )
                     picture_tag.save()
 
-                message = tagged_user.user.first_name + ", "
+                #message = tagged_user.user.first_name + ", "
             
 
     if len(os.listdir(incoming_dir_path)) == 0:
