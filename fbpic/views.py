@@ -203,6 +203,7 @@ def poster(request):
         filenames = request.POST.getlist('pic-filename')
         heroes = request.POST.getlist('hero')
         batcam_id = request.POST.get('batcam_id')
+        BASE_DIR = os.path.dirname(os.path.dirname(__file__))
         outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","batcam","outgoing")
 
 
