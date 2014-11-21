@@ -155,7 +155,7 @@ def tagger(request, zone):
                     #Message can be randomized? Is it worth the risk?
                     url_var="http://batcam.bacardiindia.in"+"/static/fbpic/images/"+zone+"/outgoing/"+filename
                     message = url_var
-                    facebook_return = facebook.set('me/photos', message='',
+                    facebook_return = facebook.set('me/photos', message="I'm at Bacardi Untameable Zone",
                        url=url_var, place='206635469415060')
                     
                     picture_tag = BatCamPictureTag.objects.create(
