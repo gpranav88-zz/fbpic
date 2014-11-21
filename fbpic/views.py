@@ -272,7 +272,7 @@ def poster(request):
                     facebook = OpenFacebook(this_user.user.access_token, version = 'v2.1')
                     #Message can be randomized? Is it worth the risk?
                     facebook_return = facebook.set('me/photos', message='',
-                       url="http://tanujb.com:8000"+"/static/fbpic/images/batcam/outgoing/"+photo_to_upload.filename, place='206635469415060')
+                       url="http://batcam.bacardiindia.in"+"/static/fbpic/images/batcam/outgoing/"+photo_to_upload.filename, place='206635469415060')
                     photo_to_upload.posted_to_facebook = True
                     photo_to_upload.facebook_post_id = facebook_return
                     photo_to_upload.save()
