@@ -91,8 +91,13 @@ def tagger(request, zone):
                 user_id = int(user_id.strip())
                 if zone == "batcam":
                     tagged_user = MyCustomProfile.objects.get(batcam_id__exact=user_id)
-                    # Make entry in tagged table
                     # Increase tagged count
+                    tagged_user.tagged_count = tagged_user.tagged_count + 1
+                    tagged_user.save() 
+
+                    # Make entry in tagged table
+                    
+                    
 
                 elif zone == "untameable":
                     tagged_user = MyCustomProfile.objects.get(untameable_id__exact=user_id)
