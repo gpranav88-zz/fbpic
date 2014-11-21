@@ -1,28 +1,32 @@
 {% load staticfiles %}
 <h2>Sorting Pictures of :{{user.batcam_id}} - {{user.user.first_name}}</h2><br />
+<table>
+<tr>
+	<td>Already Selected</td><td>Hero Pictures</td><td>Posted to FB</td>
+</tr>
+<tr>
+	<td>{{user.keep_count}}</td><td>{{user.hero_count}}</td><td>{{user.posted_count}}</td>
+</tr>
 {{message}}
-User
-{{user}}
 <br />
-Photos
-{{photos}}
 <br />
-Form
 <form action="{% url 'poster' %}" method="post">
 {% csrf_token %}
 <table>
-
+{% for photo in photos %}
 <tr>
 <td>
-<img style="height:200px;" src="{% static 'fbpic/images/batcam/outgoing/{{filename}}" />
+<img style="height:200px;" src="{% static 'fbpic/images/batcam/outgoing/{{photo.filename}}" />
 </td>
 <td>
-<input type="hidden" value="{{filename}}" name="pic1"/>
-<input type="checkbox" name="pic1-keep" value="true" /> Keep? <br />
-<input type="checkbox" name="pic1-hero" value="true" /> Hero Pic<br />
+<input type="hidden" value="{{photo.id}}" name="pic1-id"/>
+<input type="hidden" value="{{photo.filename}}" name="pic1-filename"/>
+<input type="checkbox" name="keep" value="{{filename}}" /> Keep? <br />
+<input type="checkbox" name="hero" value="{{filename}}" /> Hero Pic<br />
 </td>
 </tr>
-
+{% endfor %}
+</table>
 <input type="submit" value="Update" />
 
 </form>
