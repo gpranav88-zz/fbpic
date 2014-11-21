@@ -12,6 +12,12 @@ class MyCustomProfile(FacebookModel):
 	batcam_id = models.IntegerField(null=True, blank = True)
 	untameable_id = models.IntegerField(null=True, blank = True)
 	trampoline_id = models.IntegerField(null=True, blank = True)
+	
+	tagged_count = models.IntegerField(default=0)
+	posted_count = models.IntegerField(default=0)
+	keep_count = models.IntegerField(default=0)
+	hero_count = models.IntegerField(default=0)
+	discard_count = models.IntegerField(default=0)
 
 	@receiver(post_save)
 
@@ -62,12 +68,4 @@ class BatCamPictureTag(models.Model):
 	posted_to_facebook = models.BooleanField(default=False)
 	timestamp_facebook_post = models.DateField(auto_now=True,null=True,blank=True)
 	facebook_post_id = models.CharField(max_length=128, null=True,blank=True)
-
-class UserPhotoCount(models.Model):
-	#userid, tagged count, posted count, keep count, hero count
-	batcam_id = models.CharField(max_length=10, null= True, blank = True)
-	tagged_count = models.IntegerField(default=0)
-	posted_count = models.IntegerField(default=0)
-	keep_count = models.IntegerField(default=0)
-	hero_count = models.IntegerField(default=0)
-	discard_count = models.IntegerField(default=0)
+	

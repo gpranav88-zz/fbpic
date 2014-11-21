@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 from django_facebook.utils import next_redirect
 from django.contrib import messages
 from django_facebook.models import FacebookCustomUser
-from batcam.models import BatCamPicture, MyCustomProfile
+from batcam.models import BatCamPictureTag, MyCustomProfile
 from open_facebook.api import OpenFacebook
 from django.db.models import Max
 
