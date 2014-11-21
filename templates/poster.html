@@ -19,10 +19,10 @@
 <img style="height:200px;" src="{% static 'fbpic/images/batcam/outgoing/'%}{{photo.filename}}" />
 </td>
 <td>
-<input type="hidden" value="{{photo.id}}" name="pic1-id"/>
-<input type="hidden" value="{{photo.filename}}" name="pic1-filename"/>
-<input type="checkbox" name="keep" value="{{filename}}" /> Keep? <br />
-<input type="checkbox" name="hero" value="{{filename}}" /> Hero Pic<br />
+<input type="hidden" value="{{photo.id}}" name="pic-id"/>
+<input type="hidden" value="{{photo.filename}}" name="pic-filename"/>
+<input type="checkbox" name="keep" value="{{photo.filename}}" /> Keep? <br />
+<input type="checkbox" name="hero" value="{{photo.filename}}" /> Hero Pic<br />
 </td>
 </tr>
 {% endfor %}
