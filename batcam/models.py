@@ -12,7 +12,7 @@ class MyCustomProfile(FacebookModel):
 	batcam_id = models.IntegerField(null=True, blank = True)
 	untameable_id = models.IntegerField(null=True, blank = True)
 	trampoline_id = models.IntegerField(null=True, blank = True)
-	
+
 	tagged_count = models.IntegerField(default=0)
 	posted_count = models.IntegerField(default=0)
 	keep_count = models.IntegerField(default=0)
@@ -43,18 +43,6 @@ class BatCamPictureTag(models.Model):
 		('T', 'Trampoline'),
 	)
 
-	CAMERA_ID = (
-		
-		('B1', 'Batcam'),
-		('U1', 'Untameable 1'),
-		('U2', 'Untameable 2'),
-		('U3', 'Untameable 3'),
-		('U4', 'Untameable 4'),
-		('UD', 'Untameable Drone'),
-		('T1', 'Trampoline 1'),
-		('TD', 'Trampoline Drone'),	
-		)
-
 
 	complete_path = models.CharField(max_length=200)
 	filename = models.CharField(max_length=30)
@@ -62,7 +50,6 @@ class BatCamPictureTag(models.Model):
 	zone = models.CharField(max_length=1, choices=PICTURE_TAKEN_AT)
 	timestamp_tag = models.DateField(auto_now_add=True)
 	all_user_ids = models.CharField(max_length=70)
-	cam_id = models.CharField(max_length=2, choices=CAMERA_ID)
 	keeper = models.CharField(max_length=1, default = 'U')
 	hero = models.CharField(max_length=1, default = 'U')
 	posted_to_facebook = models.BooleanField(default=False)

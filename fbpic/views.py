@@ -96,7 +96,14 @@ def tagger(request, zone):
                     tagged_user.save() 
 
                     # Make entry in tagged table
-                    
+                    picture_tag = BatCamPictureTag.objects.create(
+                    complete_path = os.path.join(outgoing_dir_path,filename),
+                    filename = filename,
+                    batcam_id = user_id
+                    zone = "B",
+                    all_user_ids = all_user_ids
+                    )
+                    picture_tag.save()
                     
 
                 elif zone == "untameable":
