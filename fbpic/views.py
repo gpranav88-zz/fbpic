@@ -154,7 +154,7 @@ def tagger(request, zone):
                     facebook = OpenFacebook(tagged_user.user.access_token, version = 'v2.1')
                     #Message can be randomized? Is it worth the risk?
                     facebook_return = facebook.set('me/photos', message='',
-                       url="http://tanujb.com:8000"+"/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
+                       url="http://batcam.bacardiindia.in"+"/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
                     
                     picture_tag = BatCamPictureTag.objects.create(
                     complete_path = os.path.join(outgoing_dir_path,filename),
@@ -174,7 +174,7 @@ def tagger(request, zone):
                     facebook = OpenFacebook(tagged_user.user.access_token, version = 'v2.1')
                     #Message can be randomized? Is it worth the risk?
                     facebook_return = facebook.set('me/photos', message='',
-                       url="http://tanujb.com:8000"+"/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
+                       url="http://batcam.bacardiindia.in"+"/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
 
                     picture_tag = BatCamPictureTag.objects.create(
                     complete_path = os.path.join(outgoing_dir_path,filename),
