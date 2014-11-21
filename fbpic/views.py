@@ -194,8 +194,10 @@ def wall_post(request):
 
 @csrf_protect
 def poster(request):
-    user = MyCustomProfile.objects.filter(batcam_id__gte=1).order_by('posted_count','-tagged_count')[:1]
-    user = user[0]
+    users = list(MyCustomProfile.objects.filter(batcam_id__gte=1).order_by('posted_count','-tagged_count')[:1])
+    user = users[0]
     photos = BatCamPictureTag.objects.filter(zone__exact="B",batcam_id__exact=user.batcam_id)
+    #further filter photos that are not keepers
+
     context = RequestContext(request,{'user':user,'photos':photos})
     return render_to_response("poster.html",context)

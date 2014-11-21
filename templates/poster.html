@@ -16,7 +16,7 @@
 {% for photo in photos %}
 <tr>
 <td>
-<img style="height:200px;" src="{% static 'fbpic/images/batcam/outgoing/'%} {{photo.filename}}" />
+<img style="height:200px;" src="{% static 'fbpic/images/batcam/outgoing/'%}{{photo.filename}}" />
 </td>
 <td>
 <input type="hidden" value="{{photo.id}}" name="pic1-id"/>
