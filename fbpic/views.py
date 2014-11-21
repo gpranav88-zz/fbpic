@@ -208,19 +208,18 @@ def poster(request):
 
 
         #for zone=B, batcam-id and photo match, all must be marked as discard
-        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",id__in=ids).update(keeper="N").save()
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",id__in=ids).update(keeper="N")
         total_count = len(ids)
 
         #for zone=B, batcam-id and photo match, all keepers must be marked "Y" in keeper
-        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=keepers).update(keeper="Y").save()
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=keepers).update(keeper="Y")
         keeping_count = len(keepers)
 
         #for zone=B, batcam-id and photo match, first hero must be marked "Y" in hero & keeper
-        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=heroes).update(hero="Y").save()
-        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=heroes).update(keeper="Y").save()
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=heroes).update(hero="Y")
+        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",ids__in=heroes).update(keeper="Y")
         hero_count = len(heroes)
 
-        BatCamPictureTag.objects.filter(batcam_id__exact=batcam_id,zone__exact="B",id__in=ids).save()
 
         #if posted count=0, post one now, and update post count
         this_user = MyCustomProfile.objects.filter(batcam_id__exact=batcam_id)
