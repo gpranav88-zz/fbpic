@@ -48,11 +48,11 @@ class BatCamPictureTag(models.Model):
 	filename = models.CharField(max_length=30)
 	batcam_id = models.CharField(max_length=10, null= True, blank = True)
 	zone = models.CharField(max_length=1, choices=PICTURE_TAKEN_AT)
-	timestamp_tag = models.DateField(auto_now_add=True)
+	timestamp_tag = models.DateTimeField(auto_now_add=True)
 	all_user_ids = models.CharField(max_length=70)
 	keeper = models.CharField(max_length=1, default = 'U')
 	hero = models.CharField(max_length=1, default = 'U')
 	posted_to_facebook = models.BooleanField(default=False)
-	timestamp_facebook_post = models.DateField(auto_now=True,null=True,blank=True)
+	timestamp_facebook_post = models.DateTimeField(auto_now=True,null=True,blank=True)
 	facebook_post_id = models.CharField(max_length=128, null=True,blank=True)
 	
