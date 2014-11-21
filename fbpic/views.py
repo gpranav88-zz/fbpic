@@ -196,7 +196,7 @@ def wall_post(request):
 @csrf_protect
 def poster(request):
     message = ""
-    
+
     if request.method == "POST":
         keepers = request.POST.getlist('keep')
         ids = request.POST.getlist('pic-id')
@@ -245,10 +245,9 @@ def poster(request):
 
 
 
-    dusers = MyCustomProfile.objects.filter(batcam_id__gte=1).order_by('posted_count','-tagged_count')[:1]
+    dusers = MyCustomProfile.objects.filter(batcam_id__gte=1).order_by('posted_count','-tagged_count','keeper_count','hero_count')[:1]
     duser = dusers[0]
-    photos = BatCamPictureTag.objects.filter(zone__exact="B",batcam_id__exact=duser.batcam_id)
-    #further filter photos that are not keepers
+    photos = BatCamPictureTag.objects.filter(zone__exact="B",batcam_id__exact=duser.batcam_id).exclude(keeper__exact="N")
 
     context = RequestContext(request,{'postee':duser,'photos':photos,'message':message})
     return render_to_response("poster.html",context)
