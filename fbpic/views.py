@@ -105,19 +105,22 @@ def tagger(request, zone):
                     )
                     picture_tag.save()
                     
-
+                    
                 elif zone == "untameable":
                     tagged_user = MyCustomProfile.objects.get(untameable_id__exact=user_id)
+                    facebook = OpenFacebook(tagged_user.user.access_token)
+                    #Message can be randomized? Is it worth the risk?
+                    facebook.set('me/photos', message='',
+                       url="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, place='206635469415060')
                 elif zone =="trampoline":
                     tagged_user = MyCustomProfile.objects.get(trampoline_id__exact=user_id)
-                #tagged_user = FacebookCustomUser.objects.get(pk=user_id)
-                
-                facebook = OpenFacebook(tagged_user.user.access_token)
-                
-                #Change this to picture posting????
+                    #tagged_user = FacebookCustomUser.objects.get(pk=user_id)
 
-                facebook.set('me/feed', message='Check out my Untameable Picture',
-                       picture="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, url='http://batcam.bacardiindia.in')
+                    facebook = OpenFacebook(tagged_user.user.access_token)
+                    #Message can be randomized? Is it worth the risk?
+                    facebook.set('me/photos', message='',
+                       url="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, place='206635469415060')
+
 
                 message = tagged_user.user.first_name + ", "
             
