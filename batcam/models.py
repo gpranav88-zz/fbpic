@@ -59,9 +59,9 @@ class BatCamPictureTag(models.Model):
 	cam_id = models.CharField(max_length=2, choices=CAMERA_ID)
 	keeper = models.CharField(max_length=1, default = 'U')
 	hero = models.CharField(max_length=1, default = 'U')
-	posted_to_facebook = models.BooleanField()
+	posted_to_facebook = models.BooleanField(default=False)
 	timestamp_facebook_post = models.DateField(auto_now=True,null=True,blank=True)
-	facebook_post_id = models.CharField(null=True,blank=True)
+	facebook_post_id = models.CharField(max_length=128, null=True,blank=True)
 
 class UserPhotoCount(models.Model):
 	#userid, tagged count, posted count, keep count, hero count
