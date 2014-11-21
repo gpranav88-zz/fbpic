@@ -99,19 +99,30 @@ def tagger(request, zone):
                     picture_tag = BatCamPictureTag.objects.create(
                     complete_path = os.path.join(outgoing_dir_path,filename),
                     filename = filename,
-                    batcam_id = user_id
+                    batcam_id = user_id,
                     zone = "B",
                     all_user_ids = all_user_ids
                     )
                     picture_tag.save()
-                    
+
                     
                 elif zone == "untameable":
                     tagged_user = MyCustomProfile.objects.get(untameable_id__exact=user_id)
                     facebook = OpenFacebook(tagged_user.user.access_token)
                     #Message can be randomized? Is it worth the risk?
                     facebook.set('me/photos', message='',
-                       url="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, place='206635469415060')
+                       url="http://batcam.bacardiindia.in/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
+                    
+                    picture_tag = BatCamPictureTag.objects.create(
+                    complete_path = os.path.join(outgoing_dir_path,filename),
+                    filename = filename,
+                    batcam_id = user_id
+                    zone = "U",
+                    all_user_ids = all_user_ids,
+                    posted_to_facebook =True,
+                    )
+                    picture_tag.save()
+
                 elif zone =="trampoline":
                     tagged_user = MyCustomProfile.objects.get(trampoline_id__exact=user_id)
                     #tagged_user = FacebookCustomUser.objects.get(pk=user_id)
@@ -119,8 +130,17 @@ def tagger(request, zone):
                     facebook = OpenFacebook(tagged_user.user.access_token)
                     #Message can be randomized? Is it worth the risk?
                     facebook.set('me/photos', message='',
-                       url="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/"+filename, place='206635469415060')
+                       url="http://batcam.bacardiindia.in/static/fbpic/images/"+zone+"/outgoing/"+filename, place='206635469415060')
 
+                    picture_tag = BatCamPictureTag.objects.create(
+                    complete_path = os.path.join(outgoing_dir_path,filename),
+                    filename = filename,
+                    batcam_id = user_id,
+                    zone = "T",
+                    all_user_ids = all_user_ids,
+                    posted_to_facebook =True,
+                    )
+                    picture_tag.save()
 
                 message = tagged_user.user.first_name + ", "
             
