@@ -88,11 +88,11 @@ def tagger(request, zone):
             for user_id in all_user_ids.split(","):
                 user_id = int(user_id.strip())
                 if zone == "batcam":
-                    tagged_user = MyCustomProfile.objects.get(batcam_id=user_id)
+                    tagged_user = MyCustomProfile.objects.get(batcam_id__exact=user_id)
                 elif zone == "untameable":
-                    tagged_user = MyCustomProfile.objects.get(untameable_id=user_id)
+                    tagged_user = MyCustomProfile.objects.get(untameable_id__exact=user_id)
                 elif zone =="trampoline":
-                    tagged_user = MyCustomProfile.objects.get(trampoline_id=user_id)
+                    tagged_user = MyCustomProfile.objects.get(trampoline_id__exact=user_id)
                 #tagged_user = FacebookCustomUser.objects.get(pk=user_id)
                 
                 facebook = OpenFacebook(tagged_user.user.access_token)
