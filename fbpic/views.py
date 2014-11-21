@@ -116,7 +116,7 @@ def tagger(request, zone):
                     picture_tag = BatCamPictureTag.objects.create(
                     complete_path = os.path.join(outgoing_dir_path,filename),
                     filename = filename,
-                    batcam_id = user_id
+                    batcam_id = user_id,
                     zone = "U",
                     all_user_ids = all_user_ids,
                     posted_to_facebook =True,
