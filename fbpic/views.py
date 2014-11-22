@@ -34,6 +34,8 @@ def home(request, zone):
                 args = MyCustomProfile.objects.all()
                 maxi = args.aggregate(Max('batcam_id'))['batcam_id__max']
                 list_of_stupid = [1007,1020,1022,1071,1072,1073,1074,1131,1164,1165,1166,1167,1168,1169,1171,1172,1196,1198,1199,1201,1202,1221,1222,1223,1224,1225,1226,1227,1228,1234,1235,1236,1237,1238,1239,1240,1241,1242,1243,1244]
+                while (maxi+1) in list_of_stupid:
+                    maxi = maxi + 1
                 request.user.mycustomprofile.batcam_id = maxi + 1
                 request.user.mycustomprofile.save()
 
