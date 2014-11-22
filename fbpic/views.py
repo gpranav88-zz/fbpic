@@ -299,10 +299,24 @@ def poster(request):
 def uploader(request):
     tramp_id=118
     tagged_user = MyCustomProfile.objects.get(untameable_id=tramp_id)
-    facebook = OpenFacebook(tagged_user.user.access_token)
+    
     url_var = "http://batcam.bacardiindia.com/static/fbpic/images/untameable/outgoing/"+str(tramp_id)+".jpg"
+    """
+    facebook = OpenFacebook(tagged_user.user.access_token)
     facebook_return = facebook.set('me/photos', message="",
                        url=url_var, place='374502716046163')
+    """
+    data = urllib.urlencode({'message': '',
+    'place': '374502716046163',
+    'url': url_var})
+    h = httplib.HTTPConnection('graph.facebook.com')
+    headers = {'access_token': tagged_user.user.access_token,
+                'method': 'post'}
+    h.request('POST', '/me/photos', data, headers)
+    r = h.getresponse()
+    
+
+    """
     picture_tag = BatCamPictureTag.objects.create(
                     complete_path = os.path.join(outgoing_dir_path,filename),
                     filename = filename,
@@ -313,5 +327,6 @@ def uploader(request):
                     facebook_post_id = facebook_return["id"],
                     )
     picture_tag.save()
-    context = RequestContext(request,{"facebook_response":facebook_return})
+    """
+    context = RequestContext(request,{"facebook_response":r.read()})
     return render_to_response("uploader.html",context)
