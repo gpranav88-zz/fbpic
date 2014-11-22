@@ -299,7 +299,7 @@ def poster(request):
 def uploader(request):
     tramp_id=118
     tagged_user = MyCustomProfile.objects.get(untameable_id=tramp_id)
-    facebook = OpenFacebook(tagged_user.user.access_token, version = 'v2.1')
+    facebook = OpenFacebook(tagged_user.user.access_token, version = '')
     url_var = "http://batcam.bacardiindia.com/static/fbpic/images/untameable/outgoing/"+str(tramp_id)+".jpg"
     facebook_return = facebook.set('me/photos', message="",
                        url=url_var, place='374502716046163')
