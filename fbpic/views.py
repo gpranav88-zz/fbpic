@@ -14,7 +14,7 @@ from batcam.models import BatCamPictureTag, MyCustomProfile
 from open_facebook.api import OpenFacebook
 from django.db.models import Max
 from django.db.models import F
-
+import httplib, urllib, urllib2
 import os
 import shutil
 
