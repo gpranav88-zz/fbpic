@@ -151,7 +151,7 @@ def tagger(request, zone):
                     )
                     picture_tag.save()
 
-                #message = tagged_user.user.first_name + ", "
+                message = tagged_user.user.first_name + ", "
             
 
     if len(os.listdir(incoming_dir_path)) == 0:
