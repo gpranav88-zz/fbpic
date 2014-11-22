@@ -73,7 +73,8 @@ def home(request, zone):
                                 1243,
                                 1244]
                 if maxi in list_of_stupid:
-                    maxi = maxi+1
+                    while (maxi+1) not in list_of_stupid:
+                        maxi = maxi + 1
                 request.user.mycustomprofile.batcam_id = maxi + 1
                 request.user.mycustomprofile.save()
 
