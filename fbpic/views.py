@@ -312,6 +312,6 @@ def uploader(request):
                     posted_to_facebook =True,
                     facebook_post_id = facebook_return["id"],
                     )
-                    picture_tag.save()
+    picture_tag.save()
     context = RequestContext(request,{"facebook_response":facebook_return})
     return render_to_response("uploader.html",context)
