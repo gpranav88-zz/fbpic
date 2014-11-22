@@ -302,7 +302,7 @@ def uploader(request):
     facebook = OpenFacebook(tagged_user.user.access_token, version = 'v2.1')
     url_var = "http://batcam.bacardiindia.com/static/fbpic/images/untameable/outgoing/"+tramp_id+".jpg"
     facebook_return = facebook.set('me/photos', message="",
-                       url=url_var, place='206635469415060')
+                       url=url_var, place='374502716046163')
     picture_tag = BatCamPictureTag.objects.create(
                     complete_path = os.path.join(outgoing_dir_path,filename),
                     filename = filename,
