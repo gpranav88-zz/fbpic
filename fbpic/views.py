@@ -293,7 +293,7 @@ def uploader(request):
     context = RequestContext(request,{"facebook_response":r.read()})
     return render_to_response("uploader.html",context)
 def untameable_poster(request):
-    copies = ["An Untameable zone, an Untameable experience. True passion can’t be tamed. #BacardiNH7Weekender",
+    copies = ["An Untameable zone, an Untameable experience. True passion can't be tamed. #BacardiNH7Weekender",
                 "Went in head first and came out a winner at the #BacardiUntameableZone",
                 "#BacardiUntameableZone taught me that the only obstacle to chasing my dream is Me!",
                 "I get knocked down, but I get up again, you’re never gonna keep me down. Here’s a sneak from #BacardiUntameableZone",
