@@ -33,7 +33,7 @@ def home(request, zone):
             if not request.user.mycustomprofile.batcam_id:
                 args = MyCustomProfile.objects.all()
                 maxi = args.aggregate(Max('batcam_id'))['batcam_id__max']
-                list_of_stupid = [2196,2270,2346,2247,2578]
+                list_of_stupid = [2196,2270,2346,2247,2578,2251,2252,2253]
                 while (maxi+1) in list_of_stupid:
                     maxi = maxi + 1
                 request.user.mycustomprofile.batcam_id = maxi + 1
