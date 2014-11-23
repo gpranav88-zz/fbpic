@@ -299,7 +299,7 @@ def untameable_poster(request):
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
     user=FacebookCustomUser.objects.get(pk=2)
-    graph = user.get_offline_graph()
+    fb = user.get_offline_graph()
     picture="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/DSC00907.jpg"
     
     a = fb.set('me/photos', url=picture, message=copies[0],place="374502716046163")
