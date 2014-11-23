@@ -299,7 +299,7 @@ def untameable_poster(request):
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
 
-    list_of_ids=[117,119,121,123,126,128,130,134,136,138,140,143,104,118,120,122,124,127,129,131,135,137,139,142]
+    list_of_ids=[140,143,104,118,120,122,124,127,129,131,135,137,139,142]
     duser = "a"
     a=[]
     for current_id in list_of_ids:
@@ -309,7 +309,7 @@ def untameable_poster(request):
         picture="http://batcam.bacardiindia.in/static/fbpic/images/untameable/dump/Day1-UT/"+str(current_id)+".jpg"
         b= dict()
         b['untameable_id'] = current_id
-        b['name'] = str(duser.first_name)+" "+str(duser.last_name)
+        b['name'] = duser.first_name+" "+duser.last_name
         b['response'] = fb.set('me/photos', url=picture, message=copies[current_id%5],place="374502716046163")
         a.append(b)
 
