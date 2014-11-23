@@ -296,8 +296,8 @@ def untameable_poster(request):
     copies = ["An Untameable zone, an Untameable experience. True passion can't be tamed. #BacardiNH7Weekender",
                 "Went in head first and came out a winner at the #BacardiUntameableZone",
                 "#BacardiUntameableZone taught me that the only obstacle to chasing my dream is Me!",
-                "I get knocked down, but I get up again, you’re never gonna keep me down. Here’s a sneak from #BacardiUntameableZone",
-                "Where there’s a will, I’ll forge my way.  #BacardiUntameableZone"]
+                "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
+                "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
     user=FacebookCustomUser.objects.get(pk=2)
     graph = user.get_offline_graph()
     picture="http://batcam.bacardiindia.in/static/fbpic/images/batcam/outgoing/DSC00907.jpg"
