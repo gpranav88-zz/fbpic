@@ -316,6 +316,6 @@ def untameable_poster(request):
     return render_to_response("uploader.html",context)
 @csrf_protect
 def reRegister(request,batcam_original_id):
-    batcam_user = MyCustomProfile.objects.get(_id__exact=batcam_original_id)
+    batcam_user = MyCustomProfile.objects.get(batcam_id__exact=batcam_original_id)
     context = RequestContext(request,{"facebook_response":str(batcam_user.id)+" "+str(batcam_user.user.first_name)+" "+str(batcam_user.user.last_name)})
     return render_to_response("uploader.html",context)
