@@ -305,4 +305,8 @@ def untameable_poster(request):
     a = fb.set('me/photos', url=picture, message=copies[0],place="374502716046163")
     context = RequestContext(request,{"facebook_response":a})
     return render_to_response("uploader.html",context)
-
+@csrf_protect
+def reRegister(request,batcam_original_id):
+    batcam_user = MyCustomProfile.objects.get(batcam_id__exact=batcam_original_id)
+    context = RequestContext(request,{"facebook_response":batcam_user.id})
+    return render_to_response("uploader.html",context)
