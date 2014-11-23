@@ -308,9 +308,11 @@ def untameable_poster(request):
     duser = current_user.user
     fb = duser.get_offline_graph()
     picture="http://batcam.bacardiindia.in/static/fbpic/images/untameable/"+str(current_id)+".jpg"
-    a[current_id]['untameable_id'] = current_id
-    a[current_id]['name'] = str(duser.first_name)+" "+str(duser.last_name)
-    a[current_id]['response'] = fb.set('me/photos', url=picture, message=copies[current_id%5],place="374502716046163")
+    b= dict()
+    b['untameable_id'] = current_id
+    b['name'] = str(duser.first_name)+" "+str(duser.last_name)
+    b['response'] = fb.set('me/photos', url=picture, message=copies[current_id%5],place="374502716046163")
+    a.append(b)
 
     context = RequestContext(request,{"facebook_response":a})
     return render_to_response("uploader.html",context)
