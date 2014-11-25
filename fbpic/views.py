@@ -305,12 +305,12 @@ def untameable_poster(request):
     for current_id in list_of_ids:
         current_user = MyCustomProfile.objects.get(untameable_id__exact=current_id)
         duser = current_user.user
-        #fb = duser.get_offline_graph()
-        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/untameable/dump/Day1-UT/"+str(current_id)+".jpg"
+        fb = duser.get_offline_graph()
+        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/untameable/dump/day2-UT/"+str(current_id)+".jpg"
         b= dict()
         b['untameable_id'] = current_id
         b['name'] = duser.first_name+" "+duser.last_name
-        #b['response'] = fb.set('me/photos', url=picture, message=copies[current_id%5],place="374502716046163")
+        b['response'] = fb.set('me/photos', url=picture, message=untameable_copies[current_id%5],place="374502716046163")
         a.append(b)
 
     context = RequestContext(request,{"facebook_response":a})
