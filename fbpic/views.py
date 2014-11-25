@@ -293,24 +293,24 @@ def uploader(request):
     context = RequestContext(request,{"facebook_response":r.read()})
     return render_to_response("uploader.html",context)
 def untameable_poster(request):
-    copies = ["An Untameable zone, an Untameable experience. True passion can't be tamed. #BacardiNH7Weekender",
+    untameable_copies = ["An Untameable zone, an Untameable experience. True passion can't be tamed. #BacardiNH7Weekender",
                 "Went in head first and came out a winner at the #BacardiUntameableZone",
                 "#BacardiUntameableZone taught me that the only obstacle to chasing my dream is Me!",
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
 
-    list_of_ids=[140,143,104,118,120,122,124,127,129,131,135,137,139,142]
+    list_of_ids=[102,103,104,114,137,141,144,145,147,148,149,150,151,153,154,155,156,157,158,159,160,161,162,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,214,215,216,217,218,220,221,222,223,224,225,226,227,228,229,230,232,233,234]
     duser = "a"
     a=[]
     for current_id in list_of_ids:
         current_user = MyCustomProfile.objects.get(untameable_id__exact=current_id)
         duser = current_user.user
-        fb = duser.get_offline_graph()
-        picture="http://batcam.bacardiindia.in/static/fbpic/images/untameable/dump/Day1-UT/"+str(current_id)+".jpg"
+        #fb = duser.get_offline_graph()
+        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/untameable/dump/Day1-UT/"+str(current_id)+".jpg"
         b= dict()
         b['untameable_id'] = current_id
         b['name'] = duser.first_name+" "+duser.last_name
-        b['response'] = fb.set('me/photos', url=picture, message=copies[current_id%5],place="374502716046163")
+        #b['response'] = fb.set('me/photos', url=picture, message=copies[current_id%5],place="374502716046163")
         a.append(b)
 
     context = RequestContext(request,{"facebook_response":a})
