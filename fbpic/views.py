@@ -323,7 +323,7 @@ def batcam_iterator():
 
             duser = current_user.user
             fb = duser.get_offline_graph()
-            picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/batcam/outgoing/"+str(current_filename)+".jpg"
+            picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/batcam/outgoing/"+str(current_filename)
             b= dict()
             b['batcam_id'] = current_id
             b['name'] = duser.first_name+" "+duser.last_name
@@ -331,7 +331,7 @@ def batcam_iterator():
 
             try:
                 dummy="dumb"
-                #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
+                b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
             except Exception, e:
                 b['response'] = str(e)
                 b['error']="error generated"
