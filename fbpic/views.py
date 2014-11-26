@@ -296,7 +296,7 @@ def uploader(request):
     return render_to_response("uploader.html",context)
 def untameable_poster(request):
     
-    context = RequestContext(request,{"facebook_response":a})
+    context = RequestContext(request,{"facebook_response":""})
     #return render_to_response("uploader.html",context)
     return StreamingHttpResponse(batcam_iterator())
 
