@@ -14,6 +14,7 @@ from batcam.models import BatCamPictureTag, MyCustomProfile
 from open_facebook.api import OpenFacebook
 from django.db.models import Max
 from django.db.models import F
+import pickle
 import random
 import httplib, urllib, urllib2
 import os
@@ -302,24 +303,27 @@ def untameable_poster(request):
     list_of_filenames=[102,160,205,230,231,237,262,263,"269_2",270,271,272,273,274,275,276,"276_2",276_3,277,278,279,280,281,282,283,"283_2",284,285,286,287,288,289,290,291,"291_2",292,293,294,295,296,298,299,300,301,302,"302_2",302_3,303,"303_2",304,305,306,"306_2",307,308,309,310,311,"311_2",312,"312_2",313,314,315,316,317,318,32,320,321,322,323,324,325,326,327,328,329,330,331,"331_2",332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,352,353,354,355,356,357,358,359,360,361,362,363,364,365,"365_2",367,368,369,370,371,372,"372_2",374,375,377,378,379,380,381,382,383,384,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,"403_2",404,"404_2",405,406,407,408,409,"409_2",410,411,415,416,417,"417_2",419,"419_2",420,"420_2",420_3,420_4,421,"421_2",422,423,"423_2",423_3,424,425,426,"426_2",427,428,"428_2",428_3,430,"430_2",431,432,"432_2",433,"433_2",434,"434_2",434_3,435,"435_2","436_2",437,"437_2",438,"438_2",439,"439_2",440,441,"441_2"]
     duser = "a"
     a=[]
-    for current_filename in list_of_filenames:
-        current_id=int(str(current_filename).split("_")[0])
-        current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id)
-        duser = current_user.user
-        fb = duser.get_offline_graph()
-        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-3/"+str(current_filename)+".jpg"
-        b= dict()
-        b['untameable_id'] = current_id
-        b['name'] = duser.first_name+" "+duser.last_name
-        b['picture'] = picture
-        try:
-            b['response'] = fb.set('me/photos', url=picture, message=trampoline_copies[random.randint(0, 3)],place="374502716046163")
-        except Exception, e:
-            b['response'] = str(e)
-            b['error']="error generated"
-        except:
-            b['error']="error generated"
-        a.append(b)
+    with open("fb_dump_log.p","a") as out:
+        for current_filename in list_of_filenames:
+            current_id=int(str(current_filename).split("_")[0])
+            current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id)
+            duser = current_user.user
+            fb = duser.get_offline_graph()
+            picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-3/"+str(current_filename)+".jpg"
+            b= dict()
+            b['untameable_id'] = current_id
+            b['name'] = duser.first_name+" "+duser.last_name
+            b['picture'] = picture
+
+            try:
+                b['response'] = fb.set('me/photos', url=picture, message=trampoline_copies[random.randint(0, 3)],place="374502716046163")
+            except Exception, e:
+                b['response'] = str(e)
+                b['error']="error generated"
+            except:
+                b['error']="error generated"
+            pickle.dump(b,out)
+            a.append(b)
 
     context = RequestContext(request,{"facebook_response":a})
     return render_to_response("uploader.html",context)
