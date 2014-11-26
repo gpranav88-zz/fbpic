@@ -301,14 +301,7 @@ def untameable_poster(request):
     "The Drone just snapped me at #BacardiNH7Weekender, Pune. #BatCam Check it out!",
     "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
 
-    list_of_filenames= 
-    [
-    "1001",
-    "1006",
-    "1006_2",
-    "1030",
-    "1039-1040-1041-2281-1190"
-    ]
+    list_of_filenames = ["1001","1006","1006_2","1030","1039-1040-1041-2281-1190"]
     duser = "a"
     a=[]
     with open("fb_dump_log.p","a") as out:
