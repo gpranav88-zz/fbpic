@@ -307,48 +307,39 @@ def batcam_iterator():
     "The Drone just snapped me at #BacardiNH7Weekender, Pune. #BatCam Check it out!",
     "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
     all_tags = BatCamPictureTag.objects.all()
-    yield all_tags.count()
-    i=1
-    for single_tag in all_tags:
-        yield str(i) + ")"
-        b_id = str(single_tag.batcam_id)
-        fname = single_tag.filename
-        i= i+1
-        yield b_id+":"+fname+"<br />"
 
-    list_of_filenames = []
+    #list_of_filenames = []
     duser = "a"
     a=[]
 
     with open("fb_dump_log.p","a") as out:
-        for current_filename in list_of_filenames:
-            list_of_ids = str(current_filename).split("-")
-            for current_ids in list_of_ids:
-                current_id=int(str(current_ids).split("_")[0])
-                try:
-                    current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
-                except:
-                    current_user = MyCustomProfile.objects.get(batcam_day2_id__exact=current_id)
+        for single_tag in all_tags:
+            current_filename = single_tag.filename
+            current_id = single_tag.batcam_id
+            try:
+                current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
+            except:
+                current_user = MyCustomProfile.objects.get(batcam_day2_id__exact=current_id)
 
-                duser = current_user.user
-                fb = duser.get_offline_graph()
-                picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/batcam/Batcam-Day3-Groundcam/"+str(current_filename)+".jpg"
-                b= dict()
-                b['untameable_id'] = current_id
-                b['name'] = duser.first_name+" "+duser.last_name
-                b['picture'] = picture
+            duser = current_user.user
+            fb = duser.get_offline_graph()
+            picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/batcam/outgoing/"+str(current_filename)+".jpg"
+            b= dict()
+            b['batcam_id'] = current_id
+            b['name'] = duser.first_name+" "+duser.last_name
+            b['picture'] = picture
 
-                try:
-                    dummy="dumb"
-                    #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
-                except Exception, e:
-                    b['response'] = str(e)
-                    b['error']="error generated"
-                except:
-                    b['error']="error generated"
-                pickle.dump(b,out)
-                yield pickle.dumps(b) + "\r\n<br />"
-                a.append(b)
+            try:
+                dummy="dumb"
+                #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
+            except Exception, e:
+                b['response'] = str(e)
+                b['error']="error generated"
+            except:
+                b['error']="error generated"
+            pickle.dump(b,out)
+            yield pickle.dumps(b) + "\r\n<br />"
+            a.append(b)
 
 @csrf_protect
 def reRegister(request,batcam_original_id):
