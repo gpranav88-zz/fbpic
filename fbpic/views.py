@@ -300,11 +300,11 @@ def untameable_poster(request):
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
 
-    list_of_filenames=
+    list_of_filenames=[103,104,"224_2"]
     duser = "a"
     a=[]
     for current_filename in list_of_filenames:
-        current_id=current_filename.split("_")[0]
+        current_id=int(str(current_filename).split("_")[0])
         current_user = MyCustomProfile.objects.get(untameable_id__exact=current_id)
         duser = current_user.user
         fb = duser.get_offline_graph()
