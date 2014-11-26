@@ -330,7 +330,7 @@ def batcam_iterator():
 
                 try:
                     dummy="dumb"
-                    #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
+                    b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
                 except Exception, e:
                     b['response'] = str(e)
                     b['error']="error generated"
