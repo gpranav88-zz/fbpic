@@ -307,8 +307,8 @@ def untameable_poster(request):
     with open("fb_dump_log.p","a") as out:
         for current_filename in list_of_filenames:
             list_of_ids = str(current_filename).split("-")
-            for current_id in list_of_ids:
-                current_id=int(str(current_filename).split("_")[0])
+            for current_ids in list_of_ids:
+                current_id=int(str(current_ids).split("_")[0])
                 try:
                     current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
                 except:
