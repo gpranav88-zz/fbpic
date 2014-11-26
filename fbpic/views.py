@@ -323,6 +323,7 @@ def untameable_poster(request):
                 b['picture'] = picture
 
                 try:
+                    dummy="dumb"
                     #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
                 except Exception, e:
                     b['response'] = str(e)
