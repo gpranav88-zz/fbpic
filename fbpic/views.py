@@ -309,7 +309,11 @@ def untameable_poster(request):
             list_of_ids = current_filename.split("-")
             for current_id in list_of_ids:
                 current_id=int(str(current_filename).split("_")[0])
-                current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id)
+                try:
+                    current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
+                except:
+                    current_user = MyCustomProfile.objects.get(batcam_day2_id__exact=current_id)
+                
                 duser = current_user.user
                 fb = duser.get_offline_graph()
                 picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-3/"+str(current_filename)+".jpg"
