@@ -307,7 +307,7 @@ def untameable_poster(request):
         current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id)
         duser = current_user.user
         fb = duser.get_offline_graph()
-        picture="http://batcam.bacardiindia.in/"+"fbpic/static/fbpic/images/trampoline/dump/DAY-1/"+str(current_filename)+".jpg"
+        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-1/"+str(current_filename)+".jpg"
         b= dict()
         b['untameable_id'] = current_id
         b['name'] = duser.first_name+" "+duser.last_name
