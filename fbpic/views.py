@@ -295,6 +295,12 @@ def uploader(request):
     context = RequestContext(request,{"facebook_response":r.read()})
     return render_to_response("uploader.html",context)
 def untameable_poster(request):
+    
+    context = RequestContext(request,{"facebook_response":a})
+    #return render_to_response("uploader.html",context)
+    return StreamingHttpResponse(batcam_iterator())
+
+def batcam_iterator():
     batcam_copies = [ "Just got caught by the eye in the sky! Here's a glimpse from the drone #BatCam",
     "This is awesome! At #BacardiNH7Weekender, Pune got snapped by the drone #BatCam. ",
     "The drone caught me! Here's my picture by the #BatCam",
@@ -331,10 +337,9 @@ def untameable_poster(request):
                 except:
                     b['error']="error generated"
                 pickle.dump(b,out)
+                yield pickle.dumps(b)
                 a.append(b)
 
-    context = RequestContext(request,{"facebook_response":a})
-    return render_to_response("uploader.html",context)
 @csrf_protect
 def reRegister(request,batcam_original_id):
     batcam_user = MyCustomProfile.objects.get(batcam_id__exact=batcam_original_id)
