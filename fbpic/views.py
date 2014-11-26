@@ -300,12 +300,12 @@ def untameable_poster(request):
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
 
-    list_of_filenames=["103","104","114","137","144","145","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","214","215","216","217","218","219","220","222","224_2","224","225","226","227","228","229","232","233","234"]
+    list_of_filenames=[1060,1067,114,120,1236,1252,1256,1275,2013,2004,2028,2030,2031,2033,2042,2055]
     duser = "a"
     a=[]
     for current_filename in list_of_filenames:
         current_id=int(str(current_filename).split("_")[0])
-        current_user = MyCustomProfile.objects.get(untameable_id__exact=current_id)
+        current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
         duser = current_user.user
         fb = duser.get_offline_graph()
         picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/untameable/dump/day2-ut-names/JPEG/"+str(current_filename)+".jpg"
