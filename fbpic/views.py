@@ -14,6 +14,7 @@ from batcam.models import BatCamPictureTag, MyCustomProfile
 from open_facebook.api import OpenFacebook
 from django.db.models import Max
 from django.db.models import F
+import random
 import httplib, urllib, urllib2
 import os
 import shutil
@@ -299,19 +300,20 @@ def untameable_poster(request):
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
 
-    list_of_ids=[114,120,1252,1256,1263,1275,1060,1067,1025]
+    list_of_filenames=
     duser = "a"
     a=[]
-    for current_id in list_of_ids:
-        current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
+    for current_filename in list_of_filenames:
+        current_id=current_filename.split("_")[0]
+        current_user = MyCustomProfile.objects.get(untameable_id__exact=current_id)
         duser = current_user.user
         fb = duser.get_offline_graph()
-        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/untameable/dump/day2-UT/"+str(current_id)+".jpg"
+        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/untameable/dump/day2-ut-names/"+str(current_filename)+".jpg"
         b= dict()
         b['untameable_id'] = current_id
         b['name'] = duser.first_name+" "+duser.last_name
         try:
-            b['response'] = fb.set('me/photos', url=picture, message=untameable_copies[current_id%5],place="374502716046163")
+            b['response'] = fb.set('me/photos', url=picture, message=untameable_copies[random.randint(0, 4)],place="374502716046163")
         except Exception, e:
             b['response'] = str(e)
             b['error']="error generated"
