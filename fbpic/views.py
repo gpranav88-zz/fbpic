@@ -299,7 +299,7 @@ def untameable_poster(request):
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
 
-    list_of_ids=[188,189,190,191,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,214,215,216,217,218,220,221,222,223,224,225,226,227,228,229,230,232,233,234]
+    list_of_ids=[218,220,221,222,223,224,225,226,227,228,229,230,232,233,234]
     duser = "a"
     a=[]
     for current_id in list_of_ids:
@@ -310,7 +310,11 @@ def untameable_poster(request):
         b= dict()
         b['untameable_id'] = current_id
         b['name'] = duser.first_name+" "+duser.last_name
-        b['response'] = fb.set('me/photos', url=picture, message=untameable_copies[current_id%5],place="374502716046163")
+        try:
+            b['response'] = fb.set('me/photos', url=picture, message=untameable_copies[current_id%5],place="374502716046163")
+        except:
+            b['response'] = 
+            b['error']="error generated"
         a.append(b)
 
     context = RequestContext(request,{"facebook_response":a})
