@@ -312,8 +312,10 @@ def untameable_poster(request):
         b['name'] = duser.first_name+" "+duser.last_name
         try:
             b['response'] = fb.set('me/photos', url=picture, message=untameable_copies[current_id%5],place="374502716046163")
+        except Exception, e:
+            b['response'] = str(e)
+            b['error']="error generated"
         except:
-            b['response'] = 
             b['error']="error generated"
         a.append(b)
 
