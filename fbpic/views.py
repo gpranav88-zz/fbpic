@@ -308,10 +308,12 @@ def batcam_iterator():
     "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
     all_tags = BatCamPictureTag.objects.all()
     yield all_tags.count()
+    i=1
     for single_tag in all_tags:
-        yield "I'm here"
+        yield str(i) + ")"
         b_id = int(single_tag.batcam_id)
-        fname = str(single_tag.complete_path).split("/")[-1]
+        fname = single_tag.filename
+        i= i+1
         yield b_id+":"+fname+"<br />"
 
     list_of_filenames = []
