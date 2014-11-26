@@ -307,7 +307,7 @@ def batcam_iterator():
     "The Drone just snapped me at #BacardiNH7Weekender, Pune. #BatCam Check it out!",
     "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
     all_tags = BatCamPictureTag.objects.all()
-    yield "hi"
+    yield all_tags.count()
     for single_tag in all_tags:
         yield "I'm here"
         b_id = int(single_tag.batcam_id)
