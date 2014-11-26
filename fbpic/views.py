@@ -299,11 +299,11 @@ def untameable_poster(request):
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
 
-    list_of_ids=[218,220,221,222,223,224,225,226,227,228,229,230,232,233,234]
+    list_of_ids=[2004,2013,2028,2030,2031,2033,2042,2055,1141,1203,1252,1256,1263,1275,1060,1067,1025]
     duser = "a"
     a=[]
     for current_id in list_of_ids:
-        current_user = MyCustomProfile.objects.get(untameable_id__exact=current_id)
+        current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
         duser = current_user.user
         fb = duser.get_offline_graph()
         picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/untameable/dump/day2-UT/"+str(current_id)+".jpg"
