@@ -306,14 +306,14 @@ def untameable_poster(request):
     a=[]
     with open("fb_dump_log.p","a") as out:
         for current_filename in list_of_filenames:
-            list_of_ids = current_filename.split("-")
+            list_of_ids = str(current_filename).split("-")
             for current_id in list_of_ids:
                 current_id=int(str(current_filename).split("_")[0])
                 try:
                     current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
                 except:
                     current_user = MyCustomProfile.objects.get(batcam_day2_id__exact=current_id)
-                
+
                 duser = current_user.user
                 fb = duser.get_offline_graph()
                 picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-3/"+str(current_filename)+".jpg"
