@@ -306,10 +306,16 @@ def batcam_iterator():
     "The drone caught me! Here's my picture by the #BatCam",
     "The Drone just snapped me at #BacardiNH7Weekender, Pune. #BatCam Check it out!",
     "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
-
-    list_of_filenames = ["1043-1046","1056","1078","1101-1102-1103-1104-1099-1098","1103-1099-1098","1213-1215","1219","1331","1338"]
+    all_tags = BatCamPictureTag.objects.all()
+    for single_tag in all_tags:
+        b_id = int(single_tag.batcam_id)
+        fname = str(single_tag.complete_path).split("/")[-1]
+        yield (b_id+":"+fname+"<br /">
+    
+    list_of_filenames = []
     duser = "a"
     a=[]
+
     with open("fb_dump_log.p","a") as out:
         for current_filename in list_of_filenames:
             list_of_ids = str(current_filename).split("-")
@@ -330,7 +336,7 @@ def batcam_iterator():
 
                 try:
                     dummy="dumb"
-                    b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
+                    #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
                 except Exception, e:
                     b['response'] = str(e)
                     b['error']="error generated"
