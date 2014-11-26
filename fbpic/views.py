@@ -1,5 +1,5 @@
 from django.conf import settings 
-from django.http import HttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.generic import TemplateView
