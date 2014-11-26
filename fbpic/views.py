@@ -295,35 +295,45 @@ def uploader(request):
     context = RequestContext(request,{"facebook_response":r.read()})
     return render_to_response("uploader.html",context)
 def untameable_poster(request):
-    trampoline_copies = ["Trying to build castles in the sky! #BacardiTrampoline",
-"Having so much fun at #BacardiNH7Weekender that I'm bouncing off the walls #BacardiTrampoline",
-"All that goes down, must come up! #BacardiTrampoline",
-"Gravity is working against me #BacardiTrampoline"]
+    batcam_copies = [ "Just got caught by the eye in the sky! Here's a glimpse from the drone #BatCam",
+    "This is awesome! At #BacardiNH7Weekender, Pune got snapped by the drone #BatCam. ",
+    "The drone caught me! Here's my picture by the #BatCam",
+    "The Drone just snapped me at #BacardiNH7Weekender, Pune. #BatCam Check it out!",
+    "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
 
-    list_of_filenames=[320,321,322,323,324,325,326,327,328,329,330,331,"331_2",332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,352,353,354,355,356,357,358,359,360,361,362,363,364,365,"365_2",367,368,369,370,371,372,"372_2",374,375,377,378,379,380,381,382,383,384,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,"403_2",404,"404_2",405,406,407,408,409,"409_2",410,411,415,416,417,"417_2",419,"419_2",420,"420_2","420_3","420_4",421,"421_2",422,423,"423_2","423_3",424,425,426,"426_2",427,428,"428_2","428_3",430,"430_2",431,432,"432_2",433,"433_2",434,"434_2","434_3",435,"435_2","436_2",437,"437_2",438,"438_2",439,"439_2",440,441,"441_2"]
+    list_of_filenames= 
+    [
+    "1001",
+    "1006",
+    "1006_2",
+    "1030",
+    "1039-1040-1041-2281-1190"
+    ]
     duser = "a"
     a=[]
     with open("fb_dump_log.p","a") as out:
         for current_filename in list_of_filenames:
-            current_id=int(str(current_filename).split("_")[0])
-            current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id)
-            duser = current_user.user
-            fb = duser.get_offline_graph()
-            picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-3/"+str(current_filename)+".jpg"
-            b= dict()
-            b['untameable_id'] = current_id
-            b['name'] = duser.first_name+" "+duser.last_name
-            b['picture'] = picture
+            list_of_ids = current_filename.split("-")
+            for current_id in list_of_ids:
+                current_id=int(str(current_filename).split("_")[0])
+                current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id)
+                duser = current_user.user
+                fb = duser.get_offline_graph()
+                picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-3/"+str(current_filename)+".jpg"
+                b= dict()
+                b['untameable_id'] = current_id
+                b['name'] = duser.first_name+" "+duser.last_name
+                b['picture'] = picture
 
-            try:
-                b['response'] = fb.set('me/photos', url=picture, message=trampoline_copies[random.randint(0, 3)],place="374502716046163")
-            except Exception, e:
-                b['response'] = str(e)
-                b['error']="error generated"
-            except:
-                b['error']="error generated"
-            pickle.dump(b,out)
-            a.append(b)
+                try:
+                    b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
+                except Exception, e:
+                    b['response'] = str(e)
+                    b['error']="error generated"
+                except:
+                    b['error']="error generated"
+                pickle.dump(b,out)
+                a.append(b)
 
     context = RequestContext(request,{"facebook_response":a})
     return render_to_response("uploader.html",context)
