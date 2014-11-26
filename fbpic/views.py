@@ -294,26 +294,25 @@ def uploader(request):
     context = RequestContext(request,{"facebook_response":r.read()})
     return render_to_response("uploader.html",context)
 def untameable_poster(request):
-    untameable_copies = ["An Untameable zone, an Untameable experience. True passion can't be tamed. #BacardiNH7Weekender",
-                "Went in head first and came out a winner at the #BacardiUntameableZone",
-                "#BacardiUntameableZone taught me that the only obstacle to chasing my dream is Me!",
-                "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
-                "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
+    trampoline_copies = ["Trying to build castles in the sky! #BacardiTrampoline",
+"Having so much fun at #BacardiNH7Weekender that I'm bouncing off the walls #BacardiTrampoline",
+"All that goes down, must come up! #BacardiTrampoline",
+"Gravity is working against me #BacardiTrampoline"]
 
-    list_of_filenames=[2214,2255,2458]
+    list_of_filenames=[101,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140]
     duser = "a"
     a=[]
     for current_filename in list_of_filenames:
         current_id=int(str(current_filename).split("_")[0])
-        current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
+        current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id)
         duser = current_user.user
         fb = duser.get_offline_graph()
-        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/untameable/dump/day3-ut-names/"+str(current_filename)+".jpg"
+        picture="http://batcam.bacardiindia.in/"+"fbpic/static/fbpic/images/trampoline/dump/DAY-1/"+str(current_filename)+".jpg"
         b= dict()
         b['untameable_id'] = current_id
         b['name'] = duser.first_name+" "+duser.last_name
         try:
-            b['response'] = fb.set('me/photos', url=picture, message=untameable_copies[random.randint(0, 4)],place="374502716046163")
+            b['response'] = fb.set('me/photos', url=picture, message=trampoline_copies[random.randint(0, 3)],place="374502716046163")
         except Exception, e:
             b['response'] = str(e)
             b['error']="error generated"
