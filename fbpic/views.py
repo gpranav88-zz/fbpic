@@ -299,8 +299,7 @@ def untameable_poster(request):
 "All that goes down, must come up! #BacardiTrampoline",
 "Gravity is working against me #BacardiTrampoline"]
 
-    #list_of_filenames=["115_2",123,143,144,145,146,147,148,149,150,151,152,154,156,157,158,159,160,161,162,163,164,165,166,167,168,"168_2",170,171,172,173,174,175,176,177,178,179,180,181,182,183,"183_2",184,"184_2",185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,208,209,210,211,212,213,214,215,216,217,218,219,"219_2",220,221,"221_2",222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,"237_2",239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,262,263,265,266,267]
-    list_of_filenames=["115_2",123]
+    list_of_filenames=[123,143,144,145,146,147,148,149,150,151,152,154,156,157,158,159,160,161,162,163,164,165,166,167,168,"168_2",170,171,172,173,174,175,176,177,178,179,180,181,182,183,"183_2",184,"184_2",185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,208,209,210,211,212,213,214,215,216,217,218,219,"219_2",220,221,"221_2",222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,"237_2",239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,262,263,265,266,267]
     duser = "a"
     a=[]
     for current_filename in list_of_filenames:
@@ -308,7 +307,7 @@ def untameable_poster(request):
         current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id)
         duser = current_user.user
         fb = duser.get_offline_graph()
-        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-1/"+str(current_filename)+".jpg"
+        picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/trampoline/dump/DAY-2/"+str(current_filename)+".jpg"
         b= dict()
         b['untameable_id'] = current_id
         b['name'] = duser.first_name+" "+duser.last_name
