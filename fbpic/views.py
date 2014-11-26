@@ -311,7 +311,7 @@ def batcam_iterator():
     i=1
     for single_tag in all_tags:
         yield str(i) + ")"
-        b_id = int(single_tag.batcam_id)
+        b_id = str(single_tag.batcam_id)
         fname = single_tag.filename
         i= i+1
         yield b_id+":"+fname+"<br />"
