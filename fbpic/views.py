@@ -310,8 +310,8 @@ def batcam_iterator():
     for single_tag in all_tags:
         b_id = int(single_tag.batcam_id)
         fname = str(single_tag.complete_path).split("/")[-1]
-        yield (b_id+":"+fname+"<br /">
-    
+        yield b_id+":"+fname+"<br /">
+
     list_of_filenames = []
     duser = "a"
     a=[]
