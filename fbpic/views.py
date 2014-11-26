@@ -337,7 +337,7 @@ def batcam_iterator():
                 except:
                     b['error']="error generated"
                 pickle.dump(b,out)
-                yield pickle.dumps(b)
+                yield pickle.dumps(b) + "\r\n<br />"
                 a.append(b)
 
 @csrf_protect
