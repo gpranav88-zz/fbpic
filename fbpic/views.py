@@ -300,7 +300,7 @@ def untameable_poster(request):
                 "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
                 "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
 
-    list_of_filenames=[1060,1067,114,120,1236,1252,1256,1275,2013,2004,2028,2030,2031,2033,2042,2055]
+    list_of_filenames=[114,120,1236,1252,1256,1275,2013,2004,2028,2030,2031,2033,2042,2055]
     duser = "a"
     a=[]
     for current_filename in list_of_filenames:
