@@ -30,16 +30,14 @@ def home(request, zone):
 
     if request.user.is_authenticated():
         template_name = "success.html"
-        if zone=="batcam":
+        if zone=="batcam1" or "batcam2":
             batcam = True
             if not request.user.mycustomprofile.batcam_id:
-                args = MyCustomProfile.objects.all()
-                maxi = args.aggregate(Max('batcam_id'))['batcam_id__max']
-                list_of_stupid = [2196,2270,2346,2247,2578,2251,2252,2253]
-                while (maxi+1) in list_of_stupid:
-                    maxi = maxi + 1
-                request.user.mycustomprofile.batcam_id = maxi + 1
-                request.user.mycustomprofile.save()
+                with open(str(zone)+".p","rw") as out:
+                    ids = pickle.load(out)
+                    request.user.mycustomprofile.batcam_id = ids.pop(0)
+                    pickle.dump(out,ids)
+                    request.user.mycustomprofile.save()
 
         elif zone=="untameable":
             untameable = True
@@ -295,10 +293,12 @@ def uploader(request):
     context = RequestContext(request,{"facebook_response":r.read()})
     return render_to_response("uploader.html",context)
 def untameable_poster(request):
-    
+    pickle.dump([123,456,789,101,203,405,606,1233,12312,406],open("batcam1.p","rw"))
+    pickle.dump([2123,2345,2456,2907],open("batcam2.p","rw"))
     context = RequestContext(request,{"facebook_response":""})
     #return render_to_response("uploader.html",context)
-    return StreamingHttpResponse(batcam_iterator())
+    #return StreamingHttpResponse(batcam_iterator())
+    return HttpResponse("Done")
 
 def batcam_iterator():
     batcam_copies = [ "Just got caught by the eye in the sky! Here's a glimpse from the drone #BatCam",
@@ -307,7 +307,6 @@ def batcam_iterator():
     "The Drone just snapped me at #BacardiNH7Weekender, Pune. #BatCam Check it out!",
     "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
     all_tags = BatCamPictureTag.objects.all()
-
     #list_of_filenames = []
     duser = "a"
     a=[]
