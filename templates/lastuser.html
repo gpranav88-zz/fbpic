@@ -1,0 +1,9 @@
+{% load staticfiles %}
+<h2>Last {{zone}} Logged in Users: {{message}}</h2><br />
+
+{% for each_user in list_of_users %}
+
+<img src="{% static 'fbpic/images/'%}{{zone}}/temp/{{filename}}" />
+<br />&nbsp;<br />
+{% endfor %}
+</form>
