@@ -11,7 +11,7 @@
 {% endif %}
 
 <td>First Name</td><td>Last Name</td><td>Profile Pic</td></tr>
-{% for each_user in list_of_users %}
+{% for each_user in list_of_users reversed %}
 <tr>
 {% if zone == "trampoline" %}
 <td>{{each_user.trampoline_id}}</td>
