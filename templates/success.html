@@ -6,7 +6,7 @@
 <div class="form">
 <div>
 	<h1>Welcome {{ user.first_name }}</h1>
-	
+	{{ debu }}
     {% if batcam %}
     <p>You have been registered for BatCam! You will find all your pictures uploaded here as soon as you get clicked by our BatCams</p>
     <h3>Your Batcam ID is : {{user.mycustomprofile.batcam_id}} </h3>
@@ -29,7 +29,9 @@
     {% endif %}
 
 </div>
-
+<div>
+        <p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
+</div>
 <script>
 function fbLogoutUser() {
     FB.getLoginStatus(function(response) {

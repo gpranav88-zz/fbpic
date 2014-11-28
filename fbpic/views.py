@@ -71,9 +71,12 @@ def home(request, zone):
 
             with open(str(zone)+"_ids.p","r+") as file_handle:
                 list_of_ids = pickle.load(file_handle)
+                debu += current_id
                 if len(list_of_ids) > 10:
                     list_of_ids.pop(0)
                 list_of_ids.append(current_id)
+                debu += " "
+                debu += str(list_of_ids)
                 pickle.dump(list_of_ids,file_handle)
 
         # user is logged in
