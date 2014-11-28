@@ -56,6 +56,8 @@ def home(request, zone):
                 if len(list_of_ids) > 10:
                     list_of_ids.pop(0)
                 list_of_ids.append(current_id)
+                out.seek(0)
+                out.truncate()
                 pickle.dump(list_of_ids,file_handle)
 
         elif zone=="trampoline":
