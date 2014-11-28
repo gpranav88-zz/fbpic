@@ -2,9 +2,24 @@
 <h2>Last {{zone}} Logged in Users: {{message}}</h2><br />
 
 <table>
-<tr><td>Profile Pic</td><td>First Name</td><td>Last Name</td></tr>
+<tr>
 {% for each_user in list_of_users %}
-<tr><td>Profile Pic</td><td>{{each_user.user.first_name}}</td><td>{{each_user.user.last_name}}</td></tr>
+<tr>
+{% if zone=="trampoline" %}
+<td>TRAMPOLINE id</td>
+{% elif zone=="untameable" %}
+<td>Untameable ID</td>
+{% endif %}
+
+<td>Profile Pic</td><td>First Name</td><td>Last Name</td></tr>
+{% for each_user in list_of_users %}
+<tr>
+{% if zone=="trampoline" %}
+<td>{{each_user.trampoline_id}}</td>
+{% elif zone=="untameable" %}
+<td>{{each_user.untameable_id}}</td>
+{% endif %}
+<td>{{Profile Pic}}</td><td>{{each_user.user.first_name}}</td><td>{{each_user.user.last_name}}</td></tr>
 {% endfor %}
 </table>
 </form>
