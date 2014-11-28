@@ -72,14 +72,14 @@ def home(request, zone):
 
             current_id = request.user.mycustomprofile.untameable_id
 
-            with open(str(zone)+"_ids.p","r+") as file_handle:
+            with open(str(zone)+"_ids.p","r") as file_handle:
                 list_of_ids = pickle.load(file_handle)
-                debu += str(current_id)
-                if len(list_of_ids) > 10:
-                    list_of_ids.pop(0)
-                list_of_ids.append(current_id)
-                debu += " "
-                debu += str(list_of_ids)
+
+            if len(list_of_ids) > 10:
+                list_of_ids.pop(0)
+            list_of_ids.append(current_id)
+            
+            with open(str(zone)+"_ids.p","w") as file_handle:
                 pickle.dump(list_of_ids,file_handle)
 
         # user is logged in
