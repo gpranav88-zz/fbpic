@@ -33,7 +33,7 @@ def home(request, zone):
         if zone=="batcam1" or zone=="batcam2":
             batcam = True
             if not request.user.mycustomprofile.batcam_id:
-                with open(str(zone)+"_ids.p","rw") as file_handle:
+                with open(str(zone)+"_ids.p","r+") as file_handle:
                     list_of_ids = pickle.load(file_handle)
                     current_id = list_of_ids.pop(0)
                     pickle.dump(list_of_ids,file_handle)
@@ -51,7 +51,7 @@ def home(request, zone):
             
             current_id = request.user.mycustomprofile.untameable_id
 
-            with open(str(zone)+"_ids.p","rw") as file_handle:
+            with open(str(zone)+"_ids.p","r+") as file_handle:
                 list_of_ids = pickle.load(file_handle)
                 if len(list_of_ids) > 10:
                     list_of_ids.pop(0)
@@ -69,7 +69,7 @@ def home(request, zone):
 
             current_id = request.user.mycustomprofile.untameable_id
 
-            with open(str(zone)+"_ids.p","rw") as file_handle:
+            with open(str(zone)+"_ids.p","r+") as file_handle:
                 list_of_ids = pickle.load(file_handle)
                 if len(list_of_ids) > 10:
                     list_of_ids.pop(0)
@@ -199,7 +199,7 @@ def tagger(request, zone):
 @csrf_protect
 def lastuser(request, zone):
     list_of_users = []
-    with open(str(zone)+"_ids.p","rw") as file_handle:
+    with open(str(zone)+"_ids.p","r+") as file_handle:
         list_of_ids = pickle.load(file_handle)
         if zone == "untameable":
             list_of_users = MyCustomProfile.objects.filter(untameable_id__in=list_of_ids)
