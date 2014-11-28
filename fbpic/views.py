@@ -30,31 +30,59 @@ def home(request, zone):
 
     if request.user.is_authenticated():
         template_name = "success.html"
-        if zone=="batcam":
+        if zone=="batcam1" or zone=="batcam2":
             batcam = True
             if not request.user.mycustomprofile.batcam_id:
-                args = MyCustomProfile.objects.all()
-                maxi = args.aggregate(Max('batcam_id'))['batcam_id__max']
-                list_of_stupid = [2196,2270,2346,2247,2578,2251,2252,2253]
-                while (maxi+1) in list_of_stupid:
-                    maxi = maxi + 1
-                request.user.mycustomprofile.batcam_id = maxi + 1
+                with open(str(zone)+"_ids.p","rw") as file_handle:
+                    list_of_ids = pickle.load(file_handle)
+                    current_id = list_of_ids.pop(0)
+                    pickle.dump(list_of_ids,file_handle)
+                    request.user.mycustomprofile.batcam_id = current_id
+
                 request.user.mycustomprofile.save()
 
         elif zone=="untameable":
             untameable = True
+            current_id = 0
             if not request.user.mycustomprofile.untameable_id:
                 args = MyCustomProfile.objects.all()
                 request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
                 request.user.mycustomprofile.save()
+            
+            current_id = request.user.mycustomprofile.untameable_id
+
+            with open(str(zone)+"_ids.p","rw") as file_handle:
+                list_of_ids = pickle.load(file_handle)
+                if len(list_of_ids) > 10:
+                    list_of_ids.pop(0)
+                list_of_ids.append(current_id)
+                pickle.dump(list_of_ids,file_handle)
 
         elif zone=="trampoline":
             trampoline = True
+            current_id = 0
+
             if not request.user.mycustomprofile.trampoline_id:
                 args = MyCustomProfile.objects.all()
                 request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
                 request.user.mycustomprofile.save()
+
+            current_id = request.user.mycustomprofile.untameable_id
+
+            with open(str(zone)+"_ids.p","rw") as file_handle:
+                list_of_ids = pickle.load(file_handle)
+                if len(list_of_ids) > 10:
+                    list_of_ids.pop(0)
+                list_of_ids.append(current_id)
+                pickle.dump(list_of_ids,file_handle)
+
         # user is logged in
+        else zone="none":
+            batcam = False
+            untameable = False
+            trampoline = False
+            # Fill this up later
+
     else:
         template_name = "index.html"
     
@@ -167,6 +195,18 @@ def tagger(request, zone):
     context['message'] = message
     context['zone'] = zone
     return render_to_response("tagger.html",context)
+
+@csrf_protect
+def lastuser(request, zone):
+    list_of_users = []
+    with open(str(zone)+"_ids.p","rw") as file_handle:
+        list_of_ids = pickle.load(file_handle)
+        if zone == "untameable":
+            list_of_users = MyCustomProfile.objects.filter(untameable_id__in=list_of_ids)
+        if zone=="trampoline":
+            list_of_users = MyCustomProfile.objects.filter(trampoline_id__in=list_of_ids)
+    
+
 
 def postPic(request):
     context = RequestContext(request)
@@ -294,6 +334,7 @@ def uploader(request):
     """
     context = RequestContext(request,{"facebook_response":r.read()})
     return render_to_response("uploader.html",context)
+
 def untameable_poster(request):
     
     context = RequestContext(request,{"facebook_response":""})
