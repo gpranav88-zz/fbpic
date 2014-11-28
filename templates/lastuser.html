@@ -10,7 +10,7 @@
 <td>Untameable ID</td>
 {% endif %}
 
-<td>Profile Pic</td><td>First Name</td><td>Last Name</td></tr>
+<td>First Name</td><td>Last Name</td><td>Profile Pic</td></tr>
 {% for each_user in list_of_users %}
 <tr>
 {% if zone == "trampoline" %}
@@ -18,7 +18,7 @@
 {% elif zone == "untameable" %}
 <td>{{each_user.untameable_id}}</td>
 {% endif %}
-<td>Profile Pic here</td><td>{{each_user.user.first_name}}</td><td>{{each_user.user.last_name}}</td></tr>
+<td>{{each_user.user.first_name}}</td><td>{{each_user.user.last_name}}</td><td>Profile Pic here</td></tr>
 {% endfor %}
 </table>
 </form>
