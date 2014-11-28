@@ -71,7 +71,7 @@ def home(request, zone):
 
             with open(str(zone)+"_ids.p","r+") as file_handle:
                 list_of_ids = pickle.load(file_handle)
-                debu += current_id
+                debu += str(current_id)
                 if len(list_of_ids) > 10:
                     list_of_ids.pop(0)
                 list_of_ids.append(current_id)
