@@ -20,10 +20,10 @@
     <h3>Which Zone are you registering for?</h3>
     <table>
     <tr>
-    <td><a href="{% url home 'batcam1'%}">Batcam Station A</a></td>
-    <td><a href="{% url home 'untameable'%}">Untameable</a></td>
-    <td><a href="{% url home 'trampoline' %}">Trampoline</a></td>
-    <td><a href="{% url home 'batcam2' %}">Batcam Station B</a></td>
+    <td><a href="{% url 'home' 'batcam1'%}">Batcam Station A</a></td>
+    <td><a href="{% url 'home' 'untameable'%}">Untameable</a></td>
+    <td><a href="{% url 'home' 'trampoline' %}">Trampoline</a></td>
+    <td><a href="{% url 'home' 'batcam2' %}">Batcam Station B</a></td>
     </tr>
     </table>
     {% endif %}
