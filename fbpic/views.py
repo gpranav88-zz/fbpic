@@ -77,7 +77,7 @@ def home(request, zone):
                 pickle.dump(list_of_ids,file_handle)
 
         # user is logged in
-        else zone="none":
+        elif zone=="none":
             batcam = False
             untameable = False
             trampoline = False
@@ -205,7 +205,7 @@ def lastuser(request, zone):
             list_of_users = MyCustomProfile.objects.filter(untameable_id__in=list_of_ids)
         if zone=="trampoline":
             list_of_users = MyCustomProfile.objects.filter(trampoline_id__in=list_of_ids)
-    
+
 
 
 def postPic(request):
