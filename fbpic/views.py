@@ -33,12 +33,15 @@ def home(request, zone):
         if zone=="batcam1" or zone=="batcam2":
             batcam = True
             if not request.user.mycustomprofile.batcam_id:
-                with open(str(zone)+"_ids.p","r+") as file_handle:
+                with open(str(zone)+"_ids.p","r") as file_handle:
                     list_of_ids = pickle.load(file_handle)
-                    current_id = list_of_ids.pop(0)
-                    pickle.dump(list_of_ids,file_handle)
-                    request.user.mycustomprofile.batcam_id = current_id
 
+                current_id = list_of_ids.pop(0)
+
+                with open(str(zone)+"_ids.p","w") as file_handle:
+                    pickle.dump(list_of_ids,file_handle)
+                
+                request.user.mycustomprofile.batcam_id = current_id
                 request.user.mycustomprofile.save()
 
         elif zone=="untameable":
@@ -57,7 +60,7 @@ def home(request, zone):
             if len(list_of_ids) > 10:
                 list_of_ids.pop(0)
             list_of_ids.append(current_id)
-            
+
             with open(str(zone)+"_ids.p","w") as file_handle:
                 pickle.dump(list_of_ids,file_handle)
 
