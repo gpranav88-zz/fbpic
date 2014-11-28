@@ -124,6 +124,9 @@ USE_TZ = True
 
 PROFILE_IMAGE_PATH = os.path.join('static', 'facebook_profiles/%Y/%m/%d')
 
+MEDIA_ROOT='/home/bitnami/fbpic/images/'
+MEDIA_URL='/images/'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 

@@ -206,6 +206,8 @@ def lastuser(request, zone):
         if zone=="trampoline":
             list_of_users = MyCustomProfile.objects.filter(trampoline_id__in=list_of_ids)
 
+    context = RequestContext(request, {'zone':zone, 'list_of_users':list_of_users})
+    return render_to_response("lastuser.html",context)
 
 
 def postPic(request):

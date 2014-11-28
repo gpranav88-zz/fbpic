@@ -1,7 +1,10 @@
 {% load staticfiles %}
 <h2>Last {{zone}} Logged in Users: {{message}}</h2><br />
 
+<table>
+<tr><td>Profile Pic</td><td>First Name</td><td>Last Name</td></tr>
 {% for each_user in list_of_users %}
-
+<tr><td>Profile Pic</td><td>{{each_user.user.first_name}}</td><td>{{each_user.user.last_name}}</td></tr>
 {% endfor %}
+</table>
 </form>
