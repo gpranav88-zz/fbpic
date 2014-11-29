@@ -73,7 +73,7 @@ def home(request, zone):
                 request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
                 request.user.mycustomprofile.save()
 
-            current_id = request.user.mycustomprofile.untameable_id
+            current_id = request.user.mycustomprofile.trampoline_id
 
             with open(str(zone)+"_ids.p","r") as file_handle:
                 list_of_ids = pickle.load(file_handle)
