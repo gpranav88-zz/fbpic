@@ -49,18 +49,15 @@ def home(request, zone):
                 
                 if not request.user.mycustomprofile.untameable_id:
                     args = MyCustomProfile.objects.all()
-                    request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
+                    current_id = request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
                 
-                current_id = request.user.mycustomprofile.untameable_id
 
             elif zone=="trampoline":
                 trampoline = True
 
                 if not request.user.mycustomprofile.trampoline_id:
                     args = MyCustomProfile.objects.all()
-                    request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
-
-                current_id = request.user.mycustomprofile.trampoline_id
+                    current_id = request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
 
             request.user.mycustomprofile.save()
 
@@ -353,7 +350,8 @@ def batcam_iterator():
     "The Drone just snapped me at #BacardiNH7Weekender, Pune. #BatCam Check it out!",
     "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
     all_tags = BatCamPictureTag.objects.all()
-
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+    #incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"incoming")
     #list_of_filenames = []
     duser = "a"
     a=[]
@@ -369,11 +367,26 @@ def batcam_iterator():
 
             duser = current_user.user
             fb = duser.get_offline_graph()
-            picture="http://batcam.bacardiindia.in/"+"static/fbpic/images/batcam/outgoing/"+str(current_filename)
+
+            upload_directoy = "static/fbpic/images/batcam/outgoing/"
+            zone = "T" ##can be B, U or T
+
+            picture="http://batcam.bacardiindia.in/"+upload_directory+str(current_filename)
             b= dict()
             b['batcam_id'] = current_id
             b['name'] = duser.first_name+" "+duser.last_name
             b['picture'] = picture
+
+            picture_tag = BatCamPictureTag.objects.create(
+                    complete_path = os.path.join(outgoing_dir_path,filename),
+                    filename = filename,
+                    batcam_id = user_id,
+                    zone = "T",
+                    all_user_ids = all_user_ids,
+                    posted_to_facebook =True,
+                    facebook_post_id = facebook_return["id"],
+                    )
+            picture_tag.save()
 
             try:
                 dummy="dumb"

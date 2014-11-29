@@ -17,12 +17,12 @@
     <h3>Your Trampoline ID is : {{user.mycustomprofile.trampoline_id}} </h3>
     {% else %}
     <h3>Which Zone are you registering for?</h3>
-    <table>
+    <table align="center">
     <tr>
-    <td><a href="{% url 'home' 'batcam1'%}">Batcam Station A</a></td>
-    <td><a href="{% url 'home' 'untameable'%}">Untameable</a></td>
-    <td><a href="{% url 'home' 'trampoline' %}">Trampoline</a></td>
-    <td><a href="{% url 'home' 'batcam2' %}">Batcam Station B</a></td>
+    <td><a href="{% url 'home' 'batcam1'%}"><img src="/static/fbpic/images/CATBAT1.jpg" /></a></td>
+    <td><a href="{% url 'home' 'untameable'%}"><img src="/static/fbpic/images/UNTAMEABLE.jpg" /></a></td></tr><tr>
+    <td><a href="{% url 'home' 'trampoline' %}"><img src="/static/fbpic/images/Tramp.jpg" /></a></td>
+    <td><a href="{% url 'home' 'batcam2' %}"><img src="/static/fbpic/images/CATBAT2.jpg" /></a></td>
     </tr>
     </table>
     {% endif %}
