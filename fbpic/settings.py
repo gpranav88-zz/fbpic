@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'fbpic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'fbpic.db', #for tanujb.com
+        'NAME': 'fbpic_delhi.db', #for tanujb.com
         #'NAME': 'fbPic.db', #for Amazon
 
     }
