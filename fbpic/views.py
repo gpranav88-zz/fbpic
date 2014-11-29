@@ -23,7 +23,6 @@ import shutil
 def home(request, zone):
     
     # Calculates the maximum out of the already-retrieved objects
-    debu = "I am here!!!"
     batcam = False
     trampoline = False
     untameable = False
@@ -43,44 +42,36 @@ def home(request, zone):
                 
                 request.user.mycustomprofile.batcam_id = current_id
                 request.user.mycustomprofile.save()
-
-        elif zone=="untameable":
-            untameable = True
+        elif zone == "untameable" or zone == "trampoline":
             current_id = 0
-            if not request.user.mycustomprofile.untameable_id:
-                args = MyCustomProfile.objects.all()
-                request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
-                request.user.mycustomprofile.save()
-            
-            current_id = request.user.mycustomprofile.untameable_id
+            if zone=="untameable":
+                untameable = True
+                
+                if not request.user.mycustomprofile.untameable_id:
+                    args = MyCustomProfile.objects.all()
+                    request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
+                
+                current_id = request.user.mycustomprofile.untameable_id
+
+            elif zone=="trampoline":
+                trampoline = True
+
+                if not request.user.mycustomprofile.trampoline_id:
+                    args = MyCustomProfile.objects.all()
+                    request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
+
+                current_id = request.user.mycustomprofile.trampoline_id
+
+            request.user.mycustomprofile.save()
 
             with open(str(zone)+"_ids.p","r") as file_handle:
                 list_of_ids = pickle.load(file_handle)
 
             if len(list_of_ids) > 10:
                 list_of_ids.pop(0)
-            list_of_ids.append(current_id)
 
-            with open(str(zone)+"_ids.p","w") as file_handle:
-                pickle.dump(list_of_ids,file_handle)
-
-        elif zone=="trampoline":
-            trampoline = True
-            current_id = 0
-
-            if not request.user.mycustomprofile.trampoline_id:
-                args = MyCustomProfile.objects.all()
-                request.user.mycustomprofile.trampoline_id = args.aggregate(Max('trampoline_id'))['trampoline_id__max'] + 1
-                request.user.mycustomprofile.save()
-
-            current_id = request.user.mycustomprofile.trampoline_id
-
-            with open(str(zone)+"_ids.p","r") as file_handle:
-                list_of_ids = pickle.load(file_handle)
-
-            if len(list_of_ids) > 10:
-                list_of_ids.pop(0)
-            list_of_ids.append(current_id)
+            if(list_of_ids[-1]!=current_id):
+                list_of_ids.append(current_id)
             
             with open(str(zone)+"_ids.p","w") as file_handle:
                 pickle.dump(list_of_ids,file_handle)
