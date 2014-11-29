@@ -216,7 +216,7 @@ def lastuser(request, zone):
                 list_of_users.append(MyCustomProfile.objects.get(untameable_id__exact=each_id))
         if zone == "trampoline":
             for each_id in list_of_ids:
-                list_of_users.append(MyCustomProfile.objects.get(untameable_id__exact=each_id))
+                list_of_users.append(MyCustomProfile.objects.get(trampoline_id__exact=each_id))
 
     context = RequestContext(request, {'zone':zone, 'list_of_users':list_of_users,'list_of_ids':list_of_ids})
     return render_to_response("lastuser.html",context)
