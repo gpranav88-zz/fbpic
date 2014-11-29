@@ -26,7 +26,7 @@ def home(request, zone):
     batcam = False
     trampoline = False
     untameable = False
-
+    debu =""
     if request.user.is_authenticated():
         template_name = "success.html"
         if zone=="batcam1" or zone=="batcam2":
