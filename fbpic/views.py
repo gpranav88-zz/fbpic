@@ -357,10 +357,10 @@ def untameable_poster(request):
 
 def batcam_iterator():
     batcam_copies = [ "Just got caught by the eye in the sky! Here's a glimpse from the drone #BatCam",
-    "This is awesome! At #BacardiNH7Weekender, Pune got snapped by the drone #BatCam. ",
+    "This is awesome! At #BacardiNH7Weekender, Delhi got snapped by the drone #BatCam. ",
     "The drone caught me! Here's my picture by the #BatCam",
-    "The Drone just snapped me at #BacardiNH7Weekender, Pune. #BatCam Check it out!",
-    "Here's me getting snapped by the drone at #BacardiNH7Weekender, Pune. Thank you #BatCam!"]
+    "The Drone just snapped me at #BacardiNH7Weekender, Delhi. #BatCam Check it out!",
+    "Here's me getting snapped by the drone at #BacardiNH7Weekender, Delhi. Thank you #BatCam!"]
     all_tags = BatCamPictureTag.objects.all()
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     #incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"incoming")
