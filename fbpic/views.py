@@ -355,15 +355,16 @@ def batcam_iterator():
     i = 0
     yield "hi!"
     
-    with open("batcam_uploads.p","r") as file_handle:
-            list_of_filenames = pickle.load(file_handle)
-
+    #with open("batcam_uploads.p","r") as file_handle:
+    #        list_of_filenames = pickle.load(file_handle)
+    list_of_filenames = ["3116","3116_2","3116_3","3116_5"]
+    
     while list_of_filenames:
 
         current_filename = list_of_filenames.pop(0)
 
-        with open("batcam_uploads.p","w") as file_handle:
-            pickle.dump(list_of_filenames,file_handle)
+    #    with open("batcam_uploads.p","w") as file_handle:
+    #        pickle.dump(list_of_filenames,file_handle)
         
         list_of_ids = str(current_filename).split("-")
         for current_ids in list_of_ids:
@@ -375,13 +376,13 @@ def batcam_iterator():
                     pickle.dump({"filename":current_filename,"user_id":current_id},out)
                 i += 1 
                 yield str(i) + " Skipped " + str(current_id)
-                
+
                 continue
 
             duser = current_user.user
             fb = duser.get_offline_graph()
 
-            upload_directory = "static/fbpic/images/delhi/batcam/"
+            upload_directory = "static/fbpic/images/delhi/"
             zone = "B" ##can be B, U or T
 
             picture="http://batcam.bacardiindia.in/"+ upload_directory +str(current_filename)+".jpg"
