@@ -371,7 +371,12 @@ def batcam_iterator():
             try:
                 current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
             except:
-                current_user = MyCustomProfile.objects.get(batcam_day2_id__exact=current_id)
+                with open("batcam_skipped.p","a") as out:
+                    pickle.dump({"filename":current_filename,"user_id":current_id},out)
+                i += 1 
+                yield str(i) + " Skipped " + str(current_id)
+                
+                continue
 
             duser = current_user.user
             fb = duser.get_offline_graph()
@@ -395,7 +400,7 @@ def batcam_iterator():
             except:
                 b['response'] = "error for this person"
                 b['error']="error generated"
-            
+
             picture_tag = BatCamPictureTag.objects.create(
                 complete_path = os.path.join(BASE_DIR, upload_directory,str(current_filename)+".jpg"),
                 filename = str(current_filename)+".jpg",
