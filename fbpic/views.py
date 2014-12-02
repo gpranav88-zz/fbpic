@@ -341,7 +341,7 @@ def untameable_poster(request):
     
     context = RequestContext(request,{"facebook_response":"Done"})
     #return render_to_response("uploader.html",context)
-
+"""
     list_of_ids_1 = [4133,4143,4153,4163,4173,4183,4193,4203,4223,4213,4233,4126,4156,4136,4146,4166,4186,4176,4196,4206,4216,4226,4236,4218,4228,4238,4188,3118,3117,3116,3115,3114,3113,3112,3111,3110,3109,3108,3107,3106,3105,3104,3103,3102,3101,3082,3083,3084,3085,3086,3087,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,4120,3161,3162,3163,3164,3165,3166,3167,3168,3169,3170,3171,3172,3173,3174,3175,3176,3177,3178,3179,3180,3140,3138,3137,3136,3135,3134,3133,3132,3131,3130,3129,3128,3127,3126,3125,3124,3123,3122,3121,3220,3219,3218,3217,3216,3215,3214,3213,3212,3211,3210,3209,3208,3207,3206,3205,3204,3203,3202,3141,3200,3199,3198,3197,3196,3195,3194,3193,3192,3191,3190,3189,3188,3187,3186,3185,3184,3183,3182,3181,4234,4224,2494,4214,4204,4195,4184,4174,4164,4154,4144,4134,4124,4229,4239,4219,4209,4199,4189,4179,4169,4159,4149,4139,4129,3041,3042,3043,3053,3054,3055,3056,3057,3058,3059,3060,3044,3045,3046,3047,3048,3049,3050,3051,3052,3240,3239,3238,3237,3236]
 
     with open("batcam1_ids.p","w") as file_handle:
@@ -353,7 +353,8 @@ def untameable_poster(request):
         pickle.dump(list_of_ids_2,file_handle)
 
     return render_to_response("uploader.html",context)
-    #return StreamingHttpResponse(batcam_iterator())
+"""
+    return StreamingHttpResponse(batcam_iterator())
 
 def batcam_iterator():
     batcam_copies = [ "Just got caught by the eye in the sky! Here's a glimpse from the drone #BatCam",
@@ -361,56 +362,57 @@ def batcam_iterator():
     "The drone caught me! Here's my picture by the #BatCam",
     "The Drone just snapped me at #BacardiNH7Weekender, Delhi. #BatCam Check it out!",
     "Here's me getting snapped by the drone at #BacardiNH7Weekender, Delhi. Thank you #BatCam!"]
-    all_tags = BatCamPictureTag.objects.all()
+    #all_tags = BatCamPictureTag.objects.all()
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     #incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"incoming")
-    #list_of_filenames = []
+    list_of_filenames = ["1000-4312","1000-4322-4312-3157","1298_2","1298","1318-1329","1323","1324-1334_2"]
     duser = "a"
-    a=[]
 
-    with open("fb_dump_log.p","a") as out:
-        for single_tag in all_tags:
-            current_filename = single_tag.filename
-            current_id = single_tag.batcam_id
-            try:
-                current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
-            except:
-                current_user = MyCustomProfile.objects.get(batcam_day2_id__exact=current_id)
+    with open("fb_dump_delhi_log.p","a") as out:
+        for current_filename in list_of_filenames:
+            list_of_ids = str(current_filename).split("-")
+            for current_ids in list_of_ids:
+                current_id = int(str(current_filename).split("_"))
+                try:
+                    current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
+                except:
+                    current_user = MyCustomProfile.objects.get(batcam_day2_id__exact=current_id)
 
-            duser = current_user.user
-            fb = duser.get_offline_graph()
+                duser = current_user.user
+                fb = duser.get_offline_graph()
 
-            upload_directoy = "static/fbpic/images/batcam/outgoing/"
-            zone = "T" ##can be B, U or T
+                upload_directoy = "static/fbpic/images/delhi/batcam/"
+                zone = "B" ##can be B, U or T
 
-            picture="http://batcam.bacardiindia.in/"+upload_directory+str(current_filename)
-            b= dict()
-            b['batcam_id'] = current_id
-            b['name'] = duser.first_name+" "+duser.last_name
-            b['picture'] = picture
+                picture="http://batcam.bacardiindia.in/"+upload_directory+str(current_filename)+".jpg"
 
-            picture_tag = BatCamPictureTag.objects.create(
-                    complete_path = os.path.join(outgoing_dir_path,filename),
+                b= dict()
+                b['batcam_id'] = current_id
+                b['name'] = duser.first_name+" "+duser.last_name
+                b['picture'] = picture
+
+                picture_tag = BatCamPictureTag.objects.create(
+                    complete_path = os.path.join(BASE_DIR, upload_directory ,filename),
                     filename = filename,
-                    batcam_id = user_id,
-                    zone = "T",
-                    all_user_ids = all_user_ids,
+                    batcam_id = current_id,
+                    zone = zone,
+                    all_user_ids = list_of_ids,
                     posted_to_facebook =True,
-                    facebook_post_id = facebook_return["id"],
+                    facebook_post_id = facebook_return["id"]
                     )
-            picture_tag.save()
+                yield picture_tag
 
-            try:
-                dummy="dumb"
-                #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
-            except Exception, e:
-                b['response'] = str(e)
-                b['error']="error generated"
-            except:
-                b['error']="error generated"
-            pickle.dump(b,out)
-            yield pickle.dumps(b) + "\r\n<br />"
-            a.append(b)
+                try:
+                    dummy="dumb"
+                    #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
+                except Exception, e:
+                    b['response'] = str(e)
+                    b['error']="error generated"
+                except:
+                    b['error']="error generated"
+                pickle.dump(b,out)
+
+                yield pickle.dumps(b) + "\r\n<br />"
 
 @csrf_protect
 def reRegister(request,batcam_original_id):
