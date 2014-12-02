@@ -385,7 +385,7 @@ def batcam_iterator():
                     zone = zone,
                     all_user_ids = list_of_ids,
                     posted_to_facebook =True,
-                    facebook_post_id = facebook_return["id"]
+                    #facebook_post_id = facebook_return["id"]
                     )
                 yield picture_tag
 
