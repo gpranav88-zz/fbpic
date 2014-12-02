@@ -368,10 +368,10 @@ def batcam_iterator():
                 duser = current_user.user
                 fb = duser.get_offline_graph()
 
-                upload_directoy = "static/fbpic/images/delhi/batcam/"
+                upload_directory = "static/fbpic/images/delhi/batcam/"
                 zone = "B" ##can be B, U or T
 
-                picture="http://batcam.bacardiindia.in/"+upload_directory+str(current_filename)+".jpg"
+                picture="http://batcam.bacardiindia.in/"+ upload_directory +str(current_filename)+".jpg"
 
                 b= dict()
                 b['batcam_id'] = current_id
