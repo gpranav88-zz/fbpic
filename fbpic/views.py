@@ -353,12 +353,13 @@ def batcam_iterator():
     #incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"incoming")
     list_of_filenames = ["1000-4312","1000-4322-4312-3157","1298_2","1298","1318-1329","1323","1324-1334_2"]
     duser = "a"
+    yield "hi!"
 
     with open("fb_dump_delhi_log.p","a") as out:
         for current_filename in list_of_filenames:
             list_of_ids = str(current_filename).split("-")
             for current_ids in list_of_ids:
-                current_id = int(str(current_filename).split("_"))
+                current_id = int(str(current_ids).split("_")[0])
                 try:
                     current_user = MyCustomProfile.objects.get(batcam_id__exact=current_id)
                 except:
