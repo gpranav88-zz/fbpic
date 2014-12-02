@@ -368,23 +368,23 @@ def batcam_iterator():
     i = 0
     yield "hi!"
     
-    with open("untameable_uploads.p","r") as file_handle: #CCCCHANGE
+    with open("tramp_uploads.p","r") as file_handle: #CCCCHANGE
             list_of_filenames = pickle.load(file_handle)
 
     while list_of_filenames:
 
         current_filename = list_of_filenames.pop(0)
 
-        with open("untameable_uploads.p","w") as file_handle: #CCCCHANGE
+        with open("tramp_uploads.p","w") as file_handle: #CCCCHANGE
             pickle.dump(list_of_filenames,file_handle)
         
         list_of_ids = str(current_filename).split("-")
         for current_ids in list_of_ids:
             current_id = int(str(current_ids).split("_")[0])
             try:
-                current_user = MyCustomProfile.objects.get(untameable_id__exact=current_id) #CCCCHANGE
+                current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id) #CCCCHANGE
             except:
-                with open("untameable_skipped.p","a") as out: #CCCCHANGE
+                with open("trampoline_skipped.p","a") as out: #CCCCHANGE
                     pickle.dump({"filename":current_filename,"user_id":current_id},out)
                 i += 1 
                 yield str(i) + " Skipped " + str(current_id)
@@ -394,8 +394,8 @@ def batcam_iterator():
             duser = current_user.user
             fb = duser.get_offline_graph()
 
-            upload_directory = "static/fbpic/images/delhi/untame/" #CCCCHANGE
-            zone = "U" #CCCCHANGE
+            upload_directory = "static/fbpic/images/delhi/tramp/" #CCCCHANGE
+            zone = "T" #CCCCHANGE
 
             picture="http://batcam.bacardiindia.in/"+ upload_directory +str(current_filename)+".jpg"
 
@@ -406,7 +406,7 @@ def batcam_iterator():
 
             try:
                 dummy="dumb"
-                b['response'] = fb.set('me/photos', url=picture, message=untameable_copies[random.randint(0, 4)],place="374502716046163")
+                b['response'] = fb.set('me/photos', url=picture, message=trampoline_copies[random.randint(0, 3)],place="374502716046163")
             except Exception, e:
                 b['response'] = str(e)
                 b['error']="error generated"
