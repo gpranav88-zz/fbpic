@@ -379,8 +379,8 @@ def batcam_iterator():
                 b['picture'] = picture
 
                 picture_tag = BatCamPictureTag.objects.create(
-                    complete_path = os.path.join(BASE_DIR, upload_directory ,filename),
-                    filename = filename,
+                    complete_path = os.path.join(BASE_DIR, upload_directory,str(current_filename)+".jpg"),
+                    filename = str(current_filename)+".jpg",
                     batcam_id = current_id,
                     zone = zone,
                     all_user_ids = list_of_ids,
