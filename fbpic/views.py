@@ -394,7 +394,7 @@ def batcam_iterator():
             duser = current_user.user
             fb = duser.get_offline_graph()
 
-            upload_directory = "static/fbpic/images/delhi/untame" #CCCCHANGE
+            upload_directory = "static/fbpic/images/delhi/untame/" #CCCCHANGE
             zone = "U" #CCCCHANGE
 
             picture="http://batcam.bacardiindia.in/"+ upload_directory +str(current_filename)+".jpg"
