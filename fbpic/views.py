@@ -393,8 +393,8 @@ def batcam_iterator():
                 b['response'] = str(e)
                 b['error']="error generated"
             except:
+                b['response'] = "error for this person"
                 b['error']="error generated"
-            """
             picture_tag = BatCamPictureTag.objects.create(
                 complete_path = os.path.join(BASE_DIR, upload_directory,str(current_filename)+".jpg"),
                 filename = str(current_filename)+".jpg",
@@ -409,7 +409,7 @@ def batcam_iterator():
             
             with open("fb_dump_delhi_log.p","a") as out:
                 pickle.dump(b,out)
-            """
+
             i += 1 
             yield str(i) + " " + pickle.dumps(b) + "\r\n<br />"
 
