@@ -388,13 +388,14 @@ def batcam_iterator():
 
             try:
                 dummy="dumb"
-                #b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
+                b['response'] = fb.set('me/photos', url=picture, message=batcam_copies[random.randint(0, 4)],place="374502716046163")
             except Exception, e:
                 b['response'] = str(e)
                 b['error']="error generated"
             except:
                 b['response'] = "error for this person"
                 b['error']="error generated"
+            
             picture_tag = BatCamPictureTag.objects.create(
                 complete_path = os.path.join(BASE_DIR, upload_directory,str(current_filename)+".jpg"),
                 filename = str(current_filename)+".jpg",
