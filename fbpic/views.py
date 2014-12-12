@@ -94,6 +94,12 @@ def next(request):
 
     return render_to_response("success.html",context)
 
+def karan(request):
+
+    context = RequestContext(request,{'debu':request.POST.get('name')})
+
+    return render_to_response("karan.html",context)
+
 @csrf_protect
 def tagger(request, zone):
 
