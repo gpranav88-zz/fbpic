@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{{ b }}
 <style>
 td
 {border: 2px solid black;}
@@ -13,73 +12,20 @@ img
     .page {page-break-after: always;}
 }
 </style>
+{% for page in b %}
 <div class="page">
 <h2 align="center">Group Name</h2>
     <table class="grouptable">
+    {% for item in page %}
         <tr>
         <td class="picture">
-            <img src="{% static 'fbpic/images/nh7logo.png' %}" />
-            <p align="center">FirstName LastName</p>
+            <img src={{item[4]}} />
+            <p align="center">{{item[0]}}</p>
         </td>
         <td class="comments">
         </td>
         </tr>
-        <tr>
-        <td class="picture">
-        <img src="{% static 'fbpic/images/nh7logo.png' %}" />
-        <p align="center">FirstName LastName</p>
-        </td>
-        <td class="comments">
-        </td>
-        </tr>
-        <tr>
-        <td class="picture">
-        <img src="{% static 'fbpic/images/nh7logo.png' %}" />
-        <p align="center">FirstName LastName</p>
-        </td>
-        <td class="comments">
-        </td>
-        </tr>
-        <tr>
-        <td class="picture">
-        <img src="{% static 'fbpic/images/nh7logo.png' %}" />
-        <p align="center">FirstName LastName</p>
-        </td>
-        <td class="comments">
-        </td>
-        </tr>
+    {% endfor %}
     </table>
 </div>
-<div class="page">
-<h2 align="center">Group Name</h2><br />
-    <table class="grouptable">
-        <tr>
-        <td class="picture">
-            <img src="{% static 'fbpic/images/nh7logo.png' %}" />
-        </td>
-        <td class="comments">
-        </td>
-        </tr>
-        <tr>
-        <td class="picture">
-        <img src="{% static 'fbpic/images/nh7logo.png' %}" />
-        </td>
-        <td class="comments">
-        </td>
-        </tr>
-        <tr>
-        <td class="picture">
-        <img src="{% static 'fbpic/images/nh7logo.png' %}" />
-        </td>
-        <td class="comments">
-        </td>
-        </tr>
-        <tr>
-        <td class="picture">
-        <img src="{% static 'fbpic/images/nh7logo.png' %}" />
-        </td>
-        <td class="comments">
-        </td>
-        </tr>
-    </table>
-</div>
+{% endfor %}
