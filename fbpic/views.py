@@ -102,7 +102,7 @@ def karan(request):
     current_group = 1
 
     for item in a:
-        if item[3] == current_group and c.len < 4 :
+        if item[3] == current_group and len(c) < 4 :
             c.append(item)
         else :
             b.append(c)
