@@ -1,17 +1,19 @@
 {% load staticfiles %}
+<totalcode>
 <style>
-td
-{border: 2px solid black;}
-.picture
-{}
-.comments
-{width:800;}
-img
-{height:180;}
-@media print {
-    .page {page-break-after: always;}
-}
+    td
+    {border: 2px solid black;}
+    .picture
+    {}
+    .comments
+    {width:800;}
+    img
+    {height:180;}
+    @media print {
+        .page {page-break-after: always;}
+    }
 </style>
+
 {% for page in b %}
 <div class="page">
 <h2 align="center">Group Name</h2>
@@ -29,3 +31,5 @@ img
     </table>
 </div>
 {% endfor %}
+
+</totalcode>
