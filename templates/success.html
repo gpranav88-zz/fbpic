@@ -5,27 +5,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'fbpic/style.css' %}" />
 <div class="form">
 <div>
-	<h1>Welcome {{ user.first_name }}</h1>
-    {% if batcam %}
-    <p>You have been registered for BatCam! You will find all your pictures uploaded here as soon as you get clicked by our BatCams</p>
-    <h3>Your Batcam ID is : {{user.mycustomprofile.batcam_id}} </h3>
-    {% elif untameable %}
-    <p>You have been registered for Untameable! You will find all your pictures uploaded here as soon as you get clicked by our BatCams</p>
-    <h3>Your Untameable Zone ID is : {{user.mycustomprofile.untameable_id}} </h3>
-    {% elif trampoline %}
-    <p>You have been registered for Trampoline! You will find all your pictures uploaded here as soon as you get clicked by our BatCams</p>
-    <h3>Your Trampoline ID is : {{user.mycustomprofile.trampoline_id}} </h3>
-    {% else %}
-    <h3>Which Zone are you registering for?</h3>
-    <table align="center">
-    <tr>
-    <td><a href="{% url 'home' 'batcam1'%}"><img src="/static/fbpic/images/CATBAT1.jpg" /></a></td>
-    <td><a href="{% url 'home' 'untameable'%}"><img src="/static/fbpic/images/UNTAMEABLE.jpg" /></a></td></tr><tr>
-    <td><a href="{% url 'home' 'trampoline' %}"><img src="/static/fbpic/images/Tramp.jpg" /></a></td>
-    <td><a href="{% url 'home' 'batcam2' %}"><img src="/static/fbpic/images/CATBAT2.jpg" /></a></td>
-    </tr>
-    </table>
-    {% endif %}
+	<h1>Thank You {{ user.first_name }}!</h1> <br />
+    
+    <p>Your registration was successful<br />Watch out for the Alto K10 #ChaseCam Dronies to land on your timeline.</p>
+    
 
 </div>
 <div>
