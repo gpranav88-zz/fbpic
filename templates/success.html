@@ -12,7 +12,7 @@
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
                 <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by the #ChaseCam"/>
-                <input type="hidden" value="{% static 'fbpic/images/user_img.png' %}" name="picture" />
+                <input type="hidden" value="http://chasecam.in{% static 'fbpic/images/user_img.png' %}" name="picture" />
                 <br />
                 <textarea name="message" rows="3" cols="35"></textarea>
                 <br />
