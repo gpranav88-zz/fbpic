@@ -6,13 +6,13 @@
 <div>
 	<h1>Thank You {{ user.first_name }}!</h1> <br />
     
-    <p>Your registration was successful<br />Catch your photos here and then choose to share them with your friends.</p>
+    <p>Your registration was successful<br />Catch your photos from the #ChaseCam here and then choose to share them with your friends.</p>
 
             <form action="{% url 'wall_post' %}" method="get">
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
                 <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by the #ChaseCam"/>
-                <input type="hidden" value="http://quidich.com/logo.png" name="picture" />
+                <input type="hidden" value="{% static 'fbpic/images/user_img.png' %}" name="picture" />
                 <br />
                 <textarea name="message" rows="3" cols="35"></textarea>
                 <br />
