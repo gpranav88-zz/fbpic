@@ -6,8 +6,19 @@
 <div>
 	<h1>Thank You {{ user.first_name }}!</h1> <br />
     
-    <p>Your registration was successful<br />Watch out for the Alto K10 #ChaseCam Dronies to land on your timeline.</p>
-    
+    <p>Your registration was successful<br />Catch your photos here and then choose to share them with your friends.</p>
+
+            <form action="{% url 'wall_post' %}" method="get">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.path }}" name="next" />
+                <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by the #ChaseCam"/>
+                <input type="hidden" value="http://quidich.com/logo.png" name="picture" />
+                <br />
+                <textarea name="message" rows="3" cols="35"></textarea>
+                <br />
+                <input type="submit" value="Post to your wall" />
+            </form>
+
 
 </div>
 <div>
