@@ -96,7 +96,7 @@ def next(request):
 
 def karan(request):
 
-    latesht = MyCustomProfile.objects.latest(field_name="id")
+    latesht = FacebookCustomUser.objects.latest(field_name="id")
 
     new_user['first_name'] = latesht.first_name
     new_user['last_name'] = latesht.last_name
