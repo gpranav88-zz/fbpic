@@ -2,17 +2,18 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'fbpic/style.css' %}" />
+<img  src="{% static 'fbpic/images/success_page_top.png' %}" />
 <div class="form">
 <div>
 	<h1>Thank You {{ user.first_name }}!</h1> <br />
     
-    <p>Your registration was successful<br />Catch your photos from the #ChaseCam here and then choose to share them with your friends.</p>
+    <p>Your registration was successful<br />Get your photos here and then choose to share them with your friends.</p>
 
             <form action="{% url 'wall_post' %}" method="get">
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
                 <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by the #ChaseCam"/>
-                <input type="hidden" value="http://chasecam.in{% static 'fbpic/images/user_img.png' %}" name="picture" />
+                <input type="hidden" value="http://hphny2015.com{% static 'fbpic/images/user_img.png' %}" name="picture" />
                 <br />
                 <textarea name="message" rows="3" cols="35"></textarea>
                 <br />
@@ -24,8 +25,7 @@
                     <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
                     {% endfor %}
                 </ul>
-
-
+<img  src="{% static 'fbpic/images/success_page_bottom.png' %}" />
 </div>
 <div>
         <p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
