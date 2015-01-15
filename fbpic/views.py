@@ -96,12 +96,12 @@ def next(request):
 
 def karan(request):
 
-    latesht = MyCustomProfile.objects.latest()
+    latesht = MyCustomProfile.objects.all()[-1]
 
     new_user['first_name'] = latesht.first_name
     new_user['last_name'] = latesht.last_name
     new_user['uid'] = latesht.id
-    new_user['email'] = "sample@example.com"
+    new_user['email'] = latesht.email
 
     return HttpResponse(json.dumps(new_user), content_type="application/json")
 
