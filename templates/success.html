@@ -22,12 +22,12 @@
 <body class="inner">
 <div class="wrapper "> 
   <div class="header clearfix">
-        <img src="{% static 'fbpic/images/logo.png'%}" alt="HP" class="logo" />
-        <img src="{% static 'images/banner1.png'%}" alt="banner" class="banner" />
+        <img src="{% static 'fbpic/images/logo.png' %}" alt="HP" class="logo" />
+        <img src="{% static 'fbpic/images/banner1.png' %}" alt="banner" class="banner" />
   </div>
   
   <div class="box1 congrts">
-    <img src="{% static 'images/hp-icon.png'%}" alt="hp" class="icon" />
+    <img src="{% static 'fbpic/images/hp-icon.png'%}" alt="hp" class="icon" />
     <p>Thank you {{ user.first_name }}!<br>Your registration was successful.</p>
     <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>
   </div>
