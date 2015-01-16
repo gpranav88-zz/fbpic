@@ -28,7 +28,15 @@
   <div class="main-content">
     <img src="{% static 'fbpic/images/banner1.png' %}" alt="banner" class="banner" />
     <h2>Kickstart 2015 on a Winning Note.<br />Register Now &amp; Win Exciting Gifts from HP.</h2>
-    <a href="#" class="login-btn"></a>
+    <!--<a href="#" class="login-btn"></a>-->
+    <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
+    {% csrf_token %}
+    <input type="hidden" value="/{{zone}}" name="next" />
+    <input type="hidden" value="/{{zone}}" name="register_next" />
+    <input type="hidden" value="/error" name="error_next" />
+    <input onclick="F.connect(this.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" />
+    </form>
+
   </div>
   
 </div>
