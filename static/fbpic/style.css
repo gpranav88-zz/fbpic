@@ -66,8 +66,8 @@ body.home .wrapper{background:url(./images/slice1.png) no-repeat right bottom; }
 .main-content{width:610px;}
 .main-content .banner{margin-left:20px; margin-bottom:50px;}
 .main-content h2{height:0; padding-top:76px; overflow:hidden; width:506px; position:relative; margin:0 auto 35px;
-background:url(../images/txt.jpg) no-repeat 0 0;}
-.login-btn{display:block; width:199px; height:43px; margin:0 auto; background:url(../images/login-btn.jpg) no-repeat 0 0;}
+background:url(./images/txt.jpg) no-repeat 0 0;}
+.login-btn{display:block; width:199px; height:43px; margin:0 auto; background:url(./images/login-btn.jpg) no-repeat 0 0;}
 body.inner .wrapper .banner{float:right; width:260px; margin-top:-15px;}
 body.inner .wrapper{padding-top:0;}
 body.inner .header{padding-top:30px;}
