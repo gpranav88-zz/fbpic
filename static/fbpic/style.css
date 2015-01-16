@@ -1,26 +1,116 @@
-body {
-	background-color: #cccccc;
-}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; -webkit-text-size-adjust:none; }
 
-.img-contain{
-  margin: 0 auto;
-  height: 75%
-}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
 
-img{
-    display: block;
-    max-width:100%;
-    max-height:100%;
-    margin: auto;
-    vertical-align: middle;
-}
-.column{
-  display:inline-block;
-  width:22.5%;
-}
+/**
+ * Minimal base styles.
+ */
 
-.form{
-	display: block;
-	margin: auto;
-	text-align:center;
-}
+html { font-size: 100.01%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body { font-size: 62.5%; line-height:1em; font-family:Arial, Helvetica, sans-serif;}
+
+a:link, a:visited { text-decoration: none; cursor/**/: /**/pointer; }
+a:link:hover, a:visited:hover { text-decoration: underline; }
+:focus { outline: 0; }
+
+/* Remove margins for navigation lists */
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+.iem7 input[type="checkbox"] { vertical-align: baseline; }
+input, select { vertical-align: middle; }
+textarea { overflow:auto; }
+
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea { margin: 0; }
+
+/* Make buttons play nice in IE:
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {  width: auto; overflow: visible; }
+
+/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+h1, h2, h3, h4, h5, h6 { font-weight: bold; line-height:1.2em; }
+
+/* Images and Default Classes  */
+img { max-width:100%; vertical-align:bottom; }
+img.alignleft{ float:left; margin:0 10px 10px 0; display: inline;}
+img.alignright{ float:right; margin:0 0px 10px 10px; display: inline;}
+img.aligncenter{ display:block; margin-left:auto; margin-right:auto; margin-bottom:10px;}
+
+/* Default List Styles  */
+ul, ol { list-style:none; }
+li { line-height:1.2em; }
+li ul, li ol { margin-bottom:0px; } 
+
+/* 
+ * Clearing Methods
+ */
+.clearfix:after { content: "."; display: block; font-size:0; height: 0; clear: both; visibility: hidden;}
+.clearfix { display: block; }
+.floatbox { overflow:hidden; }
+.clear { clear: both; height:1px; line-height:1px; }
+
+html, body{height:100%;}
+
+.wrapper{max-width:960px; margin:0 auto;height:100%; padding-top:30px; }
+
+.header .logo{float:left; }
+
+body.home .wrapper{background:url(../images/slice1.png) no-repeat right bottom; }
+
+.main-content{width:610px;}
+.main-content .banner{margin-left:20px; margin-bottom:50px;}
+.main-content h2{height:0; padding-top:76px; overflow:hidden; width:506px; position:relative; margin:0 auto 35px;
+background:url(../images/txt.jpg) no-repeat 0 0;}
+.login-btn{display:block; width:199px; height:43px; margin:0 auto; background:url(../images/login-btn.jpg) no-repeat 0 0;}
+body.inner .wrapper .banner{float:right; width:260px; margin-top:-15px;}
+body.inner .wrapper{padding-top:0;}
+body.inner .header{padding-top:30px;}
+
+.box1{margin:77px auto 0; max-width:446px; border:1px solid #000; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; 
+ text-align:center;}
+.box1.congrts{padding:100px 0 32px;}
+.box1 .icon{display:block; margin:0 auto 20px;}
+.box1 p{font-size:14px; line-height:18px; margin-bottom:90px; font-family:Arial, Helvetica, sans-serif;}
+
+.button1{display:inline-block; text-align:center; height:23px; width:67px; background:#3d5391; border:1px solid #ababab; line-height:23px;
+color:#f5f6f7; font-size:12px; }
+a.button1:hover{text-decoration:none;}
+
+
+
+/**********************************************************************************************
+PURPOSE
+This CSS file provide a clever way to add browser and OS specific css styles.
+http://rafael.adm.br/css_browser_selector
+***********************************************************************************************/
+
+/*------------------------------------------
+// IE - All Versions - Windows
+//------------------------------------------*/
+
+/* Clearfix Method for containing floats in IE */
+.ie .clearfix { display: inline-block; }  /* ... especialy for IE7 */
+.ie .clearfix { display: block; }          /* ... for IE5,IE6,IE7 */
+* html.ie .clearfix { height: 1%; }       /* ... for IE5 + IE6/Win */
+
+/* Adjustment of .floatbox class for IE */
+.ie .floatbox { width:100%; }
+
+/*Use to make CSS 3 Rounded Corners , Text Shadows and Box Shadows for IE */
+.ie .css3 { behavior: url("js/PIE.htc"); }
+
+/*------------------------------------------
+// IE - IE6.0 - Windows 
+//------------------------------------------*/
+
+/* Adds near-native PNG support with alpha opacity in IE6 */
+/* ie6 img { behavior: url("js/iepngfix.htc");  } */
+
+/* Adds ability to user :hover selector on any tag in IE6 */
+.ie6 body { behavior: url("js/csshover.htc"); }
