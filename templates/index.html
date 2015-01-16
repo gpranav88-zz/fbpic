@@ -1,4 +1,10 @@
-
+<!DOCTYPE html>
+<html>
+</html>
+<head>
+<title>HP Happy New Year 2015!</title>
+</head>
+<body>
 <link href="{{ STATIC_URL }}django_facebook/css/facebook.css" type="text/css" rel="stylesheet" media="all" />
 {% include 'django_facebook/_facebook_js.html' %}
 {% load staticfiles %}
@@ -33,3 +39,4 @@
             <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">logout</a><br />
 </div>
 {% endif %}
+</body>
