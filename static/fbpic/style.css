@@ -61,7 +61,7 @@ html, body{height:100%;}
 
 .header .logo{float:left; }
 
-body.home .wrapper{background:url(../images/slice1.png) no-repeat right bottom; }
+body.home .wrapper{background:url(./images/slice1.png) no-repeat right bottom; }
 
 .main-content{width:610px;}
 .main-content .banner{margin-left:20px; margin-bottom:50px;}
