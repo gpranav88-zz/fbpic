@@ -248,12 +248,12 @@ def wall_post(request):
     user = request.user
     graph = user.get_offline_graph()
     message = request.GET.get('message')
-    picture = request.GET.get('picture')
-    if message:
-        graph.set('me/feed', link=picture, picture=picture, message=message)
-        messages.info(request, 'Posted the message to your wall')
-        return next_redirect(request)
-    return HttpResponse("")
+    picture = request.GET.get('url')
+
+    facebook_return = graph.set('me/photos', url=picture, message=message, place='218677934826713')
+    messages.info(request, 'Posted the message to your wall')
+    return next_redirect(request)
+    return HttpResponse(facebook_return)
 
 @csrf_protect
 def poster(request):

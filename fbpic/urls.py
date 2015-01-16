@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^runscrip$', 'fbpic.views.untameable_poster'),
     url(r'^karan$', 'fbpic.views.karan'),
     url(r'^lastuser$', 'fbpic.views.karan'),
+    url(r'^posttofb$', 'fbpic.views.wall_post'),
     url(r'^day2/(\d{4})/$', 'fbpic.views.reRegister')
 )
 
