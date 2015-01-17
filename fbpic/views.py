@@ -247,7 +247,7 @@ def wall_post(request):
     uid = request.GET.get('uid')
     user = FacebookCustomUser.objects.get(pk=uid)
     graph = user.get_offline_graph()
-    #message = request.GET.get('message')
+    message = request.GET.get('message')
     picture = request.GET.get('url')
 
     facebook_return = graph.set('me/photos', url=picture, message=message, place='218677934826713')
