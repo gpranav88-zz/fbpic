@@ -244,11 +244,11 @@ def postMsg(request):
 
 @facebook_required(scope='publish_actions')
 def wall_post(request):
-    uid = request.POST.get('uid')
+    uid = request.GET.get('uid')
     user = FacebookCustomUser.objects.get(pk=uid)
     graph = user.get_offline_graph()
-    message = request.POST.get('message')
-    picture = request.POST.get('url')
+    #message = request.GET.get('message')
+    picture = request.GET.get('url')
 
     facebook_return = graph.set('me/photos', url=picture, message=message, place='218677934826713')
     messages.info(request, 'Posted the message to your wall')
