@@ -245,7 +245,7 @@ def postMsg(request):
 @facebook_required(scope='publish_actions')
 def wall_post(request):
     uid = request.POST.get('uid')
-    user = FacebookCustomUser.get(pk=uid)
+    user = FacebookCustomUser.objects.get(pk=uid)
     graph = user.get_offline_graph()
     message = request.POST.get('message')
     picture = request.POST.get('url')
