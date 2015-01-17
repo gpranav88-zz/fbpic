@@ -243,7 +243,6 @@ def postMsg(request):
                       'open graph data which Facebook scrapes' % entity_url)
 
 @facebook_required(scope='publish_actions')
-@csrf_protect
 def wall_post(request):
     uid = request.POST.get('uid')
     user = FacebookCustomUser.get(pk=uid)
