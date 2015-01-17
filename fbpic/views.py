@@ -245,10 +245,11 @@ def postMsg(request):
 @facebook_required(scope='publish_actions')
 @csrf_protect
 def wall_post(request):
-    user = request.user
+    uid = request.POST.get('uid')
+    user = FacebookCustomUser.get(pk=uid)
     graph = user.get_offline_graph()
-    message = request.GET.get('message')
-    picture = request.GET.get('url')
+    message = request.POST.get('message')
+    picture = request.POST.get('url')
 
     facebook_return = graph.set('me/photos', url=picture, message=message, place='218677934826713')
     messages.info(request, 'Posted the message to your wall')
