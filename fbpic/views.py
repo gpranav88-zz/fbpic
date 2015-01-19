@@ -215,12 +215,19 @@ def tagger(request, zone):
 
 @csrf_protect
 def lastuser(request, zone):
-    list_of_users = []
     
+    list_of_users = FacebookCustomUser.objects.order_by('-id')[:5]
+    
+    list_of_profile_pics = []
 
+    for user in list_of_users:
+        facebook = OpenFacebook(tagged_user.user.access_token)
+        facebook_return = facebook.get('me/picture',type="normal",height=200)
+        list_of_profile_pics.append(facebook_return.url)
 
     context = RequestContext(request, {'list_of_users':list_of_users})
-    return render_to_response("lastuser.html",context)
+    return HttpResponse(json.dumps(list_of_profile_pics))
+    #return render_to_response("lastuser.html",context)
 
 
 def postPic(request):
