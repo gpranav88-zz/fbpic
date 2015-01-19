@@ -3,7 +3,7 @@
 <table border="1">
 <tr>
 <tr>
-<td>Unique id</td> <td>First Name</td> <td>Last Name</td> <td>Profile Pic</td></tr>
+<td>Unique id</td> <td>First Name</td> <td>Last Name</td><td>Profile Pic</td></tr>
 {% for each_user in list_of_profile_pics %}
 <tr>
 <td>{{each_user.userdata.id}}</td> <td>{{each_user.userdata.first_name}}</td> <td>{{each_user.userdata.last_name}}</td><td><img src="{{each_user.image}}" /></td></tr>

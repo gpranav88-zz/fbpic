@@ -8,24 +8,6 @@
     
     <p>Your registration was successful<br />Catch your photos from the #ChaseCam here and then choose to share them with your friends.</p>
 
-            <form action="{% url 'wall_post' %}" method="get">
-                {% csrf_token %}
-                <input type="hidden" value="{{ request.path }}" name="next" />
-                <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by the #ChaseCam"/>
-                <input type="hidden" value="http://chasecam.in{% static 'fbpic/images/user_img.png' %}" name="picture" />
-                <br />
-                <textarea name="message" rows="3" cols="35"></textarea>
-                <br />
-                <input type="submit" value="Post to your wall" />
-            </form>
-
-                <ul class="messages">
-                    {% for message in messages %}
-                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-                    {% endfor %}
-                </ul>
-
-
 </div>
 <div>
         <p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
