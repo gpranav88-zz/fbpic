@@ -214,7 +214,7 @@ def tagger(request, zone):
     return render_to_response("tagger.html",context)
 
 @csrf_protect
-def lastuser(request, zone):
+def lastuser(request):
     
     list_of_users = FacebookCustomUser.objects.order_by('-id')[:5]
     
