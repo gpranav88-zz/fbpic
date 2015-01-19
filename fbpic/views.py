@@ -221,7 +221,7 @@ def lastuser(request):
     list_of_profile_pics = []
 
     for user in list_of_users:
-        facebook = OpenFacebook(tagged_user.user.access_token)
+        facebook = OpenFacebook(user.access_token)
         facebook_return = facebook.get('me/picture',type="normal",height=200)
         list_of_profile_pics.append(facebook_return.url)
 
