@@ -217,15 +217,14 @@ def tagger(request, zone):
 def lastuser(request):
     
     list_of_users = FacebookCustomUser.objects.order_by('-id')[:5]
-    list_of_profile_pics = []
+    list_of_profile_users = []
 
     for user in list_of_users:
         facebook = OpenFacebook(user.access_token)
-        list_of_profile_pics.append(facebook.my_image_url(size='normal'))
+        list_of_profile_pics.append({'userdata':user,'image':facebook.my_image_url(size='normal')})
 
-    context = RequestContext(request, {'list_of_users':list_of_users,'list_of_profile_pics':list_of_profile_pics})
-    return HttpResponse(json.dumps(list_of_profile_pics))
-    #return render_to_response("lastuser.html",context)
+    context = RequestContext(request, {'list_of_profile_pics':list_of_profile_pics})
+    return render_to_response("lastuser.html",context)
 
 
 def postPic(request):
