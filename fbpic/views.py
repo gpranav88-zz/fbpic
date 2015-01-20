@@ -29,7 +29,7 @@ def home(request):
     text = ""
     if request.user.is_authenticated():
         template_name = "success.html"
-        '''
+        
         custom_profile = MyCustomProfile.objects.get(user=request.user.id)
         if not custom_profile.newuid:
             #assign id here, kit_id
@@ -38,7 +38,7 @@ def home(request):
             current_id = custom_profile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
             custom_profile.newuid = text = str(kit_id) + "{:03d}".format(current_id)
             custom_profile.save()
-        '''
+        
            
     else:
         template_name = "index.html"
@@ -194,10 +194,10 @@ def lastuser(request):
 
     
     for user in list_of_users:
-        user_custom_profile = MyCustomProfile.objects.get(user=user.id)
+        #user_custom_profile = MyCustomProfile.objects.get(user=user.id)
         facebook = OpenFacebook(user.access_token)
 
-        list_of_profile_pics.append({'userdata':user,'image':facebook.my_image_url(size='normal'),'kit_id':user_custom_profile.newuid})
+        list_of_profile_pics.append({'userdata':user,'image':facebook.my_image_url(size='normal')})
 
     context = RequestContext(request, {'list_of_profile_pics':list_of_profile_pics})
     return render_to_response("lastuser.html",context)
