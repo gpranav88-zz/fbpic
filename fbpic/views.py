@@ -14,6 +14,7 @@ from batcam.models import BatCamPictureTag, MyCustomProfile
 from open_facebook.api import OpenFacebook
 from django.db.models import Max
 from django.db.models import F
+import json
 import pickle
 import random
 import httplib, urllib, urllib2
@@ -54,7 +55,7 @@ def next(request):
 
 def karan(request):
 
-    context = RequestContext(request)
+    context = RequestContext(request,{"output":json.dumps(request.user)})
     return render_to_response("karan.html",context)
 
 @csrf_protect
