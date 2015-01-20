@@ -8,7 +8,7 @@
     
 <div class="box1 congrts">
     <img src="{% static 'fbpic/images/alto-icon-in.png'%}" alt="hp" class="icon" />
-    <p>Thank you.<br>Your registration was successful.</p>
+    <p>Thank you.<br>Your registration was successful.</p>{{text}}
     <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>
   </div>
 

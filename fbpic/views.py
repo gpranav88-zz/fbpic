@@ -26,6 +26,7 @@ def home(request):
     # Calculates the maximum out of the already-retrieved objects
     
     kit_id = request.subdomain
+    text = ""
     if request.user.is_authenticated():
         template_name = "success.html"
         custom_profile = MyCustomProfile.objects.get(user=request.user.id)
@@ -34,7 +35,7 @@ def home(request):
             custom_profile.kit_id = kit_id
             args = MyCustomProfile.objects.all()
             current_id = custom_profile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
-            custom_profile.newuid = str(kit_id) + "{:03X}".format(current_id)
+            custom_profile.newuid = text = str(kit_id) + "{:03X}".format(current_id)
             custom_profile.save()
            
     else:
@@ -42,7 +43,7 @@ def home(request):
     
 
     # return HttpResponse()
-    context = RequestContext(request)
+    context = RequestContext(request,{'text':text})
     return render_to_response(template_name,context)
 
 def home2(request):
