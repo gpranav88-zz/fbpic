@@ -85,7 +85,7 @@ def home(request, zone):
     
 
     # return HttpResponse()
-    context = RequestContext(request, {'debu':debu,'zone':zone, 'batcam':batcam,'untameable':untameable,'trampoline':trampoline})
+    context = RequestContext(request, {'debu':request.subdomain,'zone':zone, 'batcam':batcam,'untameable':untameable,'trampoline':trampoline})
     return render_to_response(template_name,context)
 
 def next(request):
