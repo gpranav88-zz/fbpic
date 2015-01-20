@@ -373,7 +373,7 @@ def batcam_iterator():
 
     filename = os.listdir(incoming_dir_path)[0] #add if not blank condition here or only file is .gitignore
         # move directories
-        shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
+    shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
 
     with open("tramp_uploads.p","r") as file_handle: #CCCCHANGE
             list_of_filenames = pickle.load(file_handle)
