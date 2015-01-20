@@ -54,21 +54,6 @@ def next(request):
 
 def karan(request):
 
-    a = pickle.load(open( "a.out", "rb" ))
-    b = []
-    c = []
-    current_group = 1
-
-    for item in a:
-        if item[3] == current_group and len(c) < 4 :
-            c.append(item)
-        else :
-            b.append(c)
-            c=[item]
-            current_group = item[3]
-
-
-    context = RequestContext(request,{'b':b})
 
     return render_to_response("karan.html",context)
 
