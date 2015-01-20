@@ -24,3 +24,13 @@ img{
 	margin: auto;
 	text-align:center;
 }
+
+.box1{margin:77px auto 0; max-width:446px; border:1px solid #000; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; 
+ text-align:center;}
+.box1.congrts{padding:100px 0 32px;}
+.box1 .icon{display:block; margin:0 auto 20px;}
+.box1 p{font-size:14px; line-height:18px; margin-bottom:90px; font-family:Arial, Helvetica, sans-serif;}
+
+.button1{display:inline-block; text-align:center; height:23px; width:67px; background:#3d5391; border:1px solid #ababab; line-height:23px;
+color:#f5f6f7; font-size:12px; }
+a.button1:hover{text-decoration:none;}
