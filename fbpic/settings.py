@@ -126,8 +126,8 @@ MEDIA_URL='/media/'
 SITE_ID = 1
 
 SUBDOMAIN_URLCONFS = {
-    None: 'fbpic.urls.home',  # no subdomain, e.g. ``example.com``
-    'kit1': 'fbpic.urls.home',
+    None: 'fbpic.urls',  # no subdomain, e.g. ``example.com``
+    'kit1': 'fbpic.urls',
 }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
