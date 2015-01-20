@@ -9,12 +9,9 @@
 <div class="box1 congrts">
     <img src="{% static 'fbpic/images/alto-icon-in.png'%}" alt="hp" class="icon" />
     <p>Thank you.<br>Your registration was successful.</p>
-    <a href="#" class="button1">Log out</a>
+    <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>
   </div>
 
-</div>
-<div>
-        <p><a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()">Logout</a> </p>
 </div>
 <script>
 function fbLogoutUser() {
