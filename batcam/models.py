@@ -10,8 +10,8 @@ from fbpic import settings
 class MyCustomProfile(FacebookModel):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL)
 	batcam_id = models.IntegerField(null=True, blank = True)
-	kit_id = models.CharField(null=True,blank=True,maxlength=5)
-	newuid = models.CharField(null=True,blank=True,maxlength=10)
+	kit_id = models.CharField(null=True,blank=True,max_length=5)
+	newuid = models.CharField(null=True,blank=True,max_length=10)
 	batcam_day2_id = models.IntegerField(null=True, blank = True)
 	untameable_id = models.IntegerField(null=True, blank = True)
 	trampoline_id = models.IntegerField(null=True, blank = True)
