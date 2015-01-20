@@ -338,9 +338,9 @@ def uploader(request):
 def untameable_poster(request):    
     context = RequestContext(request,{"facebook_response":"Done"})
     #return render_to_response("uploader.html",context)
-    return StreamingHttpResponse(batcam_iterator())
+    return StreamingHttpResponse(batcam_iterator(context))
 
-def batcam_iterator():
+def batcam_iterator(context):
 
     #all_tags = BatCamPictureTag.objects.all()
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -363,49 +363,48 @@ def batcam_iterator():
         with open("delhi_filenames_current.p","w") as file_handle: #CCCCHANGE
             pickle.dump(list_of_filenames,file_handle)
         
-        list_of_ids = str(current_filename).split("-")
-        for current_ids in list_of_ids:
-            current_id = int(str(current_ids).split("_")[0])
-            try:
-                current_user = MyCustomProfile.objects.get(newuid__exact=current_id) #CCCCHANGE
-            except:
-                with open("delhi_skipped.p","a") as out: #CCCCHANGE
-                    pickle.dump({"filename":current_filename,"user_id":current_id},out)
-                i += 1 
-                yield str(i) + " Skipped " + str(current_id)
+        current_id = context.subdomain + current_filename_wihtout_extension
 
-                continue
-
-            duser = current_user.user
-            fb = duser.get_offline_graph()
-
-            upload_directory = "static/fbpic/images/output/" #CCCCHANGE
-
-            picture="http://chasecam.in/"+ upload_directory + str(current_filename)
-
-            b= dict()
-            b['id'] = current_id
-            b['name'] = duser.first_name+" "+duser.last_name
-            b['picture'] = picture
-
-            try:
-                dummy="dumb"
-                #b['response'] = fb.set('me/photos', url=picture, message="#ChaseLife in 2015",place="374502716046163")
-            except Exception, e:
-                b['response'] = str(e)
-                b['error']="error generated"
-            except:
-                b['response'] = "generic error for this person. Please contact Tanuj."
-                b['error']="error generated"
-
-            
-            
-            with open("fb_dump_delhi_log.p","a") as out:
-                pickle.dump(b,out)
-
+        try:
+            current_user = MyCustomProfile.objects.get(newuid__exact=current_id) #CCCCHANGE
+        except:
+            with open("delhi_skipped.p","a") as out: #CCCCHANGE
+                pickle.dump({"filename":current_filename,"user_id":current_id},out)
             i += 1 
+            yield str(i) + " Skipped " + str(current_id)
 
-            yield str(i) + " " + pickle.dumps(b) + "\r\n<br />"
+            continue
+
+        duser = current_user.user
+        fb = duser.get_offline_graph()
+
+        upload_directory = "static/fbpic/images/output/" #CCCCHANGE
+
+        picture="http://chasecam.in/"+ upload_directory + str(current_filename)
+
+        b= dict()
+        b['id'] = current_id
+        b['name'] = duser.first_name+" "+duser.last_name
+        b['picture'] = picture
+
+        try:
+            dummy="dumb"
+            #b['response'] = fb.set('me/photos', url=picture, message="#ChaseLife in 2015",place="374502716046163")
+        except Exception, e:
+            b['response'] = str(e)
+            b['error']="error generated"
+        except:
+            b['response'] = "generic error for this person. Please contact Tanuj."
+            b['error']="error generated"
+
+        
+        
+        with open("fb_dump_delhi_log.p","a") as out:
+            pickle.dump(b,out)
+
+        i += 1 
+
+        yield str(i) + " " + pickle.dumps(b) + "\r\n<br />"
 
 @csrf_protect
 def reRegister(request,batcam_original_id):
