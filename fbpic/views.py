@@ -29,8 +29,9 @@ def home(request):
     text = ""
     if request.user.is_authenticated():
         template_name = "success.html"
-        '''
+
         custom_profile = MyCustomProfile.objects.get(user=request.user.id)
+
         if not custom_profile.newuid:
             #assign id here, kit_id
             custom_profile.kit_id = kit_id
@@ -38,7 +39,6 @@ def home(request):
             current_id = custom_profile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
             custom_profile.newuid = text = str(kit_id) + "{:03d}".format(current_id)
             custom_profile.save()
-        '''
            
     else:
         template_name = "index.html"
@@ -338,9 +338,9 @@ def uploader(request):
 def untameable_poster(request):    
     context = RequestContext(request,{"facebook_response":"Done"})
     #return render_to_response("uploader.html",context)
-    return StreamingHttpResponse(batcam_iterator(context))
+    return StreamingHttpResponse(batcam_iterator(request.subdomain))
 
-def batcam_iterator(context):
+def batcam_iterator(subdomain):
 
     #all_tags = BatCamPictureTag.objects.all()
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -363,7 +363,7 @@ def batcam_iterator(context):
         with open("delhi_filenames_current.p","w") as file_handle: #CCCCHANGE
             pickle.dump(list_of_filenames,file_handle)
         
-        current_id = context.subdomain + current_filename_wihtout_extension
+        current_id = subdomain + current_filename_wihtout_extension
 
         try:
             current_user = MyCustomProfile.objects.get(newuid__exact=current_id) #CCCCHANGE
