@@ -28,15 +28,15 @@ def home(request):
     kit_id = request.subdomain
     if request.user.is_authenticated():
         template_name = "success.html"
-        '''
-        if not request.user.mycustomprofile.newuid:
+        custom_profile = MyCustomProfile.objects.get(user=request.user.id)
+        if not custom_profile.newuid:
             #assign id here, kit_id
-            request.user.mycustomprofile.kit_id = kit_id
+            custom_profile.kit_id = kit_id
             args = MyCustomProfile.objects.all()
-            current_id = request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
-            request.user.mycustomprofile.newuid = str(kit_id) + "%03d" % current_id
-            request.user.mycustomprofile.save()
-        '''    
+            current_id = custom_profile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
+            custom_profile.newuid = str(kit_id) + "{%03d}".format(current_id)
+            custom_profile.save()
+           
         
 
     else:
