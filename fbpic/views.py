@@ -26,7 +26,7 @@ def home(request, zone):
     batcam = False
     trampoline = False
     untameable = False
-    debu =""
+    debu = request.subdomain
     if request.user.is_authenticated():
         template_name = "success.html"
         if zone=="batcam1" or zone=="batcam2":
@@ -216,7 +216,7 @@ def tagger(request, zone):
 @csrf_protect
 def lastuser(request):
     
-    list_of_users = FacebookCustomUser.objects.order_by('-id')[:5]
+    list_of_users = FacebookCustomUser.objects.order_by('-id')
     list_of_profile_pics = []
 
     for user in list_of_users:
@@ -360,31 +360,21 @@ def untameable_poster(request):
     return StreamingHttpResponse(batcam_iterator())
 
 def batcam_iterator():
-    batcam_copies = [ "Just got caught by the eye in the sky! Here's a glimpse from the drone #BatCam",
-    "This is awesome! At #BacardiNH7Weekender, Delhi got snapped by the drone #BatCam. ",
-    "The drone caught me! Here's my picture by the #BatCam",
-    "The Drone just snapped me at #BacardiNH7Weekender, Delhi. #BatCam Check it out!",
-    "Here's me getting snapped by the drone at #BacardiNH7Weekender, Delhi. Thank you #BatCam!"]
-
-    untameable_copies = ["An Untameable zone, an Untameable experience. True passion can't be tamed. #BacardiNH7Weekender",
-            "Went in head first and came out a winner at the #BacardiUntameableZone",
-            "#BacardiUntameableZone taught me that the only obstacle to chasing my dream is Me!",
-            "I get knocked down, but I get up again, you're never gonna keep me down. Here's a sneak from #BacardiUntameableZone",
-            "Where there's a will, I'll forge my way.  #BacardiUntameableZone"]
-
-    trampoline_copies = ["Trying to build castles in the sky! #BacardiTrampoline",
-    "Having so much fun at #BacardiNH7Weekender that I'm bouncing off the walls #BacardiTrampoline",
-    "All that goes down, must come up! #BacardiTrampoline",
-    "Gravity is working against me #BacardiTrampoline"]
-
 
     #all_tags = BatCamPictureTag.objects.all()
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-    #incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images",zone,"incoming")
+    incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","upload")
+    temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","temp")
+    outgoing_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","output")
+
     duser = "a"
     i = 0
-    yield "hi!"
     
+
+    filename = os.listdir(incoming_dir_path)[0] #add if not blank condition here or only file is .gitignore
+        # move directories
+        shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
+
     with open("tramp_uploads.p","r") as file_handle: #CCCCHANGE
             list_of_filenames = pickle.load(file_handle)
 
@@ -399,7 +389,7 @@ def batcam_iterator():
         for current_ids in list_of_ids:
             current_id = int(str(current_ids).split("_")[0])
             try:
-                current_user = MyCustomProfile.objects.get(trampoline_id__exact=current_id) #CCCCHANGE
+                current_user = MyCustomProfile.objects.get(id__exact=current_id) #CCCCHANGE
             except:
                 with open("trampoline_skipped.p","a") as out: #CCCCHANGE
                     pickle.dump({"filename":current_filename,"user_id":current_id},out)
@@ -411,10 +401,9 @@ def batcam_iterator():
             duser = current_user.user
             fb = duser.get_offline_graph()
 
-            upload_directory = "static/fbpic/images/delhi/tramp/" #CCCCHANGE
-            zone = "T" #CCCCHANGE
+            upload_directory = "static/fbpic/images/upload/" #CCCCHANGE
 
-            picture="http://batcam.bacardiindia.in/"+ upload_directory +str(current_filename)+".jpg"
+            picture="http://chasecam.in/"+ upload_directory +str(current_filename)+".jpg"
 
             b= dict()
             b['batcam_id'] = current_id
@@ -422,25 +411,15 @@ def batcam_iterator():
             b['picture'] = picture
 
             try:
-                dummy="dumb"
+                #dummy="dumb"
                 b['response'] = fb.set('me/photos', url=picture, message=trampoline_copies[random.randint(0, 3)],place="374502716046163")
             except Exception, e:
                 b['response'] = str(e)
                 b['error']="error generated"
             except:
-                b['response'] = "error for this person"
+                b['response'] = "generic error for this person. Please contact Tanuj."
                 b['error']="error generated"
 
-            picture_tag = BatCamPictureTag.objects.create(
-                complete_path = os.path.join(BASE_DIR, upload_directory,str(current_filename)+".jpg"),
-                filename = str(current_filename)+".jpg",
-                batcam_id = current_id,
-                zone = zone,
-                all_user_ids = list_of_ids,
-                posted_to_facebook =True,
-                facebook_post_id = b['response']
-                )
-            picture_tag.save()
             
             
             with open("fb_dump_delhi_log.p","a") as out:
