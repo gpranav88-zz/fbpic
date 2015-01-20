@@ -194,7 +194,12 @@ def lastuser(request):
 
     
     for user in list_of_users:
-        #user_custom_profile = MyCustomProfile.objects.get(user=user.id)
+        newuid=""
+        try:
+            user_custom_profile = MyCustomProfile.objects.get(user=user.id)
+            newuid=user_custom_profile.newuid
+        except:
+            newuid="NA"
         facebook = OpenFacebook(user.access_token)
 
         list_of_profile_pics.append({'userdata':user,'image':facebook.my_image_url(size='normal')})
