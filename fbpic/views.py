@@ -28,6 +28,22 @@ def home(request):
     kit_id = request.subdomain
     if request.user.is_authenticated():
         template_name = "success.html"
+           
+    else:
+        template_name = "index.html"
+    
+
+    # return HttpResponse()
+    context = RequestContext(request)
+    return render_to_response(template_name,context)
+
+def home2(request):
+    
+    # Calculates the maximum out of the already-retrieved objects
+    
+    kit_id = request.subdomain
+    if request.user.is_authenticated():
+        template_name = "success.html"
         custom_profile = MyCustomProfile.objects.get(user=request.user.id)
         if not custom_profile.newuid:
             #assign id here, kit_id
