@@ -54,7 +54,7 @@ def next(request):
 
 def karan(request):
 
-
+    context = RequestContext(request)
     return render_to_response("karan.html",context)
 
 @csrf_protect
