@@ -27,12 +27,12 @@ def home(request):
     kit_id = request.subdomain
     if request.user.is_authenticated():
         template_name = "success.html"
-            if not request.user.mycustomprofile.newuid:
-                #assign id here, kit_id
-                request.user.mycustomprofile.batcam_id = current_id
-                request.user.mycustomprofile.save()
-                args = MyCustomProfile.objects.all()
-                current_id = request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
+        if not request.user.mycustomprofile.newuid:
+            #assign id here, kit_id
+            request.user.mycustomprofile.batcam_id = current_id
+            request.user.mycustomprofile.save()
+            args = MyCustomProfile.objects.all()
+            current_id = request.user.mycustomprofile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
 
     else:
         template_name = "index.html"
