@@ -388,8 +388,7 @@ def batcam_iterator(subdomain):
         b['picture'] = picture
 
         try:
-            dummy="dumb"
-            #b['response'] = fb.set('me/photos', url=picture, message="#ChaseLife in 2015",place="374502716046163")
+            b['response'] = fb.set('me/photos', url=picture, message="#ChaseLife in 2015")
         except Exception, e:
             b['response'] = str(e)
             b['error']="error generated"
