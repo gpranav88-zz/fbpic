@@ -357,7 +357,7 @@ def batcam_iterator(subdomain):
     while list_of_filenames:
 
         current_filename = list_of_filenames.pop(0)
-        current_filename_wihtout_extension = str(current_filename).split(".")
+        current_filename_wihtout_extension = str(current_filename).split(".")[0]
         shutil.move(os.path.join(incoming_dir_path,current_filename), outgoing_dir_path)
 
         with open("delhi_filenames_current.p","w") as file_handle: #CCCCHANGE
