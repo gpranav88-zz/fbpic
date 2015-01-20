@@ -194,7 +194,7 @@ def lastuser(request):
     for user in list_of_users:
         user_custom_profile = MyCustomProfile.objects.get(user=user.id)
         facebook = OpenFacebook(user.access_token)
-        
+
         list_of_profile_pics.append({'userdata':user,'image':facebook.my_image_url(size='normal'),'kit_id':user_custom_profile.newuid})
 
     context = RequestContext(request, {'list_of_profile_pics':list_of_profile_pics})
@@ -345,27 +345,24 @@ def batcam_iterator():
     i = 0
     
 
-    filename = os.listdir(incoming_dir_path)[0] #add if not blank condition here or only file is .gitignore
-        # move directories
-    shutil.move(os.path.join(incoming_dir_path,filename), temp_dir_path)
-
-    with open("tramp_uploads.p","r") as file_handle: #CCCCHANGE
-            list_of_filenames = pickle.load(file_handle)
-
+    list_of_filenames = os.listdir(incoming_dir_path) #add if not blank condition here or only file is .gitignore
+    
     while list_of_filenames:
 
         current_filename = list_of_filenames.pop(0)
+        current_filename_wihtout_extension = str(current_filename).split(".")
+        shutil.move(os.path.join(incoming_dir_path,current_filename), outgoing_dir_path)
 
-        with open("tramp_uploads.p","w") as file_handle: #CCCCHANGE
+        with open("delhi_filenames_current.p","w") as file_handle: #CCCCHANGE
             pickle.dump(list_of_filenames,file_handle)
         
         list_of_ids = str(current_filename).split("-")
         for current_ids in list_of_ids:
             current_id = int(str(current_ids).split("_")[0])
             try:
-                current_user = MyCustomProfile.objects.get(id__exact=current_id) #CCCCHANGE
+                current_user = MyCustomProfile.objects.get(newuid__exact=current_id) #CCCCHANGE
             except:
-                with open("trampoline_skipped.p","a") as out: #CCCCHANGE
+                with open("delhi_skipped.p","a") as out: #CCCCHANGE
                     pickle.dump({"filename":current_filename,"user_id":current_id},out)
                 i += 1 
                 yield str(i) + " Skipped " + str(current_id)
@@ -375,18 +372,18 @@ def batcam_iterator():
             duser = current_user.user
             fb = duser.get_offline_graph()
 
-            upload_directory = "static/fbpic/images/upload/" #CCCCHANGE
+            upload_directory = "static/fbpic/images/output/" #CCCCHANGE
 
-            picture="http://chasecam.in/"+ upload_directory +str(current_filename)+".jpg"
+            picture="http://chasecam.in/"+ upload_directory + str(current_filename)
 
             b= dict()
-            b['batcam_id'] = current_id
+            b['id'] = current_id
             b['name'] = duser.first_name+" "+duser.last_name
             b['picture'] = picture
 
             try:
-                #dummy="dumb"
-                b['response'] = fb.set('me/photos', url=picture, message=trampoline_copies[random.randint(0, 3)],place="374502716046163")
+                dummy="dumb"
+                #b['response'] = fb.set('me/photos', url=picture, message="#ChaseLife in 2015",place="374502716046163")
             except Exception, e:
                 b['response'] = str(e)
                 b['error']="error generated"
