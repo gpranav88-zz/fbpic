@@ -48,7 +48,7 @@ def home(request):
 
 def home2(request):
     
-    # Calculates the maximum out of the already-retrieved objects
+    # This is a test pot for hoem page
     
     kit_id = request.subdomain
     if request.user.is_authenticated():
@@ -80,7 +80,7 @@ def next(request):
     return render_to_response("success.html",context)
 
 def karan(request):
-
+    #just a general test page
     context = RequestContext(request,{"output":json.dumps(request.user)})
     return render_to_response("karan.html",context)
 
@@ -188,10 +188,14 @@ def lastuser(request):
     
     list_of_users = FacebookCustomUser.objects.order_by('-id')
     list_of_profile_pics = []
+    list_of_kit_ids = []
 
+    
     for user in list_of_users:
+        user_custom_profile = MyCustomProfile.objects.get(user=user.id)
         facebook = OpenFacebook(user.access_token)
-        list_of_profile_pics.append({'userdata':user,'image':facebook.my_image_url(size='normal')})
+        
+        list_of_profile_pics.append({'userdata':user,'image':facebook.my_image_url(size='normal'),'kit_id':user_custom_profile.newuid})
 
     context = RequestContext(request, {'list_of_profile_pics':list_of_profile_pics})
     return render_to_response("lastuser.html",context)
