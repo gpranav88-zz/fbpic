@@ -43,8 +43,11 @@ def home(request):
             max_id = 0
             try:
                 max_id = args.aggregate(Max('untameable_id'))['untameable_id__max']
+                if not max_id:
+                    max_id = 0
             except:
                 max_id = 0
+
             current_id = custom_profile.untameable_id =  max_id + 1
             custom_profile.newuid = text = str(kit_id) + "{:03d}".format(current_id)
             custom_profile.save()
