@@ -34,7 +34,7 @@ def home(request):
         except:
             custom_profile = MyCustomProfile(user=request.user.id)
             custom_profile.save()
-        
+
 
         if not custom_profile.newuid:
             #assign id here, kit_id
@@ -192,7 +192,8 @@ def tagger(request, zone):
 @csrf_protect
 def lastuser(request):
     
-    list_of_users = FacebookCustomUser.objects.order_by('-id')
+    kit_id = request.subdomain
+    list_of_users = args = MyCustomProfile.objects.filter(kit_id__exact=kit_id).order_by('-id')
     list_of_profile_pics = []
     list_of_kit_ids = []
 
