@@ -29,8 +29,12 @@ def home(request):
     text = ""
     if request.user.is_authenticated():
         template_name = "success.html"
-
-        custom_profile = MyCustomProfile.objects.get(user=request.user.id)
+        try:
+            custom_profile = MyCustomProfile.objects.get(user__exact=request.user.id)
+        except:
+            custom_profile = MyCustomProfile(user=request.user.id)
+            custom_profile.save()
+        
 
         if not custom_profile.newuid:
             #assign id here, kit_id
