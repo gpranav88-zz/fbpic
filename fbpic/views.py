@@ -201,7 +201,7 @@ def lastuser(request):
     for user in list_of_users:
         newuid=""
         try:
-            user_custom_profile = MyCustomProfile.objects.get(user=user.id)
+            user_custom_profile = MyCustomProfile.objects.get(user__exact=user.id)
             newuid=user_custom_profile.newuid
         except:
             newuid="NA"
