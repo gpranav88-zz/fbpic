@@ -35,7 +35,7 @@ def home(request):
         if not custom_profile.newuid:
             #assign id here, kit_id
             custom_profile.kit_id = kit_id
-            args = MyCustomProfile.objects.all()
+            args = MyCustomProfile.objects.filter(kit_id__exact=kit_id)
             current_id = custom_profile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
             custom_profile.newuid = text = str(kit_id) + "{:03d}".format(current_id)
             custom_profile.save()
@@ -61,7 +61,7 @@ def home2(request):
             custom_profile.kit_id = kit_id
             args = MyCustomProfile.objects.all()
             current_id = custom_profile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
-            custom_profile.newuid = str(kit_id) + "{:03X}".format(current_id)
+            custom_profile.newuid = str(kit_id) + "{:03d}".format(current_id)
             custom_profile.save()
             
            
