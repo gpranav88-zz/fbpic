@@ -199,15 +199,9 @@ def lastuser(request):
 
     
     for user in list_of_users:
-        newuid=""
-        try:
-            user_custom_profile = MyCustomProfile.objects.get(user__exact=user.id)
-            newuid=user_custom_profile.newuid
-        except:
-            newuid="NA"
-        facebook = OpenFacebook(user.access_token)
-
-        list_of_profile_pics.append({'userdata':user,'image':facebook.my_image_url(size='normal')})
+        user_fb_profile = FacebookCustomUser.objects.get(pk=user.id)
+        facebook = OpenFacebook(user_fb_profile.access_token)
+        list_of_profile_pics.append({'userdata':{'first_name':user_fb_profile.last_name,'last_name':user_fb_profile.last_name,'newuid':user.newuid},'image':facebook.my_image_url(size='normal')})
 
     context = RequestContext(request, {'list_of_profile_pics':list_of_profile_pics})
     return render_to_response("lastuser.html",context)
