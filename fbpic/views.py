@@ -201,7 +201,7 @@ def lastuser(request):
     for user in list_of_users:
         user_fb_profile = FacebookCustomUser.objects.get(pk=user.id)
         facebook = OpenFacebook(user_fb_profile.access_token)
-        list_of_profile_pics.append({'userdata':{'first_name':user_fb_profile.last_name,'last_name':user_fb_profile.last_name,'newuid':user.newuid},'image':facebook.my_image_url(size='normal')})
+        list_of_profile_pics.append({'userdata':{'first_name':user_fb_profile.first_name,'last_name':user_fb_profile.last_name,'newuid':user.newuid},'image':facebook.my_image_url(size='normal')})
 
     context = RequestContext(request, {'list_of_profile_pics':list_of_profile_pics})
     return render_to_response("lastuser.html",context)
