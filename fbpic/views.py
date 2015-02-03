@@ -381,8 +381,8 @@ def batcam_iterator(subdomain):
             with open("delhi_skipped.p","a") as out: #CCCCHANGE
                 pickle.dump({"filename":current_filename,"user_id":current_id},out)
             i += 1 
-            yield str(i) + " Skipped " + str(current_id)
-
+            yield str(i) + " Skipped " + str(current_id) + "\n<br />"
+            shutil.move(os.path.join(outgoing_dir_path,current_filename), temp_dir_path)
             continue
 
         duser = current_user.user
