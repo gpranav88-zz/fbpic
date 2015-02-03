@@ -350,6 +350,9 @@ def untameable_poster(request):
 def batcam_iterator(subdomain):
 
     #all_tags = BatCamPictureTag.objects.all()
+
+    kit_id = subdomain
+
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","upload")
     temp_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","temp")
@@ -370,7 +373,7 @@ def batcam_iterator(subdomain):
         with open("delhi_filenames_current.p","w") as file_handle: #CCCCHANGE
             pickle.dump(list_of_filenames,file_handle)
         
-        current_id = subdomain + current_filename_wihtout_extension
+        current_id = current_filename_wihtout_extension
 
         try:
             current_user = MyCustomProfile.objects.get(newuid__exact=current_id) #CCCCHANGE
@@ -387,7 +390,7 @@ def batcam_iterator(subdomain):
 
         upload_directory = "static/fbpic/images/output/" #CCCCHANGE
 
-        picture="http://chasecam.in/"+ upload_directory + str(current_filename)
+        picture = "http://chasecam.in/"+ upload_directory + str(current_filename)
 
         b= dict()
         b['id'] = current_id
