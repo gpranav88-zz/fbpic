@@ -29,7 +29,7 @@
     <p class="txt1">
     Time to #Raiseyourlumia  and <span>let the world see it.<br />Get ready for ultimate selfie. 
     </p>
-    <span class="fb-btn">div class="form">
+    <span class="fb-btn"><div class="form">
 <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
     {% csrf_token %}
     <input type="hidden" value="/{{zone}}" name="next" />
