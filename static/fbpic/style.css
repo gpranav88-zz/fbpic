@@ -1,36 +1,93 @@
-body {
-	background-color: #ef9a03;
-}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; -webkit-text-size-adjust:none; }
 
-.img-contain{
-  margin: 0 auto;
-  height: 75%
-}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
 
-img{
-    display: block;
-    max-width:100%;
-    max-height:100%;
-    margin: auto;
-    vertical-align: middle;
-}
-.column{
-  display:inline-block;
-  width:22.5%;
-}
+/**
+ * Minimal base styles.
+ */
 
-.form{
-	display: block;
-	margin: auto;
-	text-align:center;
+html { font-size: 100.01%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body { font-size: 62.5%; line-height:1em; }
+
+a:link, a:visited { text-decoration: none; cursor/**/: /**/pointer; }
+a:link:hover, a:visited:hover { text-decoration: underline; }
+:focus { outline: 0; }
+
+/* Remove margins for navigation lists */
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+.iem7 input[type="checkbox"] { vertical-align: baseline; }
+input, select { vertical-align: middle; }
+textarea { overflow:auto; }
+
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea { margin: 0; }
+
+/* Make buttons play nice in IE:
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {  width: auto; overflow: visible; }
+
+/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+h1, h2, h3, h4, h5, h6 { font-weight: bold; line-height:1.2em; }
+
+/* tables still need 'cellspacing="0"' in the markup */
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+/* blockquote , q and hr  */
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; content: none; }
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+/* Images and Default Classes  */
+img { max-width:100%; vertical-align:bottom; }
+img.alignleft{ float:left; margin:0 10px 10px 0; display: inline;}
+img.alignright{ float:right; margin:0 0px 10px 10px; display: inline;}
+img.aligncenter{ display:block; margin-left:auto; margin-right:auto; margin-bottom:10px;}
+
+/* Default List Styles  */
+ul, ol { list-style:none; }
+li { line-height:1.2em; }
+li ul, li ol { margin-bottom:0px; } 
+
+/* 
+ * Clearing Methods
+ */
+.clearfix:after { content: "."; display: block; font-size:0; height: 0; clear: both; visibility: hidden;}
+.clearfix { display: block; }
+.floatbox { overflow:hidden; }
+.clear { clear: both; height:1px; line-height:1px; }
+
+html{width:100%; height:100%;}
+body{background: #f47627; /* Old browsers */
+background: -moz-linear-gradient(top, #f47627 0%, #f47627 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f47627), color-stop(100%,#f47627)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #f47627 0%,#f47627 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #f47627 0%,#f47627 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #f47627 0%,#f47627 100%); /* IE10+ */
+background: linear-gradient(to bottom, #f47627 0%,#f47627 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f47627', endColorstr='#f47627',GradientType=0 ); /* IE6-9 */ 
+width:100%; height:100%; position:relative; overflow-y:hidden;
 }
+#container{width:100%; height:100%; background:url(../images/container-bg.png) no-repeat top center; padding-top:65px;
+box-sizing:border-box; -moz-box-sizing:border-box; -webkit--moz-box-sizing:border-box; }
+.content-box{margin:0 auto 0; background:url(../images/content-box.png) no-repeat 0 0; width:451px; height:413px; position:relative;
+font-family: 'Open Sans', sans-serif; padding:160px 0 0 48px;}
+.content-box .robot{position:absolute; left:50%; margin-left:-111px; top:-48px; z-index:100;}
+/*.content-box p{color:#fff; line-height:1.4em; font-size:30px; text-transform:uppercase; }
+.content-box p strong{ font-weight:600;}
+.content-box p span{display:block; font-size:14px; font-weight:600; color:#7a360c; }*/
+.content-box p.txt1{background:url(../images/text1.png) no-repeat 0 0; padding-top:111px; width:380px; height:0; overflow:hidden;
+position:relative; margin-bottom:25px;} 
+.content-box p.txt2{background:url(../images/text2.png) no-repeat 0 0; padding-top:147px; width:279px; height:0; overflow:hidden;
+position:relative; margin-bottom:25px;} 
 
-.box1{margin:77px auto 0; max-width:446px; border:1px solid #000; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; 
- text-align:center;}
-.box1.congrts{padding:100px 0 32px;}
-.box1 .icon{display:block; margin:0 auto 20px;}
-.box1 p{font-size:14px; line-height:18px; margin-bottom:90px; font-family:Arial, Helvetica, sans-serif;}
-
-.button1{display:inline-block; text-align:center; height:23px; width:67px; background:#3d5391; border:1px solid #ababab; line-height:23px;
-color:#f5f6f7; font-size:12px; }
-a.button1:hover{text-decoration:none;}
+.mobile-icon{position:absolute; z-index:100; left:50%; bottom:0; margin-left:-132px;}
+.content-box .fb-btn{display:block; background:url(../images/fb-btn.png) no-repeat 0 0; width:417px; height:45px; display:block;}
+.content-box .fb-btn a{display:block; height:45px; width:265px;}
