@@ -60,7 +60,6 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'subdomains.middleware.SubdomainURLRoutingMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,10 +124,6 @@ MEDIA_ROOT='/home/bitnami/fbpic/images/'
 MEDIA_URL='/media/'
 SITE_ID = 1
 
-SUBDOMAIN_URLCONFS = {
-    None: 'fbpic.urls',  # no subdomain, e.g. ``example.com``
-    'kit1': 'fbpic.urls',
-}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 

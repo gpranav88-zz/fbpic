@@ -25,7 +25,6 @@ def home(request):
     
     # Calculates the maximum out of the already-retrieved objects
     
-    kit_id = request.subdomain
     text = ""
     if request.user.is_authenticated():
         template_name = "success.html"
@@ -64,7 +63,6 @@ def home2(request):
     
     # This is a test pot for hoem page
     
-    kit_id = request.subdomain
     if request.user.is_authenticated():
         template_name = "success.html"
         custom_profile = MyCustomProfile.objects.get(user=request.user.id)
@@ -200,7 +198,6 @@ def tagger(request, zone):
 @csrf_protect
 def lastuser(request):
     
-    kit_id = request.subdomain
     list_of_users = args = MyCustomProfile.objects.filter(kit_id__exact=kit_id).order_by('-id')
     list_of_profile_pics = []
     list_of_kit_ids = []
@@ -345,13 +342,12 @@ def uploader(request):
 def untameable_poster(request):    
     context = RequestContext(request,{"facebook_response":"Done"})
     #return render_to_response("uploader.html",context)
-    return StreamingHttpResponse(batcam_iterator(request.subdomain))
+    return StreamingHttpResponse(batcam_iterator())
 
-def batcam_iterator(subdomain):
+def batcam_iterator():
 
     #all_tags = BatCamPictureTag.objects.all()
 
-    kit_id = subdomain
 
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     incoming_dir_path = os.path.join(BASE_DIR, "static","fbpic","images","upload")
