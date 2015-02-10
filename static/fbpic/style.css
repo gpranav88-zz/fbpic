@@ -89,5 +89,5 @@ position:relative; margin-bottom:25px;}
 position:relative; margin-bottom:25px;} 
 
 .mobile-icon{position:absolute; z-index:100; left:50%; bottom:0; margin-left:-132px;}
-.content-box .fb-btn{display:block; background:url(images/fb-btn.png) no-repeat 0 0; width:417px; height:45px; display:block;}
+.content-box .fb-btn{display:block; width:417px; height:45px; display:block;}
 .content-box .fb-btn a{display:block; height:45px; width:265px;}
