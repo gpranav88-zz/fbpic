@@ -25,7 +25,7 @@
     <p class="txt2">
     THANK YOU {{ user.first_name }} FOR RASING YOUR LUMIA #1000 NOW THE WORLD SHALL SEE IT
     </p>
-    
+    <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>
     
     <img src="{{ STATIC_URL }}fbpic/images/hlp.png" alt="" class="robot" />
   </div>
