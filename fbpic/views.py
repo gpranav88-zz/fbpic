@@ -385,7 +385,7 @@ def batcam_iterator():
 
         upload_directory = "static/fbpic/images/output/" #CCCCHANGE
 
-        picture = "http://chasecam.in/"+ upload_directory + str(current_filename)
+        picture = "http://raiseyourlumia.in/"+ upload_directory + str(current_filename)
 
         b= dict()
         b['id'] = current_id
@@ -393,7 +393,7 @@ def batcam_iterator():
         b['picture'] = picture
 
         try:
-            b['response'] = fb.set('me/photos', url=picture, message="#ChaseLife in 2015")
+            b['response'] = fb.set('me/photos', url=picture, message="Got clicked by the drone. Only need to #RaiseYourLumia")
         except Exception, e:
             b['response'] = str(e)
             b['error']="error generated"
