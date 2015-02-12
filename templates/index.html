@@ -27,20 +27,22 @@
   
   <div class="content-box">
     <p class="txt1">
-    Time to #Raiseyourlumia  and <span>let the world see it.<br />Get ready for ultimate selfie. 
+        Time to #Raiseyourlumia  and <span>let the world see it.<br />Get ready for ultimate selfie.</span>
     </p>
     <span class="fb-btn"><div class="form">
-<form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
-    {% csrf_token %}
-    <input type="hidden" value="/{{zone}}" name="next" />
-    <input type="hidden" value="/{{zone}}" name="register_next" />
-    <input type="hidden" value="/error" name="error_next" />
-    {% csrf_token %}
-    <input onclick="F.connect(this.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" />
-</form></span>
+        <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="/{{zone}}" name="next" />
+            <input type="hidden" value="/{{zone}}" name="register_next" />
+            <input type="hidden" value="/error" name="error_next" />
+            {% csrf_token %}
+            <input onclick="F.connect(this.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" />
+        </form>
+        <img src="{{ STATIC_URL }}fbpic/images/hlp.png" alt="" class="robot" />
+    </span>
     
   </div>
-  <img src="{{ STATIC_URL }}fbpic/images/hlp.png" alt="" class="robot" />
+    
     <img src="{{ STATIC_URL }}fbpic/images/mob-icon.png" alt="" class="mobile-icon" />
     <img src="{{ STATIC_URL }}fbpic/images/ms-logo.png" alt="Microsoft" class="ms-logo" />
   
