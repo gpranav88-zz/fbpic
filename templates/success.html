@@ -20,25 +20,15 @@
 </head>
 <body>
 <div id="container"> 
-  
+  <img src="{{ STATIC_URL }}fbpic/images/ms-logo.png" alt="Microsoft" class="ms-logo" />
   <div class="content-box">
-    <p class="txt2">
-    THANK YOU {{ user.first_name }} FOR RASING YOUR LUMIA #1000 NOW THE WORLD SHALL SEE IT
+    <p >
+    THANK YOU {{ user.first_name }} <span>FOR RAISING <br /> YOUR <strong>LUMIA</strong> </span> and et the world see it.<br />Get ready for ultimate selfie. Your number is #1000
     </p>
-            <form action="{% url 'wall_post' %}" method="get">
-                {% csrf_token %}
-                <input type="hidden" value="{{ request.path }}" name="next" />
-                <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by the #ChaseCam"/>
-                <input type="hidden" value="http://raiseyourlumia.in{{STATIC_URL }}fbpic/images/user_img.png" name="picture" />
-                <br />
-                <textarea name="message" rows="3" cols="35"></textarea>
-                <br /><br /><br />
-                <input type="submit" value="Post to your wall" />
-            </form>
+    
     <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>
     
     <img src="{{ STATIC_URL }}fbpic/images/hlp.png" alt="" class="robot" />
-    <img src="{{ STATIC_URL }}fbpic/images/ms-logo.png" alt="Microsoft" class="ms-logo" />
   </div>
   
   <!--<img src="{{ STATIC_URL }}fbpic/images/mob-icon.png" alt="" class="mobile-icon" />-->

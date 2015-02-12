@@ -197,7 +197,7 @@ def tagger(request, zone):
 @csrf_protect
 def lastuser(request):
     
-    list_of_users = args = MyCustomProfile.objects.filter(kit_id__exact=kit_id).order_by('-id')
+    list_of_users = args = MyCustomProfile.objects.all().order_by('-id')
     list_of_profile_pics = []
     list_of_kit_ids = []
 

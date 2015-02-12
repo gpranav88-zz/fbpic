@@ -86,7 +86,14 @@ font-family: 'Open Sans', sans-serif; padding:160px 0 0 48px;}
 .content-box p.txt1{background:url(images/text1.png) no-repeat 0 0; padding-top:111px; width:380px; height:0; overflow:hidden;
 position:relative; margin-bottom:25px;} 
 .content-box p.txt2{background:url(images/text2.png) no-repeat 0 0; padding-top:147px; width:279px; height:0; overflow:hidden;
-position:relative; margin-bottom:25px;} 
+position:relative; margin-bottom:25px;}
+.content-box p{color:#fff; line-height:1.4em; font-size:14px; text-transform:uppercase; font-size:14px; font-weight:600; color:#7a360c; }
+.content-box p span{ font-weight:normal; font-size:30px; line-height:30px; color:#fff; display:block; margin:10px 0;}
+.content-box p strong{font-weight:bold;}
+
+.button1{display:inline-block; text-align:center; height:23px; width:67px; background:#3d5391; border:1px solid #ababab; line-height:23px;
+color:#f5f6f7; font-size:12px; }
+a.button1:hover{text-decoration:none;}
 
 .mobile-icon{position:absolute; z-index:100; left:50%; bottom:0; margin-left:-132px;}
 .content-box .fb-btn{display:block; width:417px; height:45px; display:block;}
