@@ -25,7 +25,7 @@
     <p >
     THANK YOU {{ user.first_name }} <span>FOR RAISING <br /> YOUR <strong>LUMIA</strong> </span> and let the world see it.<br />Get ready for ultimate selfie. Your number is #1000
     </p>
-    
+    <br /><br />
     <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>
     
     <img src="{{ STATIC_URL }}fbpic/images/hlp.png" alt="" class="robot" />
