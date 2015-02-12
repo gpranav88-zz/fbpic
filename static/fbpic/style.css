@@ -91,3 +91,4 @@ position:relative; margin-bottom:25px;}
 .mobile-icon{position:absolute; z-index:100; left:50%; bottom:0; margin-left:-132px;}
 .content-box .fb-btn{display:block; width:417px; height:45px; display:block;}
 .content-box .fb-btn a{display:block; height:45px; width:265px;}
+.ms-logo{position:absolute; z-index:10; right:125px; bottom:20px;}
