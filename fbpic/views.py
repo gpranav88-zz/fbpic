@@ -16,7 +16,7 @@ from django.db.models import Max
 from django.db.models import F
 import json
 import pickle
-import random
+from random import randint
 import httplib, urllib, urllib2
 import os
 import shutil
