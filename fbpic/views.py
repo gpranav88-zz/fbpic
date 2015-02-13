@@ -356,51 +356,50 @@ def batcam_iterator():
         current_filename = list_of_filenames.pop(0)
         current_filename_wihtout_extension = str(current_filename).split(".")[0]
         shutil.move(os.path.join(incoming_dir_path,current_filename), outgoing_dir_path)
-
-        with open("delhi_filenames_current.p","w") as file_handle: #CCCCHANGE
-            pickle.dump(list_of_filenames,file_handle)
         
-        current_id = current_filename_wihtout_extension
+        list_of_ids = str(current_filename_wihtout_extension).split("-")
 
-        try:
-            current_user = MyCustomProfile.objects.get(newuid__exact=current_id) #CCCCHANGE
-        except:
-            with open("delhi_skipped.p","a") as out: #CCCCHANGE
-                pickle.dump({"filename":current_filename,"user_id":current_id},out)
+
+        for current_id in list_of_ids:
+            try:
+                current_user = MyCustomProfile.objects.get(newuid__exact=current_id) #CCCCHANGE
+            except:
+                with open("delhi_skipped.p","a") as out: #CCCCHANGE
+                    pickle.dump({"filename":current_filename,"user_id":current_id},out)
+                i += 1 
+                yield str(i) + " Skipped " + str(current_id) + "\n<br />"
+                shutil.move(os.path.join(outgoing_dir_path,current_filename), temp_dir_path)
+                continue
+
+            duser = current_user.user
+            fb = duser.get_offline_graph()
+
+            upload_directory = "static/fbpic/images/output/" #CCCCHANGE
+
+            picture = "http://raiseyourlumia.in/"+ upload_directory + str(current_filename)
+
+            b= dict()
+            b['id'] = current_id
+            b['name'] = duser.first_name+" "+duser.last_name
+            b['picture'] = picture
+
+            try:
+                #b['response'] = fb.set('me/photos', url=picture, message="Got clicked by the drone. Only need to #RaiseYourLumia")
+            except Exception, e:
+                b['response'] = str(e)
+                b['error']="error generated"
+            except:
+                b['response'] = "generic error for this person. Please contact Tanuj."
+                b['error']="error generated"
+
+            
+            
+            #with open("fb_dump_delhi_log_dummy.p","a") as out:
+                #pickle.dump(b,out)
+
             i += 1 
-            yield str(i) + " Skipped " + str(current_id) + "\n<br />"
-            shutil.move(os.path.join(outgoing_dir_path,current_filename), temp_dir_path)
-            continue
 
-        duser = current_user.user
-        fb = duser.get_offline_graph()
-
-        upload_directory = "static/fbpic/images/output/" #CCCCHANGE
-
-        picture = "http://raiseyourlumia.in/"+ upload_directory + str(current_filename)
-
-        b= dict()
-        b['id'] = current_id
-        b['name'] = duser.first_name+" "+duser.last_name
-        b['picture'] = picture
-
-        try:
-            b['response'] = fb.set('me/photos', url=picture, message="Got clicked by the drone. Only need to #RaiseYourLumia")
-        except Exception, e:
-            b['response'] = str(e)
-            b['error']="error generated"
-        except:
-            b['response'] = "generic error for this person. Please contact Tanuj."
-            b['error']="error generated"
-
-        
-        
-        with open("fb_dump_delhi_log.p","a") as out:
-            pickle.dump(b,out)
-
-        i += 1 
-
-        yield str(i) + " " + pickle.dumps(b) + "\r\n<br />"
+            yield str(i) + " " + pickle.dumps(b) + "\r\n<br />"
 
 @csrf_protect
 def reRegister(request,batcam_original_id):
