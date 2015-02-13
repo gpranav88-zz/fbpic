@@ -38,17 +38,15 @@ def home(request):
 
         if not custom_profile.newuid:
             #assign id here, kit_id
-            args = MyCustomProfile.objects.all()
-            max_id = 0
             try:
-                max_id = args.aggregate(Max('untameable_id'))['untameable_id__max']
-                if not max_id:
-                    max_id = 0
+                with open("lumia_hand_ids.p","r+") as file_handle:
+                    list_of_ids = pickle.load(file_handle)
+                    current_id = list_of_ids.pop(0)
+                    pickle.dump(list_of_ids,file_handle)
+                    custom_profile.newuid = current_id
             except:
-                max_id = 0
+                custom_profile.newuid = 0
 
-            current_id = custom_profile.untameable_id =  max_id + 1
-            custom_profile.newuid = text = "{:03d}".format(current_id)
             custom_profile.save()
            
     else:
@@ -62,28 +60,15 @@ def home(request):
 def home2(request):
     
     # This is a test pot for hoem page
+    list_of_ids = [2599,2598]
     
-    if request.user.is_authenticated():
-        template_name = "success.html"
-        custom_profile = MyCustomProfile.objects.get(user=request.user.id)
-        if not custom_profile.newuid:
-            #assign id here, kit_id
-            custom_profile.kit_id = kit_id
-            args = MyCustomProfile.objects.all()
-            current_id = custom_profile.untameable_id = args.aggregate(Max('untameable_id'))['untameable_id__max'] + 1
-            custom_profile.newuid = str(kit_id) + "{:03d}".format(current_id)
-            custom_profile.save()
-            
-           
-        
-
-    else:
-        template_name = "index.html"
     
+    with open("lumia_hand_ids.p","w") as file_handle:
+        pickle.dump(list_of_ids,file_handle)
 
-    # return HttpResponse()
-    context = RequestContext(request)
-    return render_to_response(template_name,context)
+    return HttpResponse("Done")
+    #context = RequestContext(request)
+    #return render_to_response(template_name,context)
 
 def next(request):
 
