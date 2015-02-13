@@ -48,7 +48,8 @@ def home(request):
                 custom_profile.newuid = text = 0
 
             custom_profile.save()
-           
+        else:
+            text = custom_profile.newuid   
     else:
         template_name = "index.html"
     
