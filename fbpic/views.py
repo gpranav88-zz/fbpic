@@ -385,6 +385,7 @@ def batcam_iterator():
 
             try:
                 #b['response'] = fb.set('me/photos', url=picture, message="Got clicked by the drone. Only need to #RaiseYourLumia")
+                yield b['id']
             except Exception, e:
                 b['response'] = str(e)
                 b['error']="error generated"
