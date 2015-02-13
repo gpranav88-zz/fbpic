@@ -43,9 +43,9 @@ def home(request):
                     list_of_ids = pickle.load(file_handle)
                     current_id = list_of_ids.pop(0)
                     pickle.dump(list_of_ids,file_handle)
-                    custom_profile.newuid = current_id
+                    custom_profile.newuid = text = current_id
             except:
-                custom_profile.newuid = 0
+                custom_profile.newuid = text = 0
 
             custom_profile.save()
            
@@ -54,7 +54,7 @@ def home(request):
     
 
     # return HttpResponse()
-    context = RequestContext(request,{'text':text,'number':custom_profile.newuid})
+    context = RequestContext(request,{'text':text})
     return render_to_response(template_name,context)
 
 def home2(request):
