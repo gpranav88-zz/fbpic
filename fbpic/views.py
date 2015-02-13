@@ -400,8 +400,8 @@ def batcam_iterator():
 
             
             
-            #with open("fb_dump_delhi_log_dummy.p","a") as out:
-                #pickle.dump(b,out)
+            with open("fb_dump_delhi_log.p","a") as out:
+                pickle.dump(b,out)
 
             i += 1 
 
