@@ -383,9 +383,14 @@ def batcam_iterator():
             b['name'] = duser.first_name+" "+duser.last_name
             b['picture'] = picture
 
+            messages = ["The drone just caught me. Here is my picture. #RaiseYourLumia",
+"Here I am getting snapped by drone. #RaiseYourLumia",
+"This is crazy me, caught by the drone at #MicrosoftVfest  #RaiseYourLumia",
+"The eye in the sky just caught me. #RaiseYourLumia",
+"Me and my world around, just snapped by drone. #RaiseYourLumia"]
+
             try:
-                #b['response'] = fb.set('me/photos', url=picture, message="Got clicked by the drone. Only need to #RaiseYourLumia")
-                yield b['id']
+                b['response'] = fb.set('me/photos', url=picture, message=messages[randint(0,4)])
             except Exception, e:
                 b['response'] = str(e)
                 b['error']="error generated"
