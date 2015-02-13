@@ -23,7 +23,7 @@
   <img src="{{ STATIC_URL }}fbpic/images/ms-logo.png" alt="Microsoft" class="ms-logo" />
   <div class="content-box">
     <p >
-    THANK YOU {{ user.first_name }} <span>FOR RAISING <br /> YOUR <strong>LUMIA</strong> </span> and let the world see it.<br />Get ready for ultimate selfie. Your number is #1000
+    THANK YOU {{ user.first_name }} <span>FOR RAISING <br /> YOUR <strong>LUMIA</strong> </span> and let the world see it.<br />Get ready for ultimate selfie.<br />Your number is #{{number}}
     </p>
     <br /><br />
     <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>

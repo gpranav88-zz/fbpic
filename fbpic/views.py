@@ -26,6 +26,7 @@ def home(request):
     # Calculates the maximum out of the already-retrieved objects
     
     text = ""
+    custom_profile = ""
     if request.user.is_authenticated():
         template_name = "success.html"
         try:
@@ -55,7 +56,7 @@ def home(request):
     
 
     # return HttpResponse()
-    context = RequestContext(request,{'text':text})
+    context = RequestContext(request,{'text':text,'number':custom_profile.newuid})
     return render_to_response(template_name,context)
 
 def home2(request):
