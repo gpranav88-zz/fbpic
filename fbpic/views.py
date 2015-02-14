@@ -368,7 +368,12 @@ def batcam_iterator(subdomain):
 
         current_filename = list_of_filenames.pop(0)
         current_filename_wihtout_extension = str(current_filename).split(".")[0]
-        shutil.move(os.path.join(incoming_dir_path,current_filename), outgoing_dir_path)
+        try:
+            shutil.move(os.path.join(incoming_dir_path,current_filename), outgoing_dir_path)
+        except:
+            yield str(i) + " Skipped " + str(current_id) + " Already Posted \n<br />"
+            shutil.move(os.path.join(incoming_dir_path,current_filename), temp_dir_path)
+            continue
 
         with open("delhi_filenames_current.p","w") as file_handle: #CCCCHANGE
             pickle.dump(list_of_filenames,file_handle)
