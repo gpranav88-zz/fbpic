@@ -76,7 +76,7 @@ font-family: 'Open Sans', sans-serif; padding:160px 0 0 48px;}
 /*.content-box p{color:#fff; line-height:1.4em; font-size:30px; text-transform:uppercase; }
 .content-box p strong{ font-weight:600;}
 .content-box p span{display:block; font-size:14px; font-weight:600; color:#7a360c; }*/
-.content-box p.txt1{padding-top:15px; width:380px; overflow:hidden;
+.content-box p.txt1{padding-top:15px; padding-bottom:15px; width:380px; overflow:hidden;
 position:relative; margin-bottom:25px;} 
 .content-box p.txt2{background:url(images/text2.png) no-repeat 0 0; padding-top:147px; width:279px; height:0; overflow:hidden;
 position:relative; margin-bottom:25px;} 
