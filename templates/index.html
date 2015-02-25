@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Raise Your Lumia</title>
+<title>Ertiga Family Twist</title>
 {% include 'django_facebook/_facebook_js.html' %}
 {% load staticfiles %}
 
@@ -27,7 +27,6 @@
   
   <div class="content-box">
     <p class="txt1">
-    Time to #Raiseyourlumia  and <span>let the world see it.<br />Get ready for ultimate selfie. 
     </p>
     <span class="fb-btn"><div class="form">
 <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
@@ -39,7 +38,7 @@
     <input onclick="F.connect(this.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" />
 </form></span>
     
-    <img src="{{ STATIC_URL }}fbpic/images/content-box.png" alt="" class="robot" />
+    <img src="{{ STATIC_URL }}fbpic/images/content-box.png" alt="" />
   </div>
   
 </div>
