@@ -66,16 +66,9 @@ li ul, li ol { margin-bottom:0px; }
 
 html{width:100%; height:100%;}
 body{background: #a4c2d7; /* Old browsers */
-background: -moz-linear-gradient(top, #f47627 0%, #f47627 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f47627), color-stop(100%,#f47627)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #f47627 0%,#f47627 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #f47627 0%,#f47627 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #f47627 0%,#f47627 100%); /* IE10+ */
-background: linear-gradient(to bottom, #f47627 0%,#f47627 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f47627', endColorstr='#f47627',GradientType=0 ); /* IE6-9 */ 
 width:100%; height:100%; position:relative; overflow-y:hidden;
 }
-#container{width:100%; height:100%; background:url(images/container-bg.png) no-repeat top center; padding-top:65px;
+#container{width:100%; height:100%; padding-top:65px;
 box-sizing:border-box; -moz-box-sizing:border-box; -webkit--moz-box-sizing:border-box; }
 .content-box{margin:0 auto 0; background:url(images/content-box.png) no-repeat 0 0; width:451px; height:413px; position:relative;
 font-family: 'Open Sans', sans-serif; padding:160px 0 0 48px;}
