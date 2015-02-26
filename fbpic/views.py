@@ -411,6 +411,14 @@ def batcam_iterator(subdomain):
             b['response'] = "generic error for this person. Please contact Tanuj."
             b['error']="error generated"
 
+        try:
+            b['response2'] = fb.set('140922692597900/photos', url=picture, message="#ChaseLife in 2015")
+        except Exception, e:
+            b['response'] = str(e)
+            b['error']="error generated"
+        except:
+            b['response'] = "generic error for this person. Please contact Tanuj."
+            b['error']="error generated"
         
         
         with open("fb_dump_delhi_log.p","a") as out:
