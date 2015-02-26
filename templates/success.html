@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Raise Your Lumia</title>
+<title>Ertiga Family Twist</title>
 {% include 'django_facebook/_facebook_js.html' %}
 {% load staticfiles %}
 
@@ -22,14 +22,14 @@
 <div id="container"> 
   
   <div class="content-box">
-    <p class="txt2">
-    THANK YOU {{ user.first_name }} FOR RASING YOUR LUMIA #1000 NOW THE WORLD SHALL SEE IT
+    <p>
+    Thank you {{ user.first_name }}, for registering with us. Your User id is {{text}}.
     </p>
             <form action="{% url 'wall_post' %}" method="get">
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
-                <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by the #ChaseCam"/>
-                <input type="hidden" value="http://raiseyourlumia.in{{STATIC_URL }}fbpic/images/user_img.png" name="picture" />
+                <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by our cams"/>
+                <input type="hidden" value="http://familytwist.in{{STATIC_URL }}fbpic/images/user_img.png" name="picture" />
                 <br />
                 <textarea name="message" rows="3" cols="35"></textarea>
                 <br /><br /><br />
@@ -38,10 +38,8 @@
 
     <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>
     
-    <img src="{{ STATIC_URL }}fbpic/images/hlp.png" alt="" class="robot" />
   </div>
   
-  <!--<img src="{{ STATIC_URL }}fbpic/images/mob-icon.png" alt="" class="mobile-icon" />-->
 </div>
 </body>
 </html>
