@@ -31,7 +31,7 @@ def home(request):
         try:
             custom_profile = MyCustomProfile.objects.get(user__exact=request.user.id)
         except:
-            custom_profile = MyCustomProfile(user=request.user.id)
+            custom_profile = MyCustomProfile(user=request.user)
             custom_profile.save()
 
 
