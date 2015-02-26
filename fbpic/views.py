@@ -49,7 +49,8 @@ def home(request):
             current_id = custom_profile.untameable_id =  max_id + 1
             custom_profile.newuid = text = "{:03d}".format(current_id)
             custom_profile.save()
-           
+        else:
+            text = custom_profile.newuid   
     else:
         template_name = "index.html"
     
