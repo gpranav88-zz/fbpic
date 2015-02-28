@@ -35,8 +35,8 @@ ALLOWED_HOSTS = []
 
  #for Amazon
 
-FACEBOOK_APP_ID = "933970239987088"
-FACEBOOK_APP_SECRET = "45e01d3a234083c3ffb786a289d31a66"
+FACEBOOK_APP_ID = "350479398471036"
+FACEBOOK_APP_SECRET = "9eacd011de3bcbd053c26390b0a8831b"
 
 
 FACEBOOK_DEFAULT_SCOPE = ['email', 'user_about_me', 'user_birthday', 'user_website','publish_actions']

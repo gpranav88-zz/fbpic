@@ -26,16 +26,6 @@
     <p class="txt1">
     <h2>Thank you {{ user.first_name }}, for registering with us. Your User id is {{text}}.</h2>
     </p>
-            <form action="{% url 'wall_post' %}" method="get">
-                {% csrf_token %}
-                <input type="hidden" value="{{ request.path }}" name="next" />
-                <img src="{% static 'fbpic/images/user_img.png' %}" alt="This is your picture taken by our cams"/>
-                <input type="hidden" value="http://familytwist.in{{STATIC_URL }}fbpic/images/user_img.png" name="picture" />
-                <br />
-                <textarea name="message" rows="3" cols="35"></textarea>
-                <br /><br /><br />
-                <input type="submit" value="Post to your wall" />
-            </form>
     <br /><br />
     <a href="{% url 'auth_logout' %}?next={{ '/'|urlencode }}" onclick="fbLogoutUser()" class="button1">Log out</a>
     
